@@ -1,0 +1,24 @@
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=a8875cdf-3489-4a63-97b6-2f812ac6c7b7
+DEVICE=ens33
+ONBOOT=yes
+#this virtual machine's self ip
+IPADDR0=192.168.4.129
+#submask means 255.255.255.0
+PREFIX0=24
+#host getway ip
+GATEWAY0=192.168.4.1
+#host gateway ip
+DNS1=192.168.4.1
+
