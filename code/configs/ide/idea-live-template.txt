@@ -1,0 +1,16 @@
+
+#ser
+
+
+groovyScript("new Random().nextLong().abs()")
+
+
+    companion object{
+        private const val serialVersionUID = $randomLong$L
+    }
+    $END$
+
+#log
+
+private val log=LoggerFactory.getLogger(this.javaClass)
+

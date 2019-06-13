@@ -1,6 +1,6 @@
 #install redis
 https://www.jianshu.com/p/fef5e1a7bd0e
-docker run -v F:/data/docker/redis/data:/data -d -p 6379:6379 redis redis-server --appendonly yes --requirepass 'root'
+docker run --name redis -d -p 6379:6379 redis
 
 #install zookeeper
 https://my.oschina.net/u/3375733/blog/1591974
