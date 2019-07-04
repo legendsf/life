@@ -39,4 +39,6 @@ public class RedisTest{
         log.info("ruser:{}",ruser)
 
     }
+
+
 }

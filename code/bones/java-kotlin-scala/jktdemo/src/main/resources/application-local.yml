@@ -11,3 +11,11 @@ spring:
         min-idle: 5 # 连接池中的最小空闲连接
         max-wait: 6000 # 连接池最大阻塞等待时间（使用负值表示没有限制）
     timeout: 1000
+
+rocketmq:
+  producer:
+    groupName: sendGroup
+    namesrvAddr: 127.0.0.1:9876
+    default: false
+
+

@@ -19,6 +19,7 @@ import org.apache.curator.framework.api.CuratorListener
 import org.apache.curator.framework.api.CuratorWatcher
 import org.apache.curator.framework.recipes.cache.*
 import org.apache.curator.framework.recipes.cache.PathChildrenCache.StartMode
+import org.apache.curator.framework.recipes.shared.SharedCount
 import org.apache.tomcat.jni.File.getStat
 import org.apache.zookeeper.ZooDefs.OpCode.getData
 import sun.font.LayoutPathImpl.getPath
@@ -321,6 +322,15 @@ class ZookeeperTest {
         println(ch1)
         println(ch2)
         ls(client,"/","")
+    }
+
+    @Test
+    fun testSharedCount(){
+        val client=getZkClient1()
+        client.start()
+        client.blockUntilConnected()
+        val baseCount=SharedCount(client,"/msharedCount",0)
+
     }
 
     fun ls(client: CuratorFramework, path: String,data:String) {
