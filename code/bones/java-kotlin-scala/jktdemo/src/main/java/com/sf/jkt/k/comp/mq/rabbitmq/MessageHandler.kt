@@ -1,6 +1,5 @@
 package com.sf.jkt.k.comp.mq.rabbitmq
 
-import com.google.errorprone.annotations.concurrent.LazyInit
 import com.sf.jkt.k.entity.User
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.rabbit.annotation.Exchange
