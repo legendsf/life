@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 class HelloController{
    @GetMapping("/hello")
    fun hello():String{
-      return "hello world!"
+      return "hello compile1 reload world!"
    }
 }

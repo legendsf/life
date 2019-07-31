@@ -1,0 +1,13 @@
+syntax="proto3"
+option java_mutiple_files=false;
+option java_package="com.sf.jkt.k.comp.connection.grpc";
+option java_outer_classname="Grpc";
+message UnaryRequest{
+    string serviceName=1;
+    string methodName=2;
+    bytes data=3;
+    string request_id=4;
+}
+message UnaryResponse{
+    
+}

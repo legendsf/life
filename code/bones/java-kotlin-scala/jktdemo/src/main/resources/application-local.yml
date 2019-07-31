@@ -1,3 +1,8 @@
+server:
+  port: 8081
+grpc:
+  enable: true
+  port: 6565
 spring:
   redis:
     database: 1
@@ -12,10 +17,41 @@ spring:
         max-wait: 6000 # 连接池最大阻塞等待时间（使用负值表示没有限制）
     timeout: 1000
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirms: true
+    virtual-host: /
+
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: -1
+    consumer:
+      auto-commit-interval: 1s
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      concurrency: 5
+      ack-mode: manual
+#      ack-count:
+#      ack-time:
+
 rocketmq:
   producer:
     groupName: sendGroup
     namesrvAddr: 127.0.0.1:9876
     default: false
+
+
 
 
