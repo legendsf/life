@@ -49,6 +49,10 @@
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
+                <configuration>
+                    <clearOutputDirectory>false</clearOutputDirectory>
+                    <outputDirectory>src/main/java</outputDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -307,7 +311,6 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.9</version>
         </dependency>
-        <!--20190722-->
         <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit -->
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
@@ -333,6 +336,18 @@
         <!--            <version>3.3.0</version>-->
         <!--        </dependency>-->
 
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-all -->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-all</artifactId>
+            <version>1.22.1</version>
+        </dependency>
+        <!--20190731-->
 
     </dependencies>
 
