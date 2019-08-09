@@ -17,6 +17,11 @@ class BootKafkaTest :SpringBootBaseTest(){
     }
 
     @Test
+    fun test_sendExample(){
+        kafkaProducer.sendMessage("example","hello example MESSAGE")
+    }
+
+    @Test
     fun test_ackTest(){
        for(i in 0..10){
            kafkaProducer.sendMessage("ack_test","ack_test_message#"+i)

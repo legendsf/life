@@ -31,4 +31,5 @@ fun getLeaderLatch(id:Int) :LeaderLatch{
 fun await(leaderLatch: LeaderLatch){
     leaderLatch.start()
     leaderLatch.await()
+//    leaderLatch.close()
 }

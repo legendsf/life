@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   application:
     name: dubbo-spring-boot-starter
@@ -75,7 +75,7 @@ dubbo:
     base-packages: com.sf.jkt.k.comp.connection.dubbo
   protocol:
     name: dubbo
-    port: 20880
+    port: 20881
   registry:
     address: zookeeper://127.0.0.1:2181
 

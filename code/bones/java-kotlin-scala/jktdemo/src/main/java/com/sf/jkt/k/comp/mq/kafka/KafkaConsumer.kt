@@ -7,6 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.annotation.KafkaListeners
 import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Component
+
 //https://shift-alt-ctrl.iteye.com/blog/2423167
 @Component
 class KafkaConsumer {
@@ -34,6 +35,11 @@ class KafkaConsumer {
         } else {
             ack.acknowledge()
         }
+    }
+
+    @KafkaListener(topics = ["example"], groupId = "example")
+    fun listenToExample(data: String, ack: Acknowledgment) {
+        log.info("收到example 消息:" + data)
     }
 
 //    @KafkaListener(containerFactory = "kafkaListenerContainerFactory",topics = ["ack_test"], groupId = "ack_test")

@@ -1,6 +1,7 @@
 package com.sf.jkt.k.comp.connection.http.httpclient
 
 import com.alibaba.fastjson.JSONObject
+import org.apache.commons.lang3.exception.ExceptionUtils
 import org.apache.http.HeaderElement
 import org.apache.http.HttpResponse
 import org.apache.http.HttpStatus
@@ -15,7 +16,6 @@ import org.apache.http.message.BasicHeaderElementIterator
 import org.apache.http.protocol.HTTP
 import org.apache.http.protocol.HttpContext
 import org.apache.http.util.EntityUtils
-import org.hibernate.exception.ExceptionUtils
 import org.slf4j.LoggerFactory
 
 class HttpClientDemo {

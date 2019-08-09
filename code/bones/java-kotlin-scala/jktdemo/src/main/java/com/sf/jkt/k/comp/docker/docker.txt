@@ -1,0 +1,23 @@
+mysql:
+docker run -p 3306:3306 --name mysql  -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+
+
+zookeeper:
+docker run -d --name zookeeper -p 2181:2181 wurstmeister/zookeeper
+
+kafka:
+docker run -d --name kafka --publish 9092:9092 --link zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=192.168.4.126 --env KAFKA_ADVERTISED_PORT=9092  wurstmeister/kafka:latest
+docker run -d --name kafka-manager --link zookeeper:zookeeper --link kafka:kafka -p 9000:9000 --restart=always --env ZK_HOSTS=zookeeper:2181 sheepkiller/kafka-manager
+
+rabbitmq:
+docker run -d --name rabbitmq3.7.7 -p 5672:5672 -p 15672:15672  -e RABBITMQ_DEFAULT_VHOST=my_vhost  -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq:3.7.7-management
+
+jrebel:
+docker pull ilanyu/golang-reverseproxy
+
+docker run -d --name reverse -p 8888:8888 ilanyu/golang-reverseproxy
+
+
+
+
+
