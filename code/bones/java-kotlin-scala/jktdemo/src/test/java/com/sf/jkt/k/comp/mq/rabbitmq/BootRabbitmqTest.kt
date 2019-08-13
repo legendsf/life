@@ -1,7 +1,7 @@
 package com.sf.jkt.k.comp.mq.rabbitmq
 
 import com.alibaba.fastjson.JSON
-import com.sf.jkt.k.entity.User
+import com.sf.jkt.k.entity.MUser
 import com.sf.jkt.k.util.SpringBootBaseTest
 import org.junit.Test
 import org.slf4j.LoggerFactory
@@ -11,7 +11,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.util.concurrent.ListenableFutureCallback
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class BootRabbitmqTest : SpringBootBaseTest() {
 
@@ -38,13 +37,13 @@ class BootRabbitmqTest : SpringBootBaseTest() {
 
     @Test
     fun test_sendMsg5() {
-        rabbitTemplate.convertAndSend("bootTest5", "bootTest5", User(1, "sf1", "pass1"),
+        rabbitTemplate.convertAndSend("bootTest5", "bootTest5", MUser(1, "sf1", "pass1"),
                 CorrelationData(UUID.randomUUID().toString()))
     }
 
     @Test
     fun test_sendMsg6() {
-        rabbitTemplate.convertAndSend("bootTest6", "bootTest6", User(1, "sf1", "pass1"),
+        rabbitTemplate.convertAndSend("bootTest6", "bootTest6", MUser(1, "sf1", "pass1"),
                 CorrelationData(UUID.randomUUID().toString()))
     }
 
@@ -56,7 +55,7 @@ class BootRabbitmqTest : SpringBootBaseTest() {
 
     @Test
     fun test_fanout() {
-        rabbitTemplate.convertAndSend("fanoutExchange", null, JSON.toJSONString(User(1, "sf1", "pass1"))
+        rabbitTemplate.convertAndSend("fanoutExchange", null, JSON.toJSONString(MUser(1, "sf1", "pass1"))
                 , CorrelationData(UUID.randomUUID().toString()))
     }
 

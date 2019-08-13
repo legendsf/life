@@ -1,7 +1,6 @@
 package com.sf.jkt.k.comp.mq.rabbitmq
 
 import com.rabbitmq.client.Channel
-import com.sf.jkt.k.entity.User
 import org.omg.CORBA.Object
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.core.AcknowledgeMode
@@ -19,12 +18,9 @@ import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.DependsOn
-import org.springframework.messaging.MessageHeaders
 import org.springframework.messaging.handler.annotation.Header
 import org.springframework.messaging.handler.annotation.Headers
 import org.springframework.messaging.handler.annotation.Payload
-import org.springframework.stereotype.Component
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 

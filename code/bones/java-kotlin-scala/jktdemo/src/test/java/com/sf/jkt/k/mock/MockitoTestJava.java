@@ -1,15 +1,14 @@
-package com.sf.jkt.k.testex;
+package com.sf.jkt.k.mock;
 
-import com.sf.jkt.k.testex.mvc.MModel;
-import com.sf.jkt.k.testex.mvc.ModelDao;
-import com.sf.jkt.k.testex.mvc.ModelService;
+import com.sf.jkt.k.mock.mvc.MModel;
+import com.sf.jkt.k.mock.mvc.ModelDao;
+import com.sf.jkt.k.mock.mvc.ModelService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.ui.Model;
 import org.unitils.util.ReflectionUtils;
 
 import static org.mockito.ArgumentMatchers.any;

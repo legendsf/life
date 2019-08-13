@@ -1,4 +1,4 @@
-package com.sf.jkt.k.testex.mvc;
+package com.sf.jkt.k.mock.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

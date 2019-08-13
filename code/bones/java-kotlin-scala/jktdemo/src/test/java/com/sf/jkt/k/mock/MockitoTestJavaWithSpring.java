@@ -1,7 +1,7 @@
-package com.sf.jkt.k.testex;
+package com.sf.jkt.k.mock;
 
-import com.sf.jkt.k.testex.mvc.MModel;
-import com.sf.jkt.k.testex.mvc.ModelService;
+import com.sf.jkt.k.mock.mvc.MModel;
+import com.sf.jkt.k.mock.mvc.ModelService;
 import com.sf.jkt.k.util.SpringBootBaseTest;
 import org.junit.Assert;
 import org.junit.Test;

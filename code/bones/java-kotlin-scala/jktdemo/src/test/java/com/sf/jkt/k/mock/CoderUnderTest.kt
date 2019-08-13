@@ -1,4 +1,4 @@
-package com.sf.jkt.k.testex
+package com.sf.jkt.k.mock
 
 
 open class Person(open var name: String, open var age: Int, open var friend: Person?) {

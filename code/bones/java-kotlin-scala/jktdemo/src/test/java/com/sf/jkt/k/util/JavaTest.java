@@ -1,16 +1,13 @@
 package com.sf.jkt.k.util;
 
-import com.google.common.collect.Collections2;
-import com.sf.jkt.k.entity.User;
-import com.sf.jkt.k.util.KotlinBaseTestKt;
+import com.sf.jkt.k.entity.MUser;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 public class JavaTest {
     static Class<?> getMClass() {
-        return User.class;
+        return MUser.class;
     }
 
     public static void main(String[] args) {

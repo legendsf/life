@@ -1,17 +1,12 @@
 package com.sf.jkt.k.comp.mq.rabbitmq
 
 import com.alibaba.fastjson.JSON
-import com.sf.jkt.k.entity.User
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.core.MessageProperties
 import org.springframework.amqp.support.converter.AbstractMessageConverter
 import org.springframework.amqp.support.converter.DefaultClassMapper
-import org.springframework.amqp.support.converter.MessageConverter
-import org.springframework.context.annotation.Lazy
-import java.lang.reflect.Type
 import java.nio.charset.Charset
-import javax.json.Json
 
 class RabbitMqFastJsonConverter : AbstractMessageConverter() {
     private val log = LoggerFactory.getLogger(this.javaClass)

@@ -1,5 +1,6 @@
 package com.sf.jkt.k.web
 
+import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
@@ -9,8 +10,9 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.context.annotation.Bean
 
 
-@SpringBootApplication(exclude= [DataSourceAutoConfiguration::class])
+@SpringBootApplication(exclude= [])
 @ComponentScan(basePackages = ["com.sf"])
+@MapperScan("com.sf")
 class KotlinApplication
 
 fun main(args:Array<String>) {

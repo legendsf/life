@@ -1,4 +1,4 @@
-package com.sf.jkt.k.testex
+package com.sf.jkt.k.mock
 
 
 interface EmailGenerator {

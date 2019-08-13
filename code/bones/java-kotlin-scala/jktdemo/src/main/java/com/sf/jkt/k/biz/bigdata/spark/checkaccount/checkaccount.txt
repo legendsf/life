@@ -1,0 +1,19 @@
+1:mysql 对账
+术语：
+表 A -- 我方流水
+表 B -- 银行流水
+
+步骤1：把银行对账文件.csv 导入到mysql 可以用flume工具
+
+对状态不一致:
+select * from A left join B on A.id=B.id and A.status != B.status
+select * from A right join B on A.id=B.id and A.status != B.status
+金额不一致:
+select * from A left join B on A.id=B.id and A.money != B.money
+select * from A right join B on A.id=B.id and A.money != B.money
+
+2:spark 对账
+
+
+
+

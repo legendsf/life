@@ -104,7 +104,7 @@
   <!--<logger name="org.springframework" level="WARN" />-->
 
   <!-- 当前项目 的不同环境的日志级别配置 -->
-  <logger name="com.hualala" level="debug" additivity="false">
+  <logger name="com.sf" level="debug" additivity="false">
     <springProfile name="local">
       <appender-ref ref="STDOUT" />
     </springProfile>

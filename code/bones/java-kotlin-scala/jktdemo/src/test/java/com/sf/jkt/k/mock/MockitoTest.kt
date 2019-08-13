@@ -1,6 +1,5 @@
-package com.sf.jkt.k.testex
+package com.sf.jkt.k.mock
 
-import org.apache.kafka.common.protocol.types.ArrayOf
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito.mock
