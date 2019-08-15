@@ -1,4 +1,4 @@
-package com.sf.jkt.k.mock.mvc;
+package com.sf.jkt.k.service.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ public class ModelService {
     ModelDao modelDao;
 
     public MModel getModel(Long id) {
-        return modelDao.getModel(id);
+        return null;
     }
 
 

@@ -1,4 +1,4 @@
-package com.sf.jkt.k.web
+package com.sf.jkt.k.web.config
 
 import com.alibaba.fastjson.support.config.FastJsonConfig
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter

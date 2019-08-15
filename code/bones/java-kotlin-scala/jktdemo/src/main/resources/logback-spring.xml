@@ -122,7 +122,7 @@
 
   <root>
     <springProfile name="local">
-      <level value="info"/>
+      <level value="INFO"/>
       <appender-ref ref="STDOUT" />
     </springProfile>
 

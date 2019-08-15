@@ -3,7 +3,11 @@ package com.sf.jkt.k.auto.entity
 import com.baomidou.mybatisplus.annotation.IdType
 import com.baomidou.mybatisplus.extension.activerecord.Model
 import com.baomidou.mybatisplus.annotation.TableId
+import java.time.LocalDateTime
 import com.baomidou.mybatisplus.annotation.TableField
+import com.baomidou.mybatisplus.annotation.TableLogic
+import com.sf.jkt.k.Util.AgeEnum
+import com.sf.jkt.k.Util.GradeEnum
 import java.io.Serializable
 
 /**
@@ -12,7 +16,7 @@ import java.io.Serializable
  * </p>
  *
  * @author songfei
- * @since 2019-08-13
+ * @since 2019-08-14
  */
 class User : Model<User>() {
 
@@ -25,6 +29,26 @@ class User : Model<User>() {
 
     @TableField("sex")
     var sex: Int? = null
+
+    @TableField("tenant_id")
+    var tenantId: Long? = null
+
+    @TableField("age")
+    var age: AgeEnum? = null
+
+
+    @TableField("grade")
+    var grade: GradeEnum? = null
+
+    @TableField("delete_flag")
+    @TableLogic
+    var deleteFlag: Int? = null
+
+    @TableField("createTime")
+    var createTime: LocalDateTime? = null
+
+    @TableField("updateTime")
+    var updateTime: LocalDateTime? = null
 
 
     companion object {
@@ -40,6 +64,30 @@ class User : Model<User>() {
         const val SEX : String = "sex"
 
 
+
+        const val TENANT_ID : String = "tenant_id"
+
+
+
+        const val AGE : String = "age"
+
+
+
+        const val GRADE : String = "grade"
+
+
+
+        const val DELETE_FLAG : String = "delete_flag"
+
+
+
+        const val CREATETIME : String = "createTime"
+
+
+
+        const val UPDATETIME : String = "updateTime"
+
+
     }
 
     override fun pkVal(): Serializable? {
@@ -51,6 +99,12 @@ class User : Model<User>() {
         "id=" + id +
         ", name=" + name +
         ", sex=" + sex +
+        ", tenantId=" + tenantId +
+        ", age=" + age +
+        ", grade=" + grade +
+        ", deleteFlag=" + deleteFlag +
+        ", createTime=" + createTime +
+        ", updateTime=" + updateTime +
         "}"
     }
 }

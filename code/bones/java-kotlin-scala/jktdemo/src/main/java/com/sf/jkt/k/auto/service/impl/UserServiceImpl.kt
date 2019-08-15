@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author songfei
- * @since 2019-08-13
+ * @since 2019-08-14
  */
 @Service
 open class UserServiceImpl : ServiceImpl<UserMapper, User>(), IUserService {

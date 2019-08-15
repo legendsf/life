@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author songfei
- * @since 2019-08-13
+ * @since 2019-08-14
  */
 @RestController
 @RequestMapping("/auto/user")

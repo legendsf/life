@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean
 
 @SpringBootApplication(exclude= [])
 @ComponentScan(basePackages = ["com.sf"])
-@MapperScan("com.sf")
 class KotlinApplication
 
 fun main(args:Array<String>) {

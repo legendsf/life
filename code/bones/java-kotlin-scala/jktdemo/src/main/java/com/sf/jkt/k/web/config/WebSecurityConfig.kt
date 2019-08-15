@@ -1,4 +1,4 @@
-package com.sf.jkt.k.web
+package com.sf.jkt.k.web.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder

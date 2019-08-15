@@ -1,4 +1,4 @@
-package com.sf.jkt.k.mock.mvc;
+package com.sf.jkt.k.service.mvc;
 
 public class MModel {
     public Long id;

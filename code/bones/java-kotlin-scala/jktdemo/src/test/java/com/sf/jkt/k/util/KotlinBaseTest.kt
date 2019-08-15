@@ -4,6 +4,11 @@ import com.alibaba.fastjson.JSON
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.google.gson.Gson
+import com.sf.jkt.k.Util.Log
+import com.sf.jkt.k.Util.Log2
+import com.sf.jkt.k.Util.Log3
+import com.sf.jkt.k.Util.Log4
+import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiled
 import com.sf.jkt.k.entity.*
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.CuratorFrameworkFactory
@@ -18,10 +23,20 @@ import java.lang.StringBuilder
 
 val ZK_ADDRESS = "127.0.0.1:2181"
 val ZK_PATH = "f:/tmp/zookeeper"
-
 fun main() {
-    testJson6()
+    Log.log.info("xxxxxxLog")
+//    Log2.log.info("xxxxxxLog2")
+//    Log3.log.info("xxxxxxLog3")
+    Log4.info("hello log4")
+    AdviceProfiled().profile(1000,"params")
 }
+
+fun testLog(){
+    println("hello world")
+}
+
+
+
 
 fun testIter() {
     for (i in 0 until 10) {

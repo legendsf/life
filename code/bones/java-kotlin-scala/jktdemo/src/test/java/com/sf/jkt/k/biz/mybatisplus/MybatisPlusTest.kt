@@ -1,6 +1,9 @@
 package com.sf.jkt.k.biz.mybatisplus
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page
+import com.sf.jkt.k.Util.AgeEnum
+import com.sf.jkt.k.Util.GradeEnum
 import com.sf.jkt.k.auto.entity.User
 import com.sf.jkt.k.auto.mapper.UserMapper
 import com.sf.jkt.k.util.SpringBootBaseTest
@@ -37,6 +40,8 @@ class MybatisPlusTest:SpringBootBaseTest() {
         val user=User();
         user.name="fei2001"
         user.sex=1
+        user.age=AgeEnum.THREE
+        user.grade=GradeEnum.HIGH
         var result=user.insert()
         assertEquals(true,result)
         var userList=user.selectList(QueryWrapper<User>().eq("name","fei2001"))
@@ -47,6 +52,20 @@ class MybatisPlusTest:SpringBootBaseTest() {
         assertEquals(true,result)
         result=user.deleteById()
         assertEquals(true,result)
+        println("END")
+    }
+    @Test
+    fun testPagination(){
+        var page=Page<User>(0,20)
+        page.setSearchCount(false)
+        var wrapper=QueryWrapper<User>().eq("name","fei")
+        var result= userMapper.selectPage(page,wrapper)
+        println(result)
+    }
+    @Test
+    fun testLogicDelete(){
+        var result=userMapper.deleteById(10)
+        var user =userMapper.selectById(10)
         println("END")
     }
 }

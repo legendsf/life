@@ -10,141 +10,15 @@
       <!--普通字段-->
         <result column="name" property="name"/>
         <result column="sex" property="sex"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="age" property="age"/>
+        <result column="grade" property="grade"/>
+        <result column="delete_flag" property="deleteFlag"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="queryRefid">
-      id, name, sex
+      id, name, sex, tenant_id, age, grade, delete_flag, createTime, updateTime
     </sql>
-
- <!--单体新增-->
-  	<insert id="insertEx" parameterType="com.sf.jkt.k.auto.entity.User">
-      insert into user (
-      <trim prefix="" suffixOverrides=",">
-          <if test="id != null"> id,</if>
-          <if test="name != null"> name,</if>
-          <if test="sex != null"> sex,</if>
-      </trim>
-      ) values (
-      <trim prefix="" suffixOverrides=",">
-          <if test="id != null"> #{id},</if>
-          <if test="name != null"> #{name},</if>
-          <if test="sex != null"> #{sex},</if>
-      </trim>
-      )
-    </insert>
-
-<!--批量新增,传入的是List-->
-<!--性能好，是一条sql语句，整体在一个事务中,一条失败整体回滚,返回的是操作记录的总条数-->
-    <insert id="insertBatchEx" parameterType="java.util.List">
-      insert into user (
-      <trim prefix="" suffixOverrides=",">
-          id,
-          name,
-          sex,
-      </trim>
-      ) values
-      <foreach collection="list" item="item" index="index" separator=",">
-        (
-        <trim prefix="" suffixOverrides=",">
-            <if test="item.id != null"> #{item.id},</if>
-            <if test="item.name != null"> #{item.name},</if>
-            <if test="item.sex != null"> #{item.sex},</if>
-        </trim>
-        )
-      </foreach>
-    </insert>
-
-<!--单体删除-->
-   <delete id="deleteEx" parameterType="com.sf.jkt.k.auto.entity.User">
-     delete from user where id = #{id}
-   </delete>
-
-<!--批量删除-->
-   <delete id="deleteBatchEx" parameterType="java.util.List">
-     delete from user where id in
-     <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
-       #{item}
-     </foreach>
-   </delete>
-
-<!--单体修改,传入的是bean的属性组装的Map-->
-	<update id="updateEx" parameterType="java.util.Map">
-    update user
-    set
-    <trim prefix="" suffixOverrides=",">
-          <if test="id != null"> id = #{id}
-            ,
-          </if>
-          <if test="name != null"> name = #{name}
-            ,
-          </if>
-          <if test="sex != null"> sex = #{sex}
-            ,
-          </if>
-    </trim>
-    where id = #{id}
-  </update>
-
-<!--个性化批量修改,每个对象改的值不同,传入的是List<UserMapper>-->
-<!--性能好,只有一条sql语句,如果该批次一条执行不成功，整批次回滚，整批次是一个事务-->
-  <update id="updateBatchDifEx" parameterType="java.util.List">
-    update user
-    set
-    <trim suffixOverrides=",">
-        <trim prefix="name = case " suffix="end,">
-          <foreach collection="list" index="index" item="item">
-            <if test="item.name !=null ">
-              when  #{item.id} then #{item.name}
-            </if>
-          </foreach>
-        </trim>
-        <trim prefix="sex = case " suffix="end,">
-          <foreach collection="list" index="index" item="item">
-            <if test="item.sex !=null ">
-              when  #{item.id} then #{item.sex}
-            </if>
-          </foreach>
-        </trim>
-    </trim>
-    where id in
-    <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
-      #{item.id}
-    </foreach>
-  </update>
-
-<!--批量修改,多个ID改为相同的值,传入的是List<PrimaryKey>-->
-<update id="updateBatchEx" parameterType="java.util.List">
-  update user set user_status = '0' where id in
-  <foreach collection="list" item="id" open="(" separator="," close=")">
-    #{id}
-  </foreach>
-</update>
-
-<!--查询-->
-  <select id="countEx" resultType="java.lang.Integer" parameterType="java.util.Map">
-    select count(1) from user
-    <trim prefix="WHERE" prefixOverrides="AND|OR">
-        <if test="id != null"> and  id
-          = #{id} </if>
-        <if test="name != null"> and  name
-          = #{name} </if>
-        <if test="sex != null"> and  sex
-          = #{sex} </if>
-    </trim>
-  </select>
-
-  <!--传入的参数为Bean的属性组装的map-->
-  <select id="selectEx" resultType="com.sf.jkt.k.auto.entity.User" parameterType="java.util.Map">
-    select
-    <include refid="queryRefid"/>
-    from user
-    <trim prefix="WHERE" prefixOverrides="AND|OR">
-        <if test="id != null"> and  id
-          = #{id} </if>
-        <if test="name != null"> and  name
-          = #{name} </if>
-        <if test="sex != null"> and  sex
-          = #{sex} </if>
-    </trim>
-  </select>
 </mapper>
