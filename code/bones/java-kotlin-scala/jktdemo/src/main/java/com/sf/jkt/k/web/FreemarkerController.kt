@@ -41,8 +41,5 @@ class FreemarkerController {
         return "index"
     }
 
-    @GetMapping("/error")
-    fun error(): String {
-        return "error"
-    }
+
 }

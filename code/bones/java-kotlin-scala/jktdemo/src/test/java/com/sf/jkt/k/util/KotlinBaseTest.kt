@@ -17,6 +17,7 @@ import org.apache.curator.framework.state.ConnectionStateListener
 import org.apache.curator.retry.ExponentialBackoffRetry
 import org.apache.curator.retry.RetryNTimes
 import org.apache.curator.test.TestingServer
+import org.springframework.web.util.HtmlUtils
 import java.io.ByteArrayInputStream
 import java.io.OutputStream
 import java.lang.StringBuilder
@@ -24,6 +25,12 @@ import java.lang.StringBuilder
 val ZK_ADDRESS = "127.0.0.1:2181"
 val ZK_PATH = "f:/tmp/zookeeper"
 fun main() {
+    var result=HtmlUtils.htmlEscape("<text>")
+    println(result)
+
+}
+
+fun test1(){
     Log.log.info("xxxxxxLog")
 //    Log2.log.info("xxxxxxLog2")
 //    Log3.log.info("xxxxxxLog3")

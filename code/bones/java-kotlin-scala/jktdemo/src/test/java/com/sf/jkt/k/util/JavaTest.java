@@ -2,6 +2,7 @@ package com.sf.jkt.k.util;
 
 import com.sf.jkt.k.Util.Log;
 import com.sf.jkt.k.Util.Log4;
+import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiled;
 import com.sf.jkt.k.entity.MUser;
 import org.apache.kafka.common.utils.Java;
 
@@ -16,6 +17,7 @@ public class JavaTest {
     public static void main(String[] args) {
         Log4.info("hello");
         testOutput("hello","world");
+        new AdviceProfiled().profile(1000,"params");
     }
 
     public void testOuput1(){

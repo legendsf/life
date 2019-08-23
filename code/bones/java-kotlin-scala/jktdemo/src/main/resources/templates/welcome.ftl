@@ -4,10 +4,7 @@
 </head>
 
 <body>
-Date: ${time?data}
-<br>
-Time: ${time?time}
-<br>
+time: ${time?string('yyyy-MM-dd HH:mm:ss')}
 Message: ${message}
 </body>
 </html>

@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody
 class GlobalExceptionHandler {
     @ExceptionHandler(Exception::class)
     @ResponseBody
+    //https://www.cnblogs.com/jpfss/p/8478644.html
     fun exceptionHandler(e: Exception): Map<String, Any> {
-        Log.log.error("GlobalExceptionHandler系统错误",e)
+        Log.log.error("GlobalExceptionHandler系统错误", e)
         return mapOf("errorCode" to "101", "errorMsg" to "系统错误!" + ExceptionUtils.getStackTrace(e))
     }
 }

@@ -78,10 +78,11 @@
         <os.maven.plugin.version>1.6.2</os.maven.plugin.version>
         <scala.maven.plugin.version>4.0.2</scala.maven.plugin.version>
         <scala.version>2.11.12</scala.version>
-        <scala.compat.version>2.11</scala.compat.version>
+        <scala.binary.version>2.11</scala.binary.version>
         <rocketmq.version>4.5.1</rocketmq.version>
         <spring.rabbitmq.version>2.1.6.RELEASE</spring.rabbitmq.version>
         <spring.kafka.version>2.2.7.RELEASE</spring.kafka.version>
+        <flink.version>1.7.0</flink.version>
 
     </properties>
 
@@ -625,6 +626,68 @@
                 <artifactId>hutool-all</artifactId>
                 <version>4.6.1</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.7</version>
+            </dependency>
+
+
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-scala_2.11</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-client</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-server</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wltea</groupId>
+                <artifactId>analyzer</artifactId>
+                <version>1.0</version>
+                <scope>system</scope>
+                <systemPath>${project.basedir}/libs/IKAnalyzer2012FF_u1.jar</systemPath>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-core</artifactId>
+                <version>4.2.0</version>
+            </dependency>
+
         <!--endDepend-->
         </dependencies>
     </dependencyManagement>
@@ -864,7 +927,7 @@
                     <artifactId>scala-maven-plugin</artifactId>
                     <version>${scala.maven.plugin.version}</version>
                     <configuration>
-                        <scalaCompatVersion>${scala.compat.version}</scalaCompatVersion>
+                        <scalaCompatVersion>${scala.binary.version}</scalaCompatVersion>
                         <scalaVersion>${scala.version}</scalaVersion>
                         <encoding>UTF-8</encoding>
                     </configuration>

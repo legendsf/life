@@ -1,23 +1,27 @@
 package com.sf.jkt.k.web.config
 
-import com.alibaba.fastjson.support.config.FastJsonConfig
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter
-import com.sf.jkt.k.Util.Log
 import com.sf.jkt.k.biz.token.LogInterceptor
 import com.sf.jkt.k.biz.token.TokenInterceptor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.MediaType
-import org.springframework.http.converter.HttpMessageConverter
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters
+import com.sf.jkt.k.web.config.secruity.xsscors.XSSMappingJackson2HttpMessageConverter
+
 
 @Configuration
 class WebMvcConfig {
     @Autowired
     lateinit var logInterceptor: LogInterceptor
+
+
+    @Bean
+    fun xssHttpMessageConverters(): HttpMessageConverters {
+        val xssMappingJackson2HttpMessageConverter = XSSMappingJackson2HttpMessageConverter()
+        return HttpMessageConverters(xssMappingJackson2HttpMessageConverter)
+    }
 
     @Bean
     fun webMvcConfigure(): WebMvcConfigurer {
@@ -26,6 +30,7 @@ class WebMvcConfig {
                 registry.addInterceptor(logInterceptor).addPathPatterns("/**")
                 registry.addInterceptor(TokenInterceptor()).addPathPatterns("/admin/**")
             }
+
 
             /**
              * 方法一，已验证可行

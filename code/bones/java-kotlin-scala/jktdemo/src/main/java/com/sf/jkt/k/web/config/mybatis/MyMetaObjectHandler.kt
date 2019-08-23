@@ -1,4 +1,4 @@
-package com.sf.jkt.k.web.config
+package com.sf.jkt.k.web.config.mybatis
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler
 import com.sf.jkt.k.Util.Log

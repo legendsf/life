@@ -19,21 +19,26 @@
                 <artifactId>kotlin-maven-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
 
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                &lt;!&ndash;skip deploy &ndash;&gt;-->
-<!--                <artifactId>maven-deploy-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <skip>true</skip>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                &lt;!&ndash;skip deploy &ndash;&gt;-->
+            <!--                <artifactId>maven-deploy-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <skip>true</skip>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
 
             <!--            <plugin>-->
             <!--                <artifactId>maven-surefire-plugin</artifactId>-->
@@ -68,21 +73,22 @@
                         </includes>
                     </artifactSet>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-<!--                            <mainClass>com.sf.jkt.k.web.KotlinApplication</mainClass>-->
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <!--                            <mainClass>com.sf.jkt.k.web.KotlinApplication</mainClass>-->
                             <manifestEntries>
                                 <Premain-Class>com.sf.jkt.k.comp.javaagent.myagent.MyAgent2</Premain-Class>
                                 <Can-Redefine-Classes>true</Can-Redefine-Classes>
                                 <Manifest-Version>1.0</Manifest-Version>
                             </manifestEntries>
                         </transformer>
-<!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">-->
-<!--                            <resource>MANIFEST.MF</resource>-->
-<!--                        </transformer>-->
-<!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">-->
-<!--                            <resource>META-INF/MANIFEST.MF</resource>-->
-<!--                            <file>src/main/resources/META-INF/MANIFEST.MF</file>-->
-<!--                        </transformer>-->
+                        <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">-->
+                        <!--                            <resource>MANIFEST.MF</resource>-->
+                        <!--                        </transformer>-->
+                        <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">-->
+                        <!--                            <resource>META-INF/MANIFEST.MF</resource>-->
+                        <!--                            <file>src/main/resources/META-INF/MANIFEST.MF</file>-->
+                        <!--                        </transformer>-->
                     </transformers>
                 </configuration>
             </plugin>
@@ -408,6 +414,57 @@
             <artifactId>byte-buddy-agent</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-StringEscapeUtilstext</artifactId>
+        </dependency>
+
+       <!--flink scala-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-scala_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-scala_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wltea</groupId>
+            <artifactId>analyzer</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/IKAnalyzer2012FF_u1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+        </dependency>
+
+        <!--endDepend-->
     </dependencies>
 
 </project>
