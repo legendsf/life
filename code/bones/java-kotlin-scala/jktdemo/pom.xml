@@ -75,12 +75,12 @@
                     <transformers>
                         <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <!--                            <mainClass>com.sf.jkt.k.web.KotlinApplication</mainClass>-->
-                            <manifestEntries>
-                                <Premain-Class>com.sf.jkt.k.comp.javaagent.myagent.MyAgent2</Premain-Class>
-                                <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                                <Manifest-Version>1.0</Manifest-Version>
-                            </manifestEntries>
+                                                        <mainClass>com.sf.jkt.k.biz.lock.LockTest</mainClass>
+<!--                            <manifestEntries>-->
+<!--                                <Premain-Class>com.sf.jkt.k.comp.javaagent.myagent.MyAgent2</Premain-Class>-->
+<!--                                <Can-Redefine-Classes>true</Can-Redefine-Classes>-->
+<!--                                <Manifest-Version>1.0</Manifest-Version>-->
+<!--                            </manifestEntries>-->
                         </transformer>
                         <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">-->
                         <!--                            <resource>MANIFEST.MF</resource>-->
@@ -148,10 +148,7 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <!--db-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
+
         <!--test-->
         <!-- https://mvnrepository.com/artifact/org.jmockit/jmockit -->
 
@@ -375,10 +372,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
+
         <!--20190812-->
 
         <dependency>
@@ -409,22 +403,12 @@
             <artifactId>byte-buddy</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy-agent</artifactId>
-        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-StringEscapeUtilstext</artifactId>
-        </dependency>
+
+
 
        <!--flink scala-->
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-scala_2.11</artifactId>
