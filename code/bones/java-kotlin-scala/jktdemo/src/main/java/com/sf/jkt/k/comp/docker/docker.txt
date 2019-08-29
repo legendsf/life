@@ -36,6 +36,14 @@ https://segmentfault.com/a/1190000010976995
 
 https://github.com/big-data-europe/docker-hive
 
+docker run -d --name hadoop-master -P -h hadoop-master teradatalabs/cdh5-hive
+
+hdfs 权限问题：
+https://my.oschina.net/u/3197158/blog/1492629
+su hdfs
+hdfs dfs -chmod 777 /
+
+
 influx:
 
 docker run -d -p 8083:8083 -p8086:8086 --expose 8090 --expose 8099 --name influxDbService influxdb

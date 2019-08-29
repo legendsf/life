@@ -25,12 +25,16 @@ import java.lang.StringBuilder
 val ZK_ADDRESS = "127.0.0.1:2181"
 val ZK_PATH = "f:/tmp/zookeeper"
 fun main() {
-    var result=HtmlUtils.htmlEscape("<text>")
-    println(result)
+    test1()
 
 }
 
 fun test1(){
+    println(Math.addExact(1,10))
+//    println(Math.addExact(Int.MAX_VALUE,2))
+}
+
+fun testAgent(){
     Log.log.info("xxxxxxLog")
 //    Log2.log.info("xxxxxxLog2")
 //    Log3.log.info("xxxxxxLog3")

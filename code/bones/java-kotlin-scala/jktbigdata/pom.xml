@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>boot-parent</artifactId>
+        <groupId>com.sf.bones.jkt</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../bootparent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jktbigdata</artifactId>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                &lt;!&ndash;skip deploy &ndash;&gt;-->
+            <!--                <artifactId>maven-deploy-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <skip>true</skip>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+
+            <!--            <plugin>-->
+            <!--                <artifactId>maven-surefire-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <argLine>-javaagent:"${settings.localRepository}/org/jmockit/jmockit/1.36/jmockit-1.36.jar=coverage"</argLine>-->
+            <!--                    <disableXmlReport>false</disableXmlReport>-->
+            <!--                    <systemPropertyVariables>-->
+            <!--                        <coverage-output>html</coverage-output>-->
+            <!--                        <coverage-outputDir>${project.build.directory}/codecoverage-output</coverage-outputDir>-->
+            <!--                        <coverage-metrics>all</coverage-metrics>-->
+            <!--                    </systemPropertyVariables>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+            <!--grpc-->
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <configuration>
+                    <clearOutputDirectory>false</clearOutputDirectory>
+                    <outputDirectory>src/main/java</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <artifactSet>
+                        <includes>
+                            <include>javassist:javassist:jar:</include>
+                            <include>net.bytebuddy:byte-buddy:jar:</include>
+                            <include>net.bytebuddy:byte-buddy-agent:jar:</include>
+                        </includes>
+                    </artifactSet>
+                    <transformers>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>com.sf.jkt.k.biz.lock.LockTest</mainClass>
+                            <!--                            <manifestEntries>-->
+                            <!--                                <Premain-Class>com.sf.jkt.k.comp.javaagent.myagent.MyAgent2</Premain-Class>-->
+                            <!--                                <Can-Redefine-Classes>true</Can-Redefine-Classes>-->
+                            <!--                                <Manifest-Version>1.0</Manifest-Version>-->
+                            <!--                            </manifestEntries>-->
+                        </transformer>
+                        <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">-->
+                        <!--                            <resource>MANIFEST.MF</resource>-->
+                        <!--                        </transformer>-->
+                        <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">-->
+                        <!--                            <resource>META-INF/MANIFEST.MF</resource>-->
+                        <!--                            <file>src/main/resources/META-INF/MANIFEST.MF</file>-->
+                        <!--                        </transformer>-->
+                    </transformers>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!--kotlin-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk7</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-script-runtime</artifactId>
+        </dependency>
+        <!--spring-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--swagger-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.spring4all</groupId>-->
+        <!--            <artifactId>swagger-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
+        <!--freemarker-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!--db-->
+
+        <!--test-->
+        <!-- https://mvnrepository.com/artifact/org.jmockit/jmockit -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+
+
+
+
+
+
+        <!--flink scala-->
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-scala_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-scala_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.wltea</groupId>-->
+        <!--            <artifactId>analyzer</artifactId>-->
+        <!--            <scope>system</scope>-->
+        <!--            <systemPath>${project.basedir}/libs/IKAnalyzer2012FF_u1.jar</systemPath>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.7.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+        <!--endDepend-->
+    </dependencies>
+
+</project>

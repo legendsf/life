@@ -82,8 +82,10 @@
         <rocketmq.version>4.5.1</rocketmq.version>
         <spring.rabbitmq.version>2.1.6.RELEASE</spring.rabbitmq.version>
         <spring.kafka.version>2.2.7.RELEASE</spring.kafka.version>
-        <flink.version>1.7.0</flink.version>
-
+        <flink.version>1.9.0</flink.version>
+        <hive.versioon>2.3.2</hive.versioon>
+        <hadoop.version>2.7.7</hadoop.version>
+    <!--endPro-->
     </properties>
 
 
@@ -679,7 +681,23 @@
                 <artifactId>lucene-core</artifactId>
                 <version>4.2.0</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-client</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.apache.hive</groupId>
+                <artifactId>hive-jdbc</artifactId>
+                <version>${hive.versioon}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.hive</groupId>
+                <artifactId>hive-exec</artifactId>
+                <version>${hive.versioon}</version>
+            </dependency>
         <!--endDepend-->
         </dependencies>
     </dependencyManagement>
