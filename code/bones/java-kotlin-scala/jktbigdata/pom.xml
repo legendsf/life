@@ -61,37 +61,39 @@
                     <outputDirectory>src/main/java</outputDirectory>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>javassist:javassist:jar:</include>
-                            <include>net.bytebuddy:byte-buddy:jar:</include>
-                            <include>net.bytebuddy:byte-buddy-agent:jar:</include>
-                        </includes>
-                    </artifactSet>
-                    <transformers>
-                        <transformer
-                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <mainClass>com.sf.jkt.k.biz.lock.LockTest</mainClass>
-                            <!--                            <manifestEntries>-->
-                            <!--                                <Premain-Class>com.sf.jkt.k.comp.javaagent.myagent.MyAgent2</Premain-Class>-->
-                            <!--                                <Can-Redefine-Classes>true</Can-Redefine-Classes>-->
-                            <!--                                <Manifest-Version>1.0</Manifest-Version>-->
-                            <!--                            </manifestEntries>-->
-                        </transformer>
-                        <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">-->
-                        <!--                            <resource>MANIFEST.MF</resource>-->
-                        <!--                        </transformer>-->
-                        <!--                        <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">-->
-                        <!--                            <resource>META-INF/MANIFEST.MF</resource>-->
-                        <!--                            <file>src/main/resources/META-INF/MANIFEST.MF</file>-->
-                        <!--                        </transformer>-->
-                    </transformers>
-                </configuration>
-            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-shade-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <artifactSet>-->
+<!--                        <includes>-->
+<!--                            <include>org.jetbrains.kotlin:kotlin-stdlib:jar:</include>-->
+<!--                            <include>org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:</include>-->
+<!--                            <include>org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:</include>-->
+<!--                        </includes>-->
+<!--                    </artifactSet>-->
+<!--                    <transformers>-->
+<!--                        <transformer-->
+<!--                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--&lt;!&ndash;                            <mainClass>com.sf.jkt.k.biz.lock.LockTest</mainClass>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <manifestEntries>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <Premain-Class>com.sf.jkt.k.comp.javaagent.myagent.MyAgent2</Premain-Class>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <Can-Redefine-Classes>true</Can-Redefine-Classes>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <Manifest-Version>1.0</Manifest-Version>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </manifestEntries>&ndash;&gt;-->
+<!--                        </transformer>-->
+<!--                        &lt;!&ndash;                        <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <resource>MANIFEST.MF</resource>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        </transformer>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <resource>META-INF/MANIFEST.MF</resource>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <file>src/main/resources/META-INF/MANIFEST.MF</file>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        </transformer>&ndash;&gt;-->
+<!--                    </transformers>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
         </plugins>
     </build>
 
@@ -123,16 +125,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.slf4j</groupId>-->
+<!--                    <artifactId>slf4j-log4j12</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -156,19 +158,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
 
-
-
-
-
-
-
-        <!--flink scala-->
+        <!--hadoop-->
 
         <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-scala_2.11</artifactId>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
         </dependency>
+
+        <!--hbase-->
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
@@ -177,10 +179,25 @@
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-server</artifactId>
         </dependency>
+
+        <!--hive-->
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+        </dependency>
+
+        <!--flink scala-->
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-scala_2.11</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
@@ -193,34 +210,30 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.wltea</groupId>-->
-        <!--            <artifactId>analyzer</artifactId>-->
-        <!--            <scope>system</scope>-->
-        <!--            <systemPath>${project.basedir}/libs/IKAnalyzer2012FF_u1.jar</systemPath>-->
-        <!--        </dependency>-->
+
+
+        <!--spark-->
+
         <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-core</artifactId>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.11</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-            <version>2.7.7</version>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.11</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-jdbc</artifactId>
-            <version>2.3.2</version>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka_2.11</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-exec</artifactId>
-            <version>2.3.2</version>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
         </dependency>
+
 
         <!--endDepend-->
     </dependencies>

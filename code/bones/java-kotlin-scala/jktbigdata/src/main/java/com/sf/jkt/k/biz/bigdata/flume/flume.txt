@@ -1,5 +1,7 @@
 flume-ng1.9
 windows:
 bin\flume-ng.cmd agent  --conf-file conf\example.conf  -name a1 -property flume.root.logger=INFO,console
+linux:
+./bin/flume-ng agent  --conf-file conf/example.conf  -name a1 -property flume.root.logger=INFO,console
 
 
