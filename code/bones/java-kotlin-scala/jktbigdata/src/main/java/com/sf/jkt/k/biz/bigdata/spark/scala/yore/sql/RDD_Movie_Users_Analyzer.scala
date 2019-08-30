@@ -26,6 +26,7 @@ object RDD_Movie_Users_Analyzer {
     // 设置spark程序运行的日志级别，
     sc.setLogLevel("WARN")
 
+
     val usersRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/user.data")
     val moviesRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/movies.data")
     val ratingsRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/ratings.data")
