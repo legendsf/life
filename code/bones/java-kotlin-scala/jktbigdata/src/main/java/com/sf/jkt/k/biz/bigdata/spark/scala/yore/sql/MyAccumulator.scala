@@ -35,6 +35,7 @@ object MyAccumulator {
     sc.register(myaccum)
     sc.parallelize(Array("a", "b", "c", "d")).foreach(x => myaccum.add(x))
     println(myaccum.value)
+    println("-" * 10)
 
 
     spark.stop()

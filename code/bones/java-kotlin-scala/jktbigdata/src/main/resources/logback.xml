@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- 常量定义start -->
+  <property name="APPNAME" value="jktdemo" />
+  <!-- 默认日志输出格式 -->
+  <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+  <property name="DEFAULT_PATTERN"
+    value="%d{yyyy-MM-dd HH:mm:ss.SSS}$$[${HOSTNAME}]$$%(%level)$$[${APPNAME}]$$[%thread]$$[%file:%line]$$[%M]$$%msg%n"/>
+  <!--历史记录最大保存天数-->
+  <property name="MAX_HISTORY" value="30"/>
+  <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+  <property name="log.directory" value="/home/logs/${APPNAME}" />
+  <!--日志的字符编码-->
+  <property name="log.charset" value="UTF-8" />
+  <!--异步写日志的队列大小配置，默认为256-->
+  <property name="log.async.queue.size" value="1024" />
+  <!-- 常量定义end -->
+
+
+  <!--配置日志的上下文名称-->
+  <contextName>${APPNAME}</contextName>
+
+  <!--对应spring环境变量为local的日志配置，只做控制台输出配置-->
+    <!--控制台日志输出配置，可以匹配色彩和高亮-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{50}) - %yellow([%file:%line]) - %msg%n</pattern>
+        <!--<pattern>${DEFAULT_PATTERN}</pattern>-->
+        <charset>${log.charset}</charset>
+      </encoder>
+    </appender>
+
+
+
+
+  <!-- 当前项目 的不同环境的日志级别配置 -->
+  <logger name="com.sf" level="info" additivity="false">
+      <appender-ref ref="STDOUT" />
+  </logger>
+
+  <root>
+      <level value="info"/>
+      <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>

@@ -1,5 +1,6 @@
 package com.sf.jkt.k.biz.bigdata.spark.scala.yore.sql
 
+import cn.hutool.core.io.resource.ClassPathResource
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
@@ -26,10 +27,15 @@ object RDD_Movie_Users_Analyzer {
     // 设置spark程序运行的日志级别，
     sc.setLogLevel("WARN")
 
+    val userdata=new ClassPathResource("movie/user.data")
+    val moviedata=new ClassPathResource("movie/movies.data")
+    val ratingdata=new ClassPathResource("movie/ratings.data")
 
-    val usersRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/user.data")
-    val moviesRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/movies.data")
-    val ratingsRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/ratings.data")
+    val usersRDD = sc.textFile(userdata.getAbsolutePath)
+    val moviesRDD = sc.textFile(moviedata.getAbsolutePath)
+    val ratingsRDD = sc.textFile(ratingdata.getAbsolutePath)
+
+
 
     //TODO 电影数据的分析
 
@@ -45,9 +51,12 @@ object RDD_Movie_Users_Analyzer {
     // 计算电影评分和评论数 result格式为 （MovieID, (Sum(ratings), Count)）
     val moviesAndRatings = ratings.map(x => (x._2, (x._3.toDouble, 1)))
         .reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2))
-
+    moviesAndRatings.take(12).foreach(record=>printf("%s:%s",record._1,record._2))
+    println("-"*10)
     // 计算每个电影的平均分
     val avgRatings = moviesAndRatings.map(x => (x._1, x._2._1.toDouble/x._2._2))
+      avgRatings.take(12).foreach(record=>printf("%s:%s",record._1,record._2))
+    avgRatings.join(movieInfo).take(12).foreach(record=>printf("------%s:%s\n",record._1,record._2))
 
     avgRatings.join(movieInfo)
         .map(item => (item._2._1, item._2._2))

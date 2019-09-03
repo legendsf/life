@@ -1,5 +1,6 @@
 package com.sf.jkt.k.biz.bigdata.spark.scala.yore.sql
 
+import cn.hutool.core.io.resource.ClassPathResource
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
@@ -21,14 +22,18 @@ object RDD_Movie_Users_Analyzer2 {
       */
     val spark = SparkSession.builder().config(conf).getOrCreate()
 
-//    val sc = SparkContext(conf)
+    //    val sc = SparkContext(conf)
     val sc = spark.sparkContext
     // 设置spark程序运行的日志级别，
     sc.setLogLevel("WARN")
 
-    val usersRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/user.data")
-    val moviesRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/movies.data")
-    val ratingsRDD = sc.textFile("demo/business-practice/movie-rating/src/main/resources/ratings.data")
+    val userdata = new ClassPathResource("movie/user.data")
+    val moviedata = new ClassPathResource("movie/movies.data")
+    val ratingdata = new ClassPathResource("movie/ratings.data")
+
+    val usersRDD = sc.textFile(userdata.getAbsolutePath)
+    val moviesRDD = sc.textFile(moviedata.getAbsolutePath)
+    val ratingsRDD = sc.textFile(ratingdata.getAbsolutePath)
 
     //TODO 电影数据的分析
 
@@ -55,11 +60,11 @@ object RDD_Movie_Users_Analyzer2 {
     val ratings = ratingsRDD.map(_.split("\t"))
       .map(x => (x(0), x(1), x(2))).cache()
     // 用户ID， （(用户ID，电影ID，评分), 性别)
-     val genderRatings = ratings.map(x => (x._1, (x._1, x._2, x._3)) )
+    val genderRatings = ratings.map(x => (x._1, (x._1, x._2, x._3)))
       .join(usersGender).cache()
 
     // (273,((273,328,3),F))
-//    genderRatings.take(10).foreach(println )
+    //    genderRatings.take(10).foreach(println )
 
     /*
     * 分别过滤出男性和女性的记录进行处理
@@ -68,22 +73,11 @@ object RDD_Movie_Users_Analyzer2 {
     */
     val maleFilteredRatings = genderRatings.filter(x => x._2._2.equals("M")).map(x => x._2._1)
     val femaleFilteredRatings = genderRatings.filter(x => x._2._2.equals("F")).map(x => x._2._1)
-//    maleFilteredRatings.take(20).foreach(println)
+    //    maleFilteredRatings.take(20).foreach(println)
 
     // 对RDD进行处理，
     println("所有电影中最受男性喜爱的电影Top10：")
     maleFilteredRatings.map(x => (x._2, (x._3.toDouble, 1)))
-        .reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2))
-        .map(x => (x._1, x._2._1.toDouble / x._2._2))
-        .join(movieInfo)
-        .map(item => (item._2._1, item._2._2))
-        .sortByKey(false)
-        .take(10)
-        .foreach(record => printf("%s评分为：%.1f\n", record._2, record._1))
-
-    println("\n" + "-"*20 + "\n")
-    println("所有电影中最受女性喜爱的电影Top10：")
-    femaleFilteredRatings.map(x => (x._2, (x._3.toDouble, 1)))
       .reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2))
       .map(x => (x._1, x._2._1.toDouble / x._2._2))
       .join(movieInfo)
@@ -92,13 +86,25 @@ object RDD_Movie_Users_Analyzer2 {
       .take(10)
       .foreach(record => printf("%s评分为：%.1f\n", record._2, record._1))
 
+    println("\n" + "-" * 20 + "\n")
+    println("所有电影中最受女性喜爱的电影Top10：")
+    var temp1 = femaleFilteredRatings.map(x => (x._2, (x._3.toDouble, 1)))
+      .reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2))
+      .map(x => (x._1, x._2._1.toDouble / x._2._2))
+    var temp2 = temp1.join(movieInfo)
+    var temp3 = temp2.map(item => (item._2._1, item._2._2))
 
-    println("\n" + "="*26 + "\n")
+    temp3.sortByKey(false)
+      .take(10)
+      .foreach(record => printf("%s评分为：%.1f\n", record._2, record._1))
+
+
+    println("\n" + "=" * 26 + "\n")
     println("对电影评分数据以Timestamp和Rating两个维度进行二次降序排序")
     val pairWithSortKey = ratingsRDD.map(line => {
       val splited = line.split("\t")
       // 对 Timestamp和Rating两个维度进行二次降序排序
-      (new SecondarySortKey(splited(3).toDouble, splited(2).toDouble ), line)
+      (new SecondarySortKey(splited(3).toDouble, splited(2).toDouble), line)
     })
     // 直接调用sortByKey， 此时会按照之前实现的compare方法排序
     val sorted = pairWithSortKey.sortByKey(false)

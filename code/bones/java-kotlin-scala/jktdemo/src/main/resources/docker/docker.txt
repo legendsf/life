@@ -1,6 +1,8 @@
 mysql:
 docker run -p 3306:3306 --name mysql  -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
 
+redis:
+docker run -d -p 6379:6379 --name redis redis
 
 zookeeper:
 docker run -d --name zookeeper -p 2181:2181 wurstmeister/zookeeper
