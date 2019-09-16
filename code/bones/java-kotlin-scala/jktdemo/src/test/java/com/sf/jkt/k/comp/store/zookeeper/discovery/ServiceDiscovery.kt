@@ -61,7 +61,10 @@ fun startServiceDiscovery(ip:String ,port:Int,weight: Int){
     serviceDiscovery.registerService(instance)
     serviceDiscovery.start()
     println("seriveDiscorvery start !")
-    TimeUnit.SECONDS.sleep(700)
+
+
+
+    TimeUnit.SECONDS.sleep(1)
     serviceDiscovery.close()
     client.close()
 
@@ -75,6 +78,22 @@ fun main() {
 //    executor.execute{println("  ")}
     executor.execute { startServiceDiscovery("127.0.0.1",8081,1) }
     executor.execute { startServiceDiscovery("127.0.0.1",8082,2) }
+    val client = CuratorFrameworkFactory.builder().connectString("127.0.0.1:2181")
+            .connectionTimeoutMs(5000)
+            .sessionTimeoutMs(5000)
+            .retryPolicy(ExponentialBackoffRetry(5000, 3))
+            .build()
+    client.start()
+    val serviceDiscovery=ServiceDiscoveryBuilder.builder(ServiceDetail::class.java)
+            .client(client)
+            .serializer(JsonInstanceSerializer<ServiceDetail>(ServiceDetail::class.java))
+            .basePath(ServiceDetail.REGISTER_ROOT_PATH)
+            .build()
+    var serviceList=serviceDiscovery.queryForInstances("tomcat")
+    serviceList.forEach { it->
+        println("serviceList:"+it)
+    }
+    client.close()
     executor.awaitTermination(800L,TimeUnit.SECONDS)
 
 }
