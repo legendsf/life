@@ -10,6 +10,7 @@ import com.sf.jkt.k.Util.Log3
 import com.sf.jkt.k.Util.Log4
 import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiled
 import com.sf.jkt.k.entity.*
+import okhttp3.internal.toHexString
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.CuratorFrameworkFactory
 import org.apache.curator.framework.state.ConnectionState
@@ -25,8 +26,44 @@ import java.lang.StringBuilder
 val ZK_ADDRESS = "127.0.0.1:2181"
 val ZK_PATH = "f:/tmp/zookeeper"
 fun main() {
-    test1()
+    var v1=1L
+    var v2=v1.shl(32)
+    println(v1)
+    println(v2)
+    println(v1==v2)
+    testShift()
+}
 
+fun testShift(){
+    var time:Long=System.currentTimeMillis()/1000
+    //[0,1,2,3]
+    var idcNo=2L
+    var zkNode=99L
+    var seqNo=1024L
+    var mod=3 % 4096
+
+    time=time.shl(32)
+    idcNo=idcNo.shl(30)
+    zkNode=zkNode.shl(23)
+    seqNo=seqNo.shl(12)
+    println("time:"+java.lang.Long.toBinaryString(time))
+    println("idcNo:"+java.lang.Long.toBinaryString(idcNo))
+    println("zkNode:"+java.lang.Long.toBinaryString(zkNode))
+    println("seqNo:"+java.lang.Long.toBinaryString(seqNo))
+    var id= time+idcNo+zkNode+seqNo
+    println("id without mod:"+java.lang.Long.toBinaryString(id))
+    id=id+mod
+    println("id with mod:"+java.lang.Long.toBinaryString(id))
+    println(id)
+    println("id.shr(12):"+java.lang.Long.toBinaryString(id.shr(12)))
+    println("id.shr(12).shl(12):"+java.lang.Long.toBinaryString(id.shr(12).shl(12)))
+    //getModbyOrderKey
+    var rMod=id-id.shr(12).shl(12)
+    println("rMod:"+rMod)
+    var rIdcNo=id.shl(32).ushr(62)
+    println("id.shl(32):"+ java.lang.Long.toBinaryString( id.shl(32)))
+    println("id.shl(32).ushr(62):"+java.lang.Long.toBinaryString(id.shl(32).shr(62)))
+    println("rIdcNo:"+rIdcNo)
 }
 
 fun test1(){

@@ -15,6 +15,19 @@ public class JavaTest {
     }
 
     public static void main(String[] args) {
+        Long v1=1L;
+        Long v2=v1 << 32;
+        System.out.println(v1);
+        System.out.println(v2);
+        System.out.println(v1==v2);
+        System.out.println(Long.toBinaryString(v1));
+        System.out.println(Long.toBinaryString(v2));
+        KotlinBaseTestKt.testShift();
+    }
+
+
+
+    public void testProfile(){
         Log4.info("hello");
         testOutput("hello","world");
         new AdviceProfiled().profile(1000,"params");
