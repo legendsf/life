@@ -17,7 +17,7 @@ public class JRedisTest {
             private StringRedisTemplate redis;
     Gson gson=new Gson();
     @Test
-    public void test_redis() {
+    public void test_redis()  {
         MUser MUser = new MUser(2, "sf", "pass");
         String stru=gson.toJson(MUser);
         redis.opsForValue().set("user2", stru);

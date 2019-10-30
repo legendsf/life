@@ -16,3 +16,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auto/user")
 class UserController
+

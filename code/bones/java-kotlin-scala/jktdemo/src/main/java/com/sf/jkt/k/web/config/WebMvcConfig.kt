@@ -1,5 +1,7 @@
 package com.sf.jkt.k.web.config
 
+import com.sf.jkt.k.biz.filter.MyInterceptor
+import com.sf.jkt.k.biz.filter.MyInterceptor1
 import com.sf.jkt.k.biz.token.LogInterceptor
 import com.sf.jkt.k.biz.token.TokenInterceptor
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +17,11 @@ import com.sf.jkt.k.web.config.secruity.xsscors.XSSMappingJackson2HttpMessageCon
 class WebMvcConfig {
     @Autowired
     lateinit var logInterceptor: LogInterceptor
+    @Autowired
+    lateinit var myInterceptor: MyInterceptor
 
+    @Autowired
+    lateinit var myInterceptor1: MyInterceptor1
 
     @Bean
     fun xssHttpMessageConverters(): HttpMessageConverters {
@@ -27,6 +33,8 @@ class WebMvcConfig {
     fun webMvcConfigure(): WebMvcConfigurer {
         return object : WebMvcConfigurer {
             override fun addInterceptors(registry: InterceptorRegistry) {
+                registry.addInterceptor(myInterceptor).addPathPatterns("/**")
+                registry.addInterceptor(myInterceptor1).addPathPatterns("/**")
                 registry.addInterceptor(logInterceptor).addPathPatterns("/**")
                 registry.addInterceptor(TokenInterceptor()).addPathPatterns("/admin/**")
             }
