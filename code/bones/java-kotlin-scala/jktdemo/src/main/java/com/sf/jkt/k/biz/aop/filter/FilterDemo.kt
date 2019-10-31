@@ -1,12 +1,10 @@
-package com.sf.jkt.k.biz.filter
+package com.sf.jkt.k.biz.aop.filter
 
-import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter
 import java.lang.Exception
-import java.lang.annotation.RetentionPolicy
 import javax.servlet.Filter
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
@@ -41,6 +39,9 @@ class MyInterceptor() : HandlerInterceptorAdapter() {
      */
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         log.info("MyInterceptor.preHandle")
+//        return false
+
+
         return super.preHandle(request, response, handler)
     }
 

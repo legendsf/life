@@ -16,7 +16,6 @@ import org.springframework.context.annotation.FilterType
 //    DataSourceAutoConfiguration::class
     KafkaAutoConfiguration::class
     , RabbitAutoConfiguration::class
-d
 ]
 )
 @ComponentScan(basePackages = ["com.sf"],excludeFilters = [ComponentScan.Filter(type=FilterType.REGEX,

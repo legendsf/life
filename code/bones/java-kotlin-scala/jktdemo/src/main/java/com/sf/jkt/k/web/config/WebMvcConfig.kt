@@ -1,7 +1,7 @@
 package com.sf.jkt.k.web.config
 
-import com.sf.jkt.k.biz.filter.MyInterceptor
-import com.sf.jkt.k.biz.filter.MyInterceptor1
+import com.sf.jkt.k.biz.aop.filter.MyInterceptor
+import com.sf.jkt.k.biz.aop.filter.MyInterceptor1
 import com.sf.jkt.k.biz.token.LogInterceptor
 import com.sf.jkt.k.biz.token.TokenInterceptor
 import org.springframework.beans.factory.annotation.Autowired
