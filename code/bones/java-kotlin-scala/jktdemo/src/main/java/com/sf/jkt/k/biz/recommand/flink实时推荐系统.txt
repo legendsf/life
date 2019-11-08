@@ -51,7 +51,20 @@ w=abs(i 交集 j)/sqrt(i*j)
 
 每12个小时从产品历史库中计算出来两个任务，计算出来的数据存放到hbase中
 px 产品属性相关度协同计算
+      px:
+      rowkey:thisProductId
+      family:p(otherProductId) value=score
+      example:
+        tid,pid1,score1
+        tid,pid2,score2
 ps 产品标签相关度协同计算
+
+
+推荐系统逻辑：
+根据topLlist 分别根据productId，去 px 和px 表中去找到 others 商品,找到others中score最高的三条
+也就是根据热榜，推进跟热榜类似的数据
+
+
 
 
 
