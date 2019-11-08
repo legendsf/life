@@ -1,0 +1,12 @@
+
+docker镜像：
+https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+
+{
+  "registry-mirrors": [
+    "https://5rvq38ly.mirror.aliyuncs.com"
+  ],
+  "insecure-registries": []
+}
+
+

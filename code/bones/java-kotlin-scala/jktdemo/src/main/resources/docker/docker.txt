@@ -50,6 +50,11 @@ influx:
 
 docker run -d -p 8083:8083 -p8086:8086 --expose 8090 --expose 8099 --name influxDbService influxdb
 
+hbase:
+
+docker run -d -h base-server  -p 2181:2181  -p 8080:8080  -p 8085:8085  -p 9090:9090  -p 9000:9000  -p 9095:9095  -p 16000:16000  -p 16010:16010  -p 16201:16201  -p 16301:16301  -p 16020:16020   --name hbase  harisekhon/hbase
+
+
 
 
 
