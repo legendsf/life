@@ -1,6 +1,6 @@
 package com.sf.jkt.k.web
 
-import javafx.application.Application
+
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

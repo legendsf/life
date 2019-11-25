@@ -3,7 +3,7 @@ package com.sf.jkt.k.algorithm.face.cas.kuohao;
 import cn.hutool.core.collection.CollectionUtil;
 import org.apache.logging.log4j.util.Strings;
 import org.junit.Assert;
-import scala.math.Ordering;
+
 
 import java.util.ArrayList;
 import java.util.Collections;

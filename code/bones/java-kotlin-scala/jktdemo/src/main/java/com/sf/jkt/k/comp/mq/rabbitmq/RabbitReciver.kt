@@ -1,7 +1,6 @@
 package com.sf.jkt.k.comp.mq.rabbitmq
 
 import com.rabbitmq.client.Channel
-import org.omg.CORBA.Object
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.core.AcknowledgeMode
 import org.springframework.amqp.core.ExchangeTypes
