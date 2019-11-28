@@ -18,11 +18,11 @@ public class AopController {
 
     @RequestMapping("/log")
     public String log() {
-        log.trace("************trace");
-        log.debug("*************debug");
-        log.info("*************info");
-        log.warn("**************warn");
-        log.error("************error");
+//        log.trace("************trace");
+//        log.debug("*************debug");
+//        log.info("*************info");
+//        log.warn("**************warn");
+//        log.error("************error");
         return "log";
     }
 

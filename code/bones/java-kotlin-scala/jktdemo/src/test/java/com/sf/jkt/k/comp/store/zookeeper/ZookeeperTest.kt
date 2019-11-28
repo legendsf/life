@@ -22,13 +22,11 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCache.StartMode
 import org.apache.curator.framework.recipes.shared.SharedCount
 import org.apache.tomcat.jni.File.getStat
 import org.apache.zookeeper.ZooDefs.OpCode.getData
-import sun.font.LayoutPathImpl.getPath
 import org.apache.curator.retry.RetryNTimes
 import org.apache.curator.utils.CloseableUtils
 import org.apache.zookeeper.WatchedEvent
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter.event
 import org.apache.zookeeper.ZooDefs.OpCode.getData
-import sun.font.LayoutPathImpl.getPath
 
 
 class ZookeeperTest {
