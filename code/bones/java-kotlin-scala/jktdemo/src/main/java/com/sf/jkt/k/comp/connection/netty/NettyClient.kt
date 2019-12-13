@@ -1,18 +1,12 @@
 package com.sf.jkt.k.comp.connection.netty
 
 import io.netty.bootstrap.Bootstrap
-import io.netty.bootstrap.ServerBootstrap
-import io.netty.buffer.ByteBuf
-import io.netty.buffer.Unpooled
 import io.netty.channel.*
-import io.netty.channel.nio.NioEventLoop
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioSocketChannel
 import io.netty.handler.codec.string.StringEncoder
-import net.librec.math.algorithm.Randoms
 import org.apache.commons.lang3.RandomUtils
 import java.util.*
-import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 fun testNettyClient() {
@@ -22,13 +16,52 @@ fun testNettyClient() {
             .channel(NioSocketChannel::class.java)
             .handler(object : ChannelInitializer<Channel>() {
                 override fun initChannel(ch: Channel) {
-                    ch.pipeline().addLast(StringEncoder())
+                    ch.pipeline()
+                            .addLast(FirstClientHandler())
+                            .addLast(StringEncoder())
                 }
             })
     var channel = bootStrap.connect("127.0.0.1", 8000).channel()
+
     while (true) {
         channel.writeAndFlush("hello world!" + Date())
         TimeUnit.SECONDS.sleep(2)
+    }
+}
+
+class FirstClientHandler : ChannelInboundHandlerAdapter() {
+    override fun channelInactive(ctx: ChannelHandlerContext) {
+        println("" + Date() + ":客户端写出数据")
+        var buf = ctx.alloc().buffer()
+        var bytes = "你好闪电侠".toByteArray(Charsets.UTF_8)
+        buf.writeBytes(bytes)
+        ctx.channel().writeAndFlush(buf)
+    }
+}
+
+var MAX_RETRY = 5
+fun connect(bootstrap: Bootstrap, host: String, port: Int, retry: Int) {
+    bootstrap.option(ChannelOption.SO_KEEPALIVE, true)
+            .option(ChannelOption.TCP_NODELAY, true)//立即发送，网络拥堵
+            .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)//链接超时
+            .option(ChannelOption.SO_TIMEOUT, 5000)//读取超时时间
+    bootstrap.connect(host, port).addListener { future ->
+        {
+            if (future.isSuccess) {
+                println("链接成功!")
+            } else if (retry == 0) {
+                print("重试次数用完，放弃链接！")
+            } else {
+                var order = (MAX_RETRY - retry) + 1
+                var delay: Long = 1.shl(order).toLong()
+                println("第几次重连")
+//                var r = Runnable { connect(bootstrap, host, port, retry - 1) }
+//                bootstrap.config().group().schedule(r, delay, TimeUnit.SECONDS)
+                bootstrap.config().group().schedule({ connect(bootstrap, host, port, retry - 1) },
+                        delay, TimeUnit.SECONDS)
+
+            }
+        }
     }
 }
 
@@ -140,7 +173,7 @@ class MessageClientHandler : SimpleChannelInboundHandler<Message>() {
 //}
 
 fun main() {
-        testNettyClient1()
+    testNettyClient1()
     println("hello world")
 //    clientChannel!!.writeAndFlush(msg2buf(createMessage()))
 //    clientChannel!!.writeAndFlush(msg2buf(createMessage()))

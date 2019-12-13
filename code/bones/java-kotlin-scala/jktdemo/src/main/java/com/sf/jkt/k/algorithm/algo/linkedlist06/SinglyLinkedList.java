@@ -3,12 +3,12 @@ package com.sf.jkt.k.algorithm.algo.linkedlist06;
 /**
  * 1）单链表的插入、删除、查找操作；
  * 2）链表中存储的是int类型的数据；
- *
+ * <p>
  * Author：Zheng
  */
 public class SinglyLinkedList {
 
-    private Node head = null;
+    private Node head = new Node(-9999, null);
 
     public Node findByValue(int value) {
         Node p = head;
@@ -49,22 +49,23 @@ public class SinglyLinkedList {
 
     //顺序插入
     //链表尾部插入
-    public void insertTail(int value){
+    public void insertTail(int value) {
 
         Node newNode = new Node(value, null);
         //空链表，可以插入新节点作为head，也可以不操作
-        if (head == null){
+        if (head == null) {
             head = newNode;
 
-        }else{
+        } else {
             Node q = head;
-            while(q.next != null){
+            while (q.next != null) {
                 q = q.next;
             }
             newNode.next = q.next;
             q.next = newNode;
         }
     }
+
     public void insertAfter(Node p, int value) {
         Node newNode = new Node(value, null);
         insertAfter(p, newNode);
@@ -168,22 +169,22 @@ public class SinglyLinkedList {
     }
 
     //判断true or false
-    public boolean TFResult(Node left, Node right){
+    public boolean TFResult(Node left, Node right) {
         Node l = left;
         Node r = right;
 
-        boolean flag=true;
-        System.out.println("left_:"+l.data);
-        System.out.println("right_:"+r.data);
-        while(l != null && r != null){
-           if (l.data == r.data){
-               l = l.next;
-               r = r.next;
-               continue;
-           }else{
-               flag=false;
-               break;
-           }
+        boolean flag = true;
+        System.out.println("left_:" + l.data);
+        System.out.println("right_:" + r.data);
+        while (l != null && r != null) {
+            if (l.data == r.data) {
+                l = l.next;
+                r = r.next;
+                continue;
+            } else {
+                flag = false;
+                break;
+            }
 
         }
 
@@ -198,48 +199,48 @@ public class SinglyLinkedList {
     }
     //　判断是否为回文 
 
-    public boolean palindrome(){
-       if (head == null){
-           return false;
-       }else{
-           System.out.println("开始执行找到中间节点");
-           Node p = head;
-           Node q = head;
-           if (p.next == null){
-               System.out.println("只有一个元素");
-               return true;
-           }
-           while( q.next != null && q.next.next != null){
-               p = p.next;
-               q = q.next.next;
+    public boolean palindrome() {
+        if (head == null) {
+            return false;
+        } else {
+            System.out.println("开始执行找到中间节点");
+            Node p = head;
+            Node q = head;
+            if (p.next == null) {
+                System.out.println("只有一个元素");
+                return true;
+            }
+            while (q.next != null && q.next.next != null) {
+                p = p.next;
+                q = q.next.next;
 
-           }
+            }
 
-           System.out.println("中间节点" + p.data);
-           System.out.println("开始执行奇数节点的回文判断");
-           Node leftLink = null;
-           Node rightLink = null;
-           if(q.next == null){
-               //　p 一定为整个链表的中点，且节点数目为奇数
-               rightLink = p.next;
-               leftLink = inverseLinkList(p).next;
-               System.out.println("左边第一个节点"+leftLink.data);
-               System.out.println("右边第一个节点"+rightLink.data);
+            System.out.println("中间节点" + p.data);
+            System.out.println("开始执行奇数节点的回文判断");
+            Node leftLink = null;
+            Node rightLink = null;
+            if (q.next == null) {
+                //　p 一定为整个链表的中点，且节点数目为奇数
+                rightLink = p.next;
+                leftLink = inverseLinkList(p).next;
+                System.out.println("左边第一个节点" + leftLink.data);
+                System.out.println("右边第一个节点" + rightLink.data);
 
-           }else{
-               //p q　均为中点
-               rightLink = p.next;
-               leftLink = inverseLinkList(p);
-           }
-           return TFResult(leftLink, rightLink);
+            } else {
+                //p q　均为中点
+                rightLink = p.next;
+                leftLink = inverseLinkList(p);
+            }
+            return TFResult(leftLink, rightLink);
 
-       }
+        }
     }
 
     //带结点的链表翻转
-    public Node inverseLinkList_head(Node p){
+    public Node inverseLinkList_head(Node p) {
         //　Head　为新建的一个头结点
-        Node Head = new Node(9999,null);
+        Node Head = new Node(9999, null);
         // p　为原来整个链表的头结点,现在Head指向　整个链表
         Head.next = p;
         /*
@@ -250,7 +251,7 @@ public class SinglyLinkedList {
         p.next = null;
         Node next = null;
 
-        while(Cur != null){
+        while (Cur != null) {
             next = Cur.next;
             Cur.next = Head.next;
             Head.next = Cur;
@@ -266,13 +267,13 @@ public class SinglyLinkedList {
     }
 
     //无头结点的链表翻转
-    public Node inverseLinkList(Node p){
+    public Node inverseLinkList(Node p) {
 
         Node pre = null;
         Node r = head;
         System.out.println("z---" + r.data);
-        Node next= null;
-        while(r !=p){
+        Node next = null;
+        while (r != p) {
             next = r.next;
 
             r.next = pre;
@@ -286,7 +287,7 @@ public class SinglyLinkedList {
         return r;
 
     }
-    
+
     public static Node createNode(int value) {
         return new Node(value, null);
     }
@@ -304,35 +305,35 @@ public class SinglyLinkedList {
             return data;
         }
     }
-    
-    public static void main(String[]args){
 
-        SinglyLinkedList link = new SinglyLinkedList(); 
+    public static void main(String[] args) {
+
+        SinglyLinkedList link = new SinglyLinkedList();
         System.out.println("hello");
         //int data[] = {1};
         //int data[] = {1,2};
         //int data[] = {1,2,3,1};
         //int data[] = {1,2,5};
         //int data[] = {1,2,2,1};
-       // int data[] = {1,2,5,2,1};
-        int data[] = {1,2,5,3,1};
+        // int data[] = {1,2,5,2,1};
+        int data[] = {1, 2, 5, 3, 1};
 
-        for(int i =0; i < data.length; i++){
+        for (int i = 0; i < data.length; i++) {
             //link.insertToHead(data[i]);
             link.insertTail(data[i]);
         }
-       // link.printAll();
-       // Node p = link.inverseLinkList_head(link.head);
-       // while(p != null){
-       //     System.out.println("aa"+p.data);
-       //     p = p.next;
-       // }
+        // link.printAll();
+        // Node p = link.inverseLinkList_head(link.head);
+        // while(p != null){
+        //     System.out.println("aa"+p.data);
+        //     p = p.next;
+        // }
 
         System.out.println("打印原始:");
         link.printAll();
-        if (link.palindrome()){
+        if (link.palindrome()) {
             System.out.println("回文");
-        }else{
+        } else {
             System.out.println("不是回文");
         }
     }
