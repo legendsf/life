@@ -1,11 +1,10 @@
 package com.sf.jkt.k.util;
 
-import com.sf.jkt.k.Util.Log;
 import com.sf.jkt.k.Util.Log4;
 import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiled;
 import com.sf.jkt.k.entity.MUser;
 
-
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -15,6 +14,16 @@ public class JavaTest {
     }
 
     public static void main(String[] args) {
+       new JavaTest().testResource();
+    }
+
+    public  void testResource(){
+        URL u1= JavaTest.class.getResource("file1.txt");
+        System.out.println(u1);
+
+    }
+
+    public static void testShift(){
         Long v1=1L;
         Long v2=v1 << 32;
         System.out.println(v1);
@@ -24,8 +33,6 @@ public class JavaTest {
         System.out.println(Long.toBinaryString(v2));
         KotlinBaseTestKt.testShift();
     }
-
-
 
     public void testProfile(){
         Log4.info("hello");
