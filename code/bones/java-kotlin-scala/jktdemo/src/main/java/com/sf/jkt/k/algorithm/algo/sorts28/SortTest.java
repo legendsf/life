@@ -1,6 +1,6 @@
 package com.sf.jkt.k.algorithm.algo.sorts28;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class SortTest {
     static int arr[] = {7, 5, 3, 2, 3, 5, 4};
@@ -12,8 +12,49 @@ public class SortTest {
 
 //        Arrays.stream(mergeSort(arr)).forEach(System.out::println);
 //        quick_sort1(arr, 0, arr.length - 1);
-        heapSort1(arr);
-        Arrays.stream(arr).forEach(System.out::println);
+//        heapSort1(arr);
+//        Arrays.stream(arr).forEach(System.out::println);
+
+        sortMap();
+
+    }
+
+    public static void sortMap() {
+        Map<String, Object> map = new TreeMap<>(
+                new Comparator<String>() {
+                    @Override
+                    public int compare(String o1, String o2) {
+                        return o2.compareTo(o1);
+                    }
+                }
+        );
+        map.put("2018-07-11", "ccccc");
+        map.put("2018-07-26", "aaaaa");
+        map.put("2018-06-11", "bbbbb");
+        map.put("2018-06-28", "ddddd");
+        map.put("2017-05-29", "ccccc");
+        map.put("2017-04-26", "aaaaa");
+        map.put("2017-03-31", "bbbbb");
+        map.put("2017-02-01", "ddddd");
+
+        Iterator iterator = map.keySet().iterator();
+        while (iterator.hasNext()) {
+            String k = (String) iterator.next();
+            System.out.println(k+"--"+map.get(k));
+        }
+        System.out.println("-----------------------");
+        //根据value 排序
+        List<Map.Entry<String,Object>> list = new ArrayList<Map.Entry<String,Object>>(map.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Object>>() {
+            @Override
+            public int compare(Map.Entry<String, Object> o1, Map.Entry<String, Object> o2) {
+                return ((String)o1.getValue()).compareTo((String)o2.getValue());
+            }
+        });
+        for (Map.Entry<String,Object> entry:list){
+            System.out.println(entry.getKey()+"--"+entry.getValue());
+        }
+
     }
 
     public static void bubbleSort(int[] arr) {
