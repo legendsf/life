@@ -7,7 +7,10 @@ import java.util.Set;
 
 public class JdkTest {
     public static void main(String[] args) {
-        mapDelete();
+        int i=10;
+        System.out.println(i--);
+        System.out.println(--i);
+//        mapDelete();
     }
 
     public static void mapDelete() {

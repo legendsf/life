@@ -114,11 +114,15 @@ public class MTrie {
      */
     public void preTraverse(TrieNode node) {
         if (node != null) {
-            System.out.println(node.val + "-");
+            System.out.print(node.val + "-");
+            if (node.isEnd) {
+                System.out.println("");
+            }
             for (TrieNode child : node.son) {
                 preTraverse(child);
             }
         }
+//        System.out.println("");
     }
 
     /**
@@ -144,7 +148,26 @@ public class MTrie {
         return node.num;
     }
 
-    public static void testChar(){
+    public void deleteWord(String word) {
+        if (has(word) == false) {
+            return;
+        }
+        TrieNode node = root;
+        char[] letters = word.toCharArray();
+        for (int i = 0, len = letters.length; i < len; i++) {
+            int pos = getCharIndex(letters[i]);
+            TrieNode child = node.son[pos];
+            //先使用后减1
+            if (child.num-- == 1) {
+                node.son[pos] = null;
+                return;
+            }
+            //遍历到下一个
+            node = node.son[pos];
+        }
+    }
+
+    public static void testChar() {
         int o1 = '0';
         int o2 = 'A';
         int o3 = 'a';
@@ -157,48 +180,85 @@ public class MTrie {
         System.out.println(getCharIndex('b'));
     }
 
-    public static void main(String[]args) throws IOException
-    {
-        MTrie tree=new MTrie();
-        String[] dictionaryData= {"hello","student","computer","sorry","acm","people","experienced","who","reminds","everyday","almost"};
+    public static void testTrie() throws IOException {
+        MTrie tree = new MTrie();
+        String[] dictionaryData = {"hello", "student", "computer", "sorry", "acm", "people", "experienced", "who", "reminds", "everyday", "almost"};
         //构建字典
-        for(String str:dictionaryData)
-        {
+        for (String str : dictionaryData) {
             tree.insert(str);
         }
 //        String filePath="C:\\Users\\Administrator\\Desktop\\sourceFile.txt";
-        URL url= MTrie.class.getResource("/faces/sourceFile.txt");
-        String filePath=url.getFile();
-        File file=new File(filePath);
-        if(file.isFile() && file.exists())
-        {
+        URL url = MTrie.class.getResource("/faces/sourceFile.txt");
+        String filePath = url.getFile();
+        File file = new File(filePath);
+        if (file.isFile() && file.exists()) {
             InputStreamReader read = new InputStreamReader(new FileInputStream(file));
             BufferedReader bufferedReader = new BufferedReader(read);
             String lineTxt = null;
-            Map<String,Integer> countMap=new HashMap<String,Integer>();
-            while((lineTxt = bufferedReader.readLine())!= null)
-            {
-                if(tree.has(lineTxt))
-                {
-                    if(countMap.containsKey(lineTxt))
-                    {
-                        countMap.put(lineTxt, countMap.get(lineTxt)+1);
-                    }
-                    else
-                    {
+            Map<String, Integer> countMap = new HashMap<String, Integer>();
+            while ((lineTxt = bufferedReader.readLine()) != null) {
+                if (tree.has(lineTxt)) {
+                    if (countMap.containsKey(lineTxt)) {
+                        countMap.put(lineTxt, countMap.get(lineTxt) + 1);
+                    } else {
                         countMap.put(lineTxt, 1);
                     }
-                }
-                else
-                {
-                    System.out.println(lineTxt+"不在字典中！");
+                } else {
+                    System.out.println(lineTxt + "不在字典中！");
                 }
             }
-            for(String s:countMap.keySet())
-            {
-                System.out.println(s+"出现的次数"+countMap.get(s));
+            for (String s : countMap.keySet()) {
+                System.out.println(s + "出现的次数" + countMap.get(s));
             }
             read.close();
         }
+    }
+
+    /**
+     * 前序遍历，字符串排序
+     * @param root
+     */
+    public void preTraverse1(TrieNode root){
+        if(root!=null){
+            System.out.print(root.val);
+            if(root.isEnd){
+                System.out.println();
+            }
+            for(TrieNode node:root.son){
+                preTraverse1(node);
+            }
+        }
+    }
+
+    /***
+     * 中序遍历
+     * @throws IOException
+     */
+    public void midTraverse(TrieNode node){
+        if(node!=null){
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        MTrie mt = new MTrie();
+        mt.insert("hello");
+        mt.insert("hello");
+        mt.insert("hellos");
+        mt.insert("a");
+        mt.insert("0");
+        mt.insert("B");
+        mt.insert("b");
+        mt.insert("c");
+        System.out.println(mt.has("hello"));
+        System.out.println(mt.has("hellos"));
+        System.out.println(mt.has("hellos1"));
+        System.out.println(mt.countPrefix("hello"));
+        System.out.println(mt.countPrefix("hellos"));
+        mt.deleteWord("hellos");
+        System.out.println(mt.countPrefix("hello"));
+        System.out.println(mt.countPrefix("hellos"));
+        System.out.println("**********************");
+        mt.preTraverse1(mt.root);
+
     }
 }
