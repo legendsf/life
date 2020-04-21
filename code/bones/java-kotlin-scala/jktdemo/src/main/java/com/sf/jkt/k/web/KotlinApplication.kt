@@ -6,21 +6,24 @@ import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ComponentScan
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.FilterType
 
+/***
+ * https://www.jianshu.com/p/2cabfb1975c7
+ *
+ */
 
 @SpringBootApplication(exclude = [
-//    DataSourceAutoConfiguration::class
+    DataSourceAutoConfiguration::class,
     KafkaAutoConfiguration::class
     , RabbitAutoConfiguration::class
 ]
 )
 @ComponentScan(basePackages = ["com.sf"],excludeFilters = [ComponentScan.Filter(type=FilterType.REGEX,
-//        pattern = [".*(k|K)afka.*",".*(r|R)abbit.*",".*k.comp.*"]
-        pattern = [".*k.comp.*"]
+pattern = ["com.sf.*"]
         )])
 
 class KotlinApplication

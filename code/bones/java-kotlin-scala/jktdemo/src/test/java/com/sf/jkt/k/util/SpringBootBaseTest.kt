@@ -9,4 +9,5 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest(classes = [KotlinApplication::class])
 class SpringBootBaseTest {
 
+
 }

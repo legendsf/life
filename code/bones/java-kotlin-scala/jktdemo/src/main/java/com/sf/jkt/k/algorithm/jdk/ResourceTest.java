@@ -19,11 +19,19 @@ public class ResourceTest {
         url = ResourceTest.class.getResource("/docker/docker.txt");
         System.out.println(url.getPath());
 
-        URL url1 =this.getClass().getClassLoader().getResource("resource.txt");
+        url = ResourceTest.class.getResource("/faces/classes/Mhello.class");
+        String filestr = url.getFile();
+        System.out.println(filestr);
+        System.out.println(url.getPath());
+        System.out.println("file equals path:"+url.getFile().equals(url.getPath()));
+        File f1= new File(filestr);
+        System.out.println(f1.exists());
+
+        URL url1 = this.getClass().getClassLoader().getResource("resource.txt");
         System.out.println(url1.toString());
 
-        String fstr=ResourceTest.class.getResource("")+"resource.txt";
-        File file=new File(fstr);
+        String fstr = ResourceTest.class.getResource("") + "resource.txt";
+        File file = new File(fstr);
         System.out.println(file.exists());
     }
 }

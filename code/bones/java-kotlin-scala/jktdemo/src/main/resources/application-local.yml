@@ -91,14 +91,14 @@ rocketmq:
 
 
 #https://blog.csdn.net/weixin_42315600/article/details/88631796
-dubbo:
-  scan:
-    base-packages: com.sf.jkt.k.comp.connection.dubbo
-  protocol:
-    name: dubbo
-    port: 20880
-  registry:
-    address: zookeeper://127.0.0.1:2181
+#dubbo:
+#  scan:
+#    base-packages: com.sf.jkt.k.comp.connection.dubbo
+#  protocol:
+#    name: dubbo
+#    port: 20880
+#  registry:
+#    address: zookeeper://127.0.0.1:2181
 
 mybatis-plus:
   # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
