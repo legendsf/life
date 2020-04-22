@@ -93,7 +93,7 @@ public class MhelloFactory implements FactoryBean<Hello>, ApplicationContextAwar
         Lock writeLock = lock.writeLock();
         try {
             //write
-            MyClassLoader cl = new MyClassLoader();
+            MyClassLoader1 cl = new MyClassLoader1();
             Class<?> mhelloClz = cl.findClass("Mhello");
             Class<?> mhelloClz1 = cl.findClass("Mhello1");
             Hello mhelloObj = (Hello) mhelloClz.newInstance();

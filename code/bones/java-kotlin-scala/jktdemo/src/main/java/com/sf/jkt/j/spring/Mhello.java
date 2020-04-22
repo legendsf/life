@@ -1,4 +1,6 @@
-package com.sf.jkt.j.spring.parser;
+package com.sf.jkt.j.spring;
+
+import com.sf.jkt.j.spring.parser.Hello;
 
 public class Mhello implements Hello {
 
