@@ -1,6 +1,6 @@
 package com.sf.jkt.k.algorithm.jdk;
 
-import com.sf.jkt.j.spring.MyClassLoader;
+import com.sf.jkt.j.spring.parser.MyClassLoader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

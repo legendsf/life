@@ -47,6 +47,9 @@ public class SpiFactoryBean<T> implements FactoryBean<T> {
                 for (ISpi spi : list) {
                     if (spi.verify(args[0])) {
                         //系统内注入了 consolePrint 和 logPrint
+                        //这里找到真正的实现类去实现功能。
+                        //spring容器里面注册的是 Hello 的bean 是 一个 HelloProxy$
+                        //
                         return method.invoke(spi, args);
                     }
                 }

@@ -1,4 +1,4 @@
-package com.sf.jkt.j.spring;
+package com.sf.jkt.j.spring.parser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

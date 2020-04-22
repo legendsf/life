@@ -1,4 +1,4 @@
-package com.sf.jkt.j.spring;
+package com.sf.jkt.j.spring.parser;
 
 import lombok.extern.slf4j.Slf4j;
 
