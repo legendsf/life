@@ -1,4 +1,4 @@
-package com.sf.jkt.k.algorithm.jdk;
+package com.sf.jkt.j.spring;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

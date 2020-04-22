@@ -1,9 +1,9 @@
 package com.sf.jkt.k.algorithm.jdk;
 
+import com.sf.jkt.j.spring.MyClassLoader;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.net.URL;
 import java.net.URLClassLoader;
 
 public class ClassLoaderTest {
@@ -41,6 +41,8 @@ public class ClassLoaderTest {
         myClassLoader1 = new MyClassLoader1();
         Object objj1 = myClassLoader1.loadClass("Mhello");
         System.out.println(objj.equals(objj1));
+        Class<?> mclz = Class.forName("Mhello");
+        boolean flag2 = mclz.isInstance(obj);
 
     }
 }
@@ -50,7 +52,6 @@ class ClassLoader1 extends URLClassLoader {
         super(null, null);
     }
 }
-
 
 
 class MyClassLoader1 extends ClassLoader {

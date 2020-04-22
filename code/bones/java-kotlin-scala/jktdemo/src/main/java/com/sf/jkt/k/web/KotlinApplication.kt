@@ -23,7 +23,7 @@ import org.springframework.context.annotation.FilterType
 ]
 )
 @ComponentScan(basePackages = ["com.sf"],excludeFilters = [ComponentScan.Filter(type=FilterType.REGEX,
-pattern = ["com.sf.*"]
+pattern = ["com.sf.jkt.k.*"]
         )])
 
 class KotlinApplication
