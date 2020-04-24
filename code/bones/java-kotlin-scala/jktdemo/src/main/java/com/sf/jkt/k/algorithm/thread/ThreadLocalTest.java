@@ -7,6 +7,7 @@ public class ThreadLocalTest {
     public void testLocal(){
         local.set("xxx"+Thread.currentThread().getName());
         System.out.println(local.get());
+        local.remove();
 
     }
 
