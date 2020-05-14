@@ -1,4 +1,4 @@
-package com.sf.jkt.k.biz.event;
+package com.sf.jkt.k.biz.event.mev2;
 
 public class TestEvent {
     private  int message=0;
