@@ -1,0 +1,4 @@
+1.spring.freemarker.cache=false
+2.在ftl 文件上 ctrl+F9 重新编译
+
+修改模板后生效

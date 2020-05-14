@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.jkt.k.auto.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sf.jkt.k.auto.entity.User">
+        <id column="id" property="id"/>
+      <!--公共字段-->
+      <!--普通字段-->
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="age" property="age"/>
+        <result column="grade" property="grade"/>
+        <result column="delete_flag" property="deleteFlag"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="queryRefid">
+      id, name, sex, tenant_id, age, grade, delete_flag, createTime, updateTime
+    </sql>
+</mapper>
