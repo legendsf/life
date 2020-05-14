@@ -1,11 +1,13 @@
-package com.sf.jkt.j.spring.biz.classload.spi;
+package com.sf.jkt.j.spring.biz;
 
 import com.sf.jkt.j.spring.biz.classload.spi.Iprint;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
@@ -16,7 +18,9 @@ import org.springframework.context.annotation.FilterType;
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class,
         KafkaAutoConfiguration.class
-        , RabbitAutoConfiguration.class
+        , RabbitAutoConfiguration.class,
+        SecurityAutoConfiguration.class,
+        ManagementWebSecurityAutoConfiguration.class
 })
 public class Application {
     public Application(Iprint printProxy) {

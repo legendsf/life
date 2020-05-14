@@ -4,6 +4,9 @@ spring:
   application:
     name: dubbo-spring-boot-starter
 
+swagger:
+  enable: true
+
   freemarker:
     cache: false
     charset: UTF-8
