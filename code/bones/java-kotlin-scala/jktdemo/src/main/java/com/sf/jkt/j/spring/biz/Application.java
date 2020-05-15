@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
@@ -22,6 +23,7 @@ import org.springframework.context.annotation.FilterType;
         SecurityAutoConfiguration.class,
         ManagementWebSecurityAutoConfiguration.class
 })
+@EnableCaching
 public class Application {
     public Application(Iprint printProxy) {
         printProxy.execute(10, "log print");

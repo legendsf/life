@@ -452,7 +452,8 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-transport-native-kqueue</artifactId>
             <version>4.1.41.Final</version>
-            <classifier>osx-x86_64</classifier>
+<!--            <classifier>osx-x86_64</classifier>-->
+            <classifier>x86_64</classifier>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
@@ -473,6 +474,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+            <version>2.1.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
             <version>2.1.5.RELEASE</version>
         </dependency>
 
