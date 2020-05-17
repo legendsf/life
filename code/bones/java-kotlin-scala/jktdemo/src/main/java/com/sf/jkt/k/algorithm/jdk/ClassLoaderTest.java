@@ -1,9 +1,9 @@
 package com.sf.jkt.k.algorithm.jdk;
 
-import com.sf.jkt.j.spring.Mhello;
-import com.sf.jkt.j.spring.parser.Hello;
-import com.sf.jkt.j.spring.parser.MyClassLoader;
-import com.sf.jkt.j.spring.parser.MyClassLoader1;
+import com.sf.jkt.j.spring.biz.classload.Mhello;
+import com.sf.jkt.j.spring.biz.classload.parser.Hello;
+import com.sf.jkt.j.spring.biz.classload.parser.MyClassLoader;
+import com.sf.jkt.j.spring.biz.classload.parser.MyClassLoader1;
 
 import java.io.File;
 import java.net.URLClassLoader;
@@ -37,7 +37,7 @@ public class ClassLoaderTest {
         MyClassLoader1 cl = new MyClassLoader1();
         //由于该class 已经被 AppclassLoader 加载，加载 classPath 下所有类
         //所以双亲委派模型，先委派给父亲，AppClassLoader已经加载，那么就直接返回
-        Class<?> clz = cl.loadClass("com.sf.jkt.j.spring.parser.Mhello");
+        Class<?> clz = cl.loadClass("com.sf.jkt.j.spring.biz.classload.parser.Mhello");
         System.out.println(clz.getClassLoader());
         System.out.println(clz.getName());
         Hello hello=(Hello) clz.newInstance();

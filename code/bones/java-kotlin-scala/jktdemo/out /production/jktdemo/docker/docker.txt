@@ -1,5 +1,5 @@
 mysql:
-docker run -p 3306:3306 --name mysql  -e MYSQL_ROOT_PASSWORD=root -d mysql:latest
+docker run -p 3306:3306 --name mysql  -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
 
 redis:
 docker run -d -p 6379:6379 --name redis redis

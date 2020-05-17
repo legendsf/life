@@ -14,11 +14,16 @@ https://sspai.com/post/55668
 yabai config
 https://github.com/Julian-Heng/chunkwm-yabai-config#window-actions
 
+
 桌面定义:
  1主工程
  2谷歌
  3次工程
- 4terminal 
- 5钉钉
- 6wps 有道
-
+ 4谷歌
+ 5学习工程 
+ 6terminal
+ 8有道wps
+ 9qspace 百度云
+ 10算法视频
+ 11redis客户端
+ 12

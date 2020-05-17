@@ -1,0 +1,4 @@
+-javaagent:F:/tmp/javaagent/jkt-demo.jar=key1=value1:key2=value2
+
+https://github.com/dragontree101/byte-buddy-agent-example
+

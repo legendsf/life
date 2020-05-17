@@ -27,7 +27,7 @@ Authentication
 @Configuration
 @EnableWebSecurity(debug = true)
 //@PreAuthorize，@PreFilte
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Autowired
