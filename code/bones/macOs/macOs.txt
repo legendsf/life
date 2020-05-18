@@ -14,8 +14,9 @@ https://github.com/Julian-Heng/chunkwm-yabai-config#window-actions
  4谷歌
  5学习工程 
  6terminal
- 8有道wps
- 9qspace 百度云
+ 7vscode
+ 8有道
+ 9wps
  10算法视频
  11redis客户端
- 12
+ 12qspace 百度云
