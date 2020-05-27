@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+    <div id="watch-example">
+        <p>
+            Ask a yes/no question
+            <input v-model="question">
+        </p>
+        <p>
+            {{answer}}
+        </p>
+        <template v-if="loginType === 'username' ">
+            <label>Username</label>
+            <input placeholder="Enter your username" >
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </template>
+
+           <button @click="show = !show">
+               Toggle
+           </button> 
+           <transition name="fade">
+               <p v-if="show"> hello</p>
+           </transition>
+
+    </div> 
+
+    <script type="text/javascript">
+        const NotFound={template:'<p>Page not found</p>'}
+        const Home = {template:'<p>Home page</p>'}
+        const About= {template:'<p>about page</p>'}
+
+        const routes={
+            '/':Home,
+            '/about':About
+        }
+
+        var watchExampleVm = new Vue({
+            el:'#watch-example',
+            data:{
+                question:'',
+                answer:'i can not give you an answer until you ask a question',
+                loginType: 'username',
+                show: true,
+                currentRoute:window.location.pathname
+
+            },
+            computed: {
+                ViewComponent(){
+                    return routes[this.currentRoute] || NotFound
+                },
+                render(h) {return h(this.ViewComponent)}
+            },
+            watch:{
+                question:function(newQ,oldQ){
+                    this.answer='waiting for you to stop taping'
+                    this.debouncedGetAnswer()
+                }
+            },
+            created:function(){
+                this.debouncedGetAnswer=_.debounce(this.getAnswer,500)
+            },
+            methods:{
+                getAnswer:function(){
+                    if(this.question.indexOf('?')===-1){
+                        this.answer='questions usually contain a question mark'
+                        return
+                    }
+                    this.answer='Thinking'
+                    var vm=this
+                    axios.get('https://yesno.wtf/api')
+                        .then(function(response){
+                            vm.answer=_.capitalize(response.data.answer)
+                        })
+                        .catch(function(error){
+                           vm.answer = 'Error ! Could not reach the API.' + error 
+                        })
+                }
+
+            }
+        });
+
+    </script>
+
+    <style type="text/css">
+        .fade-enter-active, .fade-leave-active {
+         transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+         opacity: 0;
+        }
+           
+    </style>
+</body>
+</html>
