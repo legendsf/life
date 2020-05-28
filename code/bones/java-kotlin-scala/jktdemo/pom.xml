@@ -448,13 +448,13 @@
 <!--            <classifier>${os.detected.name}-${os.detected.arch}</classifier>-->
         </dependency>
 
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-transport-native-kqueue</artifactId>
-            <version>4.1.41.Final</version>
-<!--            <classifier>osx-x86_64</classifier>-->
-            <classifier>x86_64</classifier>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.netty</groupId>-->
+<!--            <artifactId>netty-transport-native-kqueue</artifactId>-->
+<!--            <version>4.1.41.Final</version>-->
+<!--&lt;!&ndash;            <classifier>osx-x86_64</classifier>&ndash;&gt;-->
+<!--            <classifier>x86_64</classifier>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
         <dependency>
