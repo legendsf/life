@@ -1,9 +1,10 @@
 package basic_class_01;
 
+import com.sf.jkt.k.algorithm.study.zcy.Constants;
+
 import java.util.Arrays;
 
 public class Code_02_SelectionSort {
-
 	public static void selectionSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -81,6 +82,8 @@ public class Code_02_SelectionSort {
 
 	// for test
 	public static void main(String[] args) {
+		Constants.checkSort(Code_02_SelectionSort::selectionSort);
+		System.out.println();
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;

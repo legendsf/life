@@ -1,5 +1,7 @@
 package basic_class_01;
 
+import com.sf.jkt.k.algorithm.study.zcy.Constants;
+
 import java.util.Arrays;
 
 public class Code_00_BubbleSort {
@@ -81,6 +83,12 @@ public class Code_00_BubbleSort {
 
 	// for test
 	public static void main(String[] args) {
+//		checkSort();
+		Constants.checkSort(Code_00_BubbleSort::bubbleSort );
+	}
+
+
+	private static void checkSort() {
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;
@@ -102,5 +110,4 @@ public class Code_00_BubbleSort {
 		bubbleSort(arr);
 		printArray(arr);
 	}
-
 }
