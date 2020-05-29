@@ -5,11 +5,18 @@ import java.util.function.Consumer;
 
 public class Constants {
 
-    public static void swap(int[] arr, int i, int j) {
+    public static void swap1(int[] arr, int i, int j) {
         arr[i] = arr[i] ^ arr[j];
         arr[j] = arr[i] ^ arr[j];
         arr[i] = arr[i] ^ arr[j];
     }
+
+    public static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
 
     // for test
     public static void comparator(int[] arr) {

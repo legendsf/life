@@ -18,6 +18,7 @@ public class Msort {
 
        return arr;
     }
+
     public static int[] selectionSort(int[] arr){
         if(arr==null||arr.length<2){
             return arr;
@@ -59,10 +60,13 @@ public class Msort {
         }
     }
 
-
         public static void main(String[] args) {
-//        Constants.checkSort(Msort::bubbleSort);
-//        Constants.checkSort(Msort::selectionSort1);
+        int[] arr = new int[]{1,7,9,8};
+        Constants.swap(arr,3,1);
+        Constants.printArray(arr);
+        Constants.checkSort(Msort::bubbleSort);
+        Constants.checkSort(Msort::selectionSort1);
             Constants.checkSort(Msort::selectionSort3);
+            Constants.checkSort(Code_02_SelectionSort::selectionSort);
     }
 }
