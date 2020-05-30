@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <div id="app">
+        <button-counter></button-counter>
+        <test></test>
+    </div>
+
+   <script type="text/javascript">
+        Vue.component('button-counter',{
+            props:['title'],
+            data:function(){
+                return {}
+            },
+            template:'<div><h1>hi..</hi></div>',
+            methods: {
+
+            },
+        })
+
+        var vm=new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods: {
+                clicknow:function(e){
+                    console.log(e)
+                }
+            },
+            components:{
+                test:{
+                    template:"<h2>h2..</h2>"
+                }
+            }
+        });
+   </script> 
+</body>
+</html>
