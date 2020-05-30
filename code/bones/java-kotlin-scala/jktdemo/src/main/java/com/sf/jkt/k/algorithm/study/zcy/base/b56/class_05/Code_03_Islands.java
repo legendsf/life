@@ -1,4 +1,4 @@
-package class_05;
+package com.sf.jkt.k.algorithm.study.zcy.base.b56.class_05;
 
 public class Code_03_Islands {
 

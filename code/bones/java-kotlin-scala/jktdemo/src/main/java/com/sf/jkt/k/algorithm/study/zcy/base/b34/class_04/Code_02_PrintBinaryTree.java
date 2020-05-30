@@ -1,4 +1,4 @@
-package class_04;
+package com.sf.jkt.k.algorithm.study.zcy.base.b34.class_04;
 
 public class Code_02_PrintBinaryTree {
 

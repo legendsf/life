@@ -1,4 +1,4 @@
-package class_03;
+package com.sf.jkt.k.algorithm.study.zcy.base.b34.class_03;
 
 import java.util.LinkedList;
 import java.util.Queue;

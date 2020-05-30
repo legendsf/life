@@ -1,4 +1,4 @@
-package class_07;
+package com.sf.jkt.k.algorithm.study.zcy.base.b78.class_07;
 
 public class Code_01_TrieTree {
 

@@ -1,6 +1,6 @@
 package com.sf.jkt.k.algorithm.study.zcy.base.b12.basic_class_01;
 
-import static basic_class_01.Code_00_BubbleSort.*;
+import static com.sf.jkt.k.algorithm.study.zcy.Constants.*;
 
 public class M00BubbleSort {
     public static void main(String[] args) throws Exception{

@@ -1,4 +1,4 @@
-package class_06;
+package com.sf.jkt.k.algorithm.study.zcy.base.b56.class_06;
 
 import java.util.HashSet;
 import java.util.Stack;
