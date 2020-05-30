@@ -2,6 +2,7 @@ package com.sf.jkt.j.jdk8.stream;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -9,9 +10,88 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Locale;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+/***
+ *  好的 java8 date 实例
+ *  https://www.jianshu.com/p/797716dc49fb
+ */
+
 public class DateTest {
+
+    @Test
+    public void testZoneId(){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println(localDateTime);
+        ZoneId zoneId = ZoneId.of("GMT");
+        ZonedDateTime zonedDateTime =ZonedDateTime.of(localDateTime,zoneId);
+        System.out.println(zonedDateTime);
+        Date date = new Date();
+        Instant instant = date.toInstant();
+        ZoneId zoneId1 =ZoneId.systemDefault();
+        System.out.println(zoneId);
+        System.out.println(zoneId1);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime local1Gmt = LocalDateTime.ofInstant(date.toInstant(),zoneId);
+        LocalDateTime localDate=LocalDateTime.ofInstant(date.toInstant(),zoneId1);
+        String gmtStr=local1Gmt.format(dateTimeFormatter);
+        String localStr=localDate.format(dateTimeFormatter);
+        String gmtZstr= localDate.atZone(ZoneId.of("GMT-8")).format(dateTimeFormatter);
+        System.out.println(gmtZstr);
+        System.out.println(gmtStr);
+        System.out.println(localStr);
+    }
+
+    @Test
+    public void testDate2LocaleDateTime(){
+        Date date=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        dateFormat.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME,"UTC"));
+        dateFormat.setLenient(false);
+        String str=dateFormat.format(date);
+        System.out.println(str);
+
+
+        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        System.out.println(zonedDateTime);
+
+        LocalDateTime localDateTime1= LocalDateTime.ofInstant(date.toInstant(),ZoneId.systemDefault());
+        LocalDateTime localDateTime2= date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        Instant instant = localDateTime1.toInstant(ZoneOffset.UTC);
+        System.out.println(instant);
+        System.out.println(localDateTime1);
+        System.out.println(localDateTime2);
+
+        LocalDateTime utc_0= localDateTime1.minusHours(8);
+        System.out.println(utc_0);
+
+        SimpleDateFormat dateFormatGmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+        SimpleDateFormat dateFormatLocal = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String mgmtdate=dateFormatGmt.format(date);
+        String mlocaldate=dateFormatLocal.format(date);
+        System.out.println(mgmtdate);
+        System.out.println(mlocaldate);
+        System.out.println(TimeZone.getDefault());
+
+
+        LocalDate localDate = localDateTime1.toLocalDate();
+
+        LocalTime localTime = localDateTime1.toLocalTime();
+
+        LocalDateTime localDateTime3 = localDate.atStartOfDay();
+
+        LocalDateTime localDateTime4 = localTime.atDate(localDate);
+
+        LocalDateTime localDateTime5 = LocalDateTime.of(localDate, localTime);
+
+
+    }
+
+
+
     @Test
     public void testDuration()throws Exception{
         Instant instant = Instant.now();

@@ -73,8 +73,10 @@
             <input type="radio" id="two" value="two" v-model="picked"> 
             <label for="two">two</label>
             <br>
-            <span></span>
+            <span>picked {{picked}}</span>
         </div>
+        <button type="button" @click="submit">提交</button>
+    
     </div>
 
 
@@ -105,7 +107,9 @@
                 publishAt:'2019'
             },
             counter: 0,
-            msg:'hellomsg'
+            msg:'hellomsg',
+            picked:"two",
+            checked:true
         }
         // Object.freeze(data)
         var vm = new Vue({
@@ -126,6 +130,15 @@
                     console.log(str);
                     // alert(str)
                     console.log(e)
+                },
+                submit:function(){
+                    console.log(this.message)
+                    var postObj={
+                        msg1:this.message,
+                        msg2:this.msg,
+                        checkval:this.checkedNames
+                    }
+                    console.log(postObj)
                 }
             }
         });

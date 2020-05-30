@@ -1,5 +1,6 @@
 package com.sf.jkt.k.util;
 
+import com.google.common.collect.Lists;
 import com.sf.jkt.k.Util.Log4;
 import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiled;
 import com.sf.jkt.k.entity.MUser;
@@ -7,14 +8,17 @@ import com.sf.jkt.k.entity.MUser;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class JavaTest {
     static Class<?> getMClass() {
         return MUser.class;
     }
 
-    public static void main(String[] args) {
-       new JavaTest().testResource();
+    public static void main(String[] args)throws Exception {
+
+//        new JavaTest().testResource();
+        testStream();
     }
 
     public  void testResource(){
@@ -53,5 +57,19 @@ public class JavaTest {
         collection.add("a");
         collection.add("b");
         System.out.println(KotlinBaseTestKt.joinToString(collection, ",", "[", "]"));
+    }
+
+    public static void testStream()throws Exception{
+        //JDK1.8
+        //guava
+        List<Integer> list = Lists.newArrayList(1,2,3,5,6);
+
+        list.stream().forEach(System.out::println);
+        System.out.println("***********");
+        //原来的
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i));
+        }
+
     }
 }
