@@ -2,6 +2,7 @@ package com.sf.jkt.k.algorithm.study.zcy;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Constants {
 
@@ -96,6 +97,37 @@ public class Constants {
         printArray(arr);
         consumer.accept(arr);
         printArray(arr);
+    }
+
+    public static void  checkSmall(Function<int[],Integer> consumer){
+        int testTime = 500000;
+        int maxSize = 100;
+        int maxValue = 100;
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = generateRandomArray(maxSize, maxValue);
+            int[] arr2 = copyArray(arr1);
+            if (consumer.apply(arr1) != comparatorSmall(arr2)) {
+                succeed = false;
+                printArray(arr1);
+                printArray(arr2);
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!") ;
+    }
+
+    public static int comparatorSmall(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return 0;
+        }
+        int res = 0;
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 0; j < i; j++) {
+                res += arr[j] < arr[i] ? arr[j] : 0;
+            }
+        }
+        return res;
     }
 
 }
