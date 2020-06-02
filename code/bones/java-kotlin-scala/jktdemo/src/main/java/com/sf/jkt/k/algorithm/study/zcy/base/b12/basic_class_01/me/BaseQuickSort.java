@@ -15,8 +15,11 @@ public class BaseQuickSort {
         }
         if(l<r){
             swap(arr,l+(int)(Math.random()*(r-l+1)),r);//随机快排
+            //中间是等于区域
             int[] p =partion(arr,l,r);
+            //左侧
             baseQuickSort(arr,l,p[0]-1);
+            //右侧
             baseQuickSort(arr,p[1]+1,r);
         }
     }
