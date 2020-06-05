@@ -1,4 +1,4 @@
-package com.sf.jkt.j.spring.biz.exception.bad;
+package com.sf.jkt.j.spring.biz.exception.controller;
 
 import org.springframework.stereotype.Component;
 

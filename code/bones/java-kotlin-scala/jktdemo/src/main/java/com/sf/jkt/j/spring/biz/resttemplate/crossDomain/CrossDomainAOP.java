@@ -7,7 +7,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -29,8 +28,8 @@ public class CrossDomainAOP {
 
   @Resource
   private HttpServletRequest request;
-  @Value("${lite.host}")
-  private String liteHost;
+//  @Value("${lite.host}")/
+  private String liteHost="lite-test.hupu.com";
 
 
 //  @Around("execution(*controller..*.*(..))")
