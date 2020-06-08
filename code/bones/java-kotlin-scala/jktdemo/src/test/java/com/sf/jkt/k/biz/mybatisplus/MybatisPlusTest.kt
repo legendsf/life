@@ -6,12 +6,12 @@ import com.sf.jkt.k.Util.AgeEnum
 import com.sf.jkt.k.Util.GradeEnum
 import com.sf.jkt.k.auto.entity.User
 import com.sf.jkt.k.auto.mapper.UserMapper
-import com.sf.jkt.k.util.SpringBootBaseTest
+import com.sf.jkt.k.util.base.SpringBootBaseTestKT
 import  org.junit.Assert.*
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-class MybatisPlusTest : SpringBootBaseTest() {
+class MybatisPlusTest : SpringBootBaseTestKT() {
 
     @Autowired
     lateinit var userMapper: UserMapper

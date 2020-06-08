@@ -1,7 +1,7 @@
 //package com.sf.jkt.k.mock;
 //
 //
-//import com.sf.jkt.k.util.SpringBootBaseTest;
+//import com.sf.jkt.k.util.base.SpringBootBaseTest;
 //import org.junit.Assert;
 //import org.junit.Test;
 //import org.springframework.beans.factory.annotation.Autowired;

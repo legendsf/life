@@ -1,4 +1,4 @@
-package com.sf.jkt.k.util;
+package com.sf.jkt.k.util.base;
 
 
 import com.sf.jkt.j.spring.biz.Application;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class ApplicationTest {
+public class ApplicationBaseTestJ {
     @Resource
     Environment environment;
 

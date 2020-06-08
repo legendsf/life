@@ -2,7 +2,7 @@ package com.sf.jkt.k.comp.mq.rabbitmq
 
 import com.alibaba.fastjson.JSON
 import com.sf.jkt.k.entity.MUser
-import com.sf.jkt.k.util.SpringBootBaseTest
+import com.sf.jkt.k.util.base.SpringBootBaseTestKT
 import org.junit.Test
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.rabbit.AsyncRabbitTemplate
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.util.concurrent.ListenableFutureCallback
 import java.util.*
 
-class BootRabbitmqTest : SpringBootBaseTest() {
+class BootRabbitmqTest : SpringBootBaseTestKT() {
 
     @Autowired
     lateinit var rabbitTemplate: RabbitTemplate

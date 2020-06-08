@@ -1,5 +1,6 @@
 package com.sf.jkt.k.util;
 
+import com.sf.jkt.k.util.base.SpringBootBaseTestKT;
 import com.sf.jkt.k.web.KotlinApplication;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.Arrays;
 
-public class ST extends SpringBootBaseTest{
+public class ST extends SpringBootBaseTestKT {
     @Autowired
     ApplicationContext context;
     @Test
