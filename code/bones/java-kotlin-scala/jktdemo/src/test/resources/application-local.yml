@@ -1,0 +1,9 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: dubbo-spring-boot-starter
+
+swagger:
+  enable: true
+

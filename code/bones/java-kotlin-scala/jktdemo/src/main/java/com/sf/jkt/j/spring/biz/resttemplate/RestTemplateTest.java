@@ -1,7 +1,7 @@
 package com.sf.jkt.j.spring.biz.resttemplate;
 
 import com.google.gson.Gson;
-import com.sf.jkt.j.spring.biz.exception.bad.User;
+import com.sf.jkt.j.spring.biz.exception.controller.User;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

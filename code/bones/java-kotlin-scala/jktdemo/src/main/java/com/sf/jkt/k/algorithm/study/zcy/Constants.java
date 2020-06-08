@@ -99,6 +99,24 @@ public class Constants {
         printArray(arr);
     }
 
+    public static void  checkInverse(Function<int[],Integer> function){
+        int testTime=50000;
+        int maxSize=100;
+        int maxValue=100;
+        boolean succeed = true;
+        for(int i=0;i<testTime;i++){
+            int[] arr1 = generateRandomArray(maxSize,maxValue);
+            int[] arr2 = copyArray(arr1);
+            if(function.apply(arr1)!= inversePairs(arr2)){
+                succeed=false;
+                printArray(arr1);
+                printArray(arr2);
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!") ;
+    }
+
     public static void  checkSmall(Function<int[],Integer> consumer){
         int testTime = 500000;
         int maxSize = 100;
@@ -128,6 +146,31 @@ public class Constants {
             }
         }
         return res;
+    }
+
+    public static int inversePairs(int[] arr){
+        int res=0;
+       for(int i=arr.length-1;i>0;i--){
+           for(int j=0;j<i;j++){
+              res += arr[j]>arr[i]?1:0;
+           }
+       }
+        return res;
+    }
+
+    public static int inversePairs1(int[] arr){
+        if(arr==null||arr.length<2){
+            return 0;
+        }
+        int count=0;
+        for(int i=0;i<arr.length;i++){
+            for (int j=i+1;j<arr.length;j++){
+                if(arr[i]>arr[j]){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 }
