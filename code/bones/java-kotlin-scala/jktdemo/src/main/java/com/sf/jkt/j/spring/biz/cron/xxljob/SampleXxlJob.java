@@ -68,6 +68,7 @@ public class SampleXxlJob {
      * 2、分片广播任务
      * https://blog.csdn.net/it_freshman/article/details/105421781
      * https://blog.csdn.net/m0_37606574/article/details/88107245
+     * https://blog.csdn.net/zlc521520/article/details/103400023
      */
     @XxlJob("shardingJobHandler")
     public ReturnT<String> shardingJobHandler(String param) throws Exception {
