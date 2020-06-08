@@ -19,12 +19,28 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 官方文档
+ * https://www.xuxueli.com/xxl-job/#3.1%20BEAN%E6%A8%A1%E5%BC%8F%EF%BC%88%E7%B1%BB%E5%BD%A2%E5%BC%8F%EF%BC%89
+ *
  * XxlJob开发示例（Bean模式）
  *
  * 开发步骤：
  * 1、在Spring Bean实例中，开发Job方法，方式格式要求为 "public ReturnT<String> execute(String param)"
  * 2、为Job方法添加注解 "@XxlJob(value="自定义jobhandler名称", init = "JobHandler初始化方法", destroy = "JobHandler销毁方法")"，注解value值对应的是调度中心新建任务的JobHandler属性的值。
  * 3、执行日志：需要通过 "XxlJobLogger.log" 打印执行日志；
+ *
+ *  异常处理：
+ *  5.20 避免任务重复执行
+ * 调度密集或者耗时任务可能会导致任务阻塞，集群情况下调度组件小概率情况下会重复触发；
+ * 针对上述情况，可以通过结合 “单机路由策略（如：第一台、一致性哈希）” + “阻塞策略（如：单机串行、丢弃后续调度）” 来规避，最终避免任务重复执行。
+ * 失败不要重试，避免重复,要考虑业务场景
+ *
+ * 失败重试：调度失败时，将会主动进行一次失败重试调度，重试调度后仍然失败将会触发失败告警。注意当任务以failover方式路由时，每次失败重试将会触发新一轮路由；
+ *
+ * 5.23 调度结果丢失处理
+ * 执行器因网络抖动回调失败或宕机等异常情况，会导致任务调度结果丢失。由于调度中心依赖执行器回调来感知调度结果，因此会导致调度日志永远处于 “运行中” 状态。
+ *
+ * 针对该问题，调度中心提供内置组件进行处理，逻辑为：调度记录停留在 “运行中” 状态超过10min，且对应执行器心跳注册失败不在线，则将本地调度主动标记失败；
  *
  * @author xuxueli 2019-12-11 21:52:51
  */
@@ -50,6 +66,8 @@ public class SampleXxlJob {
 
     /**
      * 2、分片广播任务
+     * https://blog.csdn.net/it_freshman/article/details/105421781
+     * https://blog.csdn.net/m0_37606574/article/details/88107245
      */
     @XxlJob("shardingJobHandler")
     public ReturnT<String> shardingJobHandler(String param) throws Exception {
