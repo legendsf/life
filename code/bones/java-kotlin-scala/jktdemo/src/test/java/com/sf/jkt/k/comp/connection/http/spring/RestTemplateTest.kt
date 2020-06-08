@@ -1,11 +1,11 @@
 package com.sf.jkt.k.comp.connection.http.spring
 
-import com.sf.jkt.k.util.SpringBootBaseTest
+import com.sf.jkt.k.util.base.SpringBootBaseTestKT
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.client.RestTemplate
 
-class RestTemplateTest :SpringBootBaseTest(){
+class RestTemplateTest : SpringBootBaseTestKT(){
     @Autowired
     lateinit var restTemplate: RestTemplate
 

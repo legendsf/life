@@ -1,4 +1,4 @@
-package com.sf.jkt.k.util
+package com.sf.jkt.k.util.base
 
 import com.sf.jkt.k.web.KotlinApplication
 import org.junit.runner.RunWith
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(classes = [KotlinApplication::class])
-class SpringBootBaseTest {
+class SpringBootBaseTestKT {
 
 
 }

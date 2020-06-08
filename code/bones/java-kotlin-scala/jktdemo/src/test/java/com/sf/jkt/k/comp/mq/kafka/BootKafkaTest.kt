@@ -1,12 +1,12 @@
 package com.sf.jkt.k.comp.mq.kafka
 
-import com.sf.jkt.k.util.SpringBootBaseTest
+import com.sf.jkt.k.util.base.SpringBootBaseTestKT
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.core.KafkaTemplate
 import java.util.concurrent.TimeUnit
 
-class BootKafkaTest :SpringBootBaseTest(){
+class BootKafkaTest : SpringBootBaseTestKT(){
     @Autowired
     lateinit var kafkaProducer: KafkaProducer
     lateinit var kafkaTemplate: KafkaTemplate<String,String>
