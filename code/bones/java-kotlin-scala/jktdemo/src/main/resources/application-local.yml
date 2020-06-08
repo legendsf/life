@@ -133,3 +133,49 @@ rocketmq:
 
 mhello:
   msg: "hello"
+
+#http://localhost:8081/graphiql
+graphiql:
+  enabled: true
+
+xxl:
+  job:
+    accessToken:
+    admin:
+      # 地址为刚刚配置的调度中心的访问地址
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    executor:
+      # 自定义appName（执行器名称）
+      appname: xxl-job-appName
+      ### xxl-job executor registry-address: default use address to registry , otherwise use ip:port if address is nul
+      address:
+      # ip 可以写 （程序跑在的机器ip上），也可以不写
+      ip:
+      port: 9999
+      # 执行器日志文件存储路径
+      logpath: ~/data/applogs/xxl-job/jobhandler
+      # 设置日志过期时间  -1表示永不过期
+      logretentiondays: -1
+
+person:
+  lastName:  张三    #属性
+  age: 27    #属性
+  boss: false   #属性
+  birth: 2011/12/15  #属性
+  #  maps: {job: 医生,gender: 男}
+  maps:  #map
+    job: 医生
+    gender: 男
+  lists: #list
+    - 李四
+    - 赵六
+  dog:  #object
+    name: 阿拉斯加
+    age: 2
+  array: 1,2,3,4   #数组
+
+prefix:
+  msg:
+    hello: hello宋飞
+
+
