@@ -182,5 +182,11 @@ prefix:
   msg:
     hello: hello宋飞
 
+ribbon:
+  eureka:
+    enabled: false
 
+micro-server-user:
+  ribbon:
+    listOfServers: 127.0.0.1:8081
 

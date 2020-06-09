@@ -4,7 +4,7 @@ import com.sf.jkt.j.spring.biz.exception.controller.User;
 
 import java.util.List;
 
-public interface UserFacade {
+public interface UserServiceFacade {
 
     List<User> findAllUserV2();
 }

@@ -9,8 +9,8 @@ import java.util.List;
 
 @RequestMapping("/userV2")
 @RestController
-public class UserControllerV2 implements UserFacade{
-    @RequestMapping("/findAllUserV2")
+public class UserControllerV2 implements UserServiceFacade {
+    @RequestMapping("/")
     @Override
     public List<User> findAllUserV2() {
         List<User> list=new ArrayList<>();
