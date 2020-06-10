@@ -42,6 +42,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("hello-Application");
         SpringApplication.run(Application.class, args);
     }
 }

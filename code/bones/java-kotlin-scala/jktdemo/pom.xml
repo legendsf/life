@@ -12,7 +12,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <start-class>com.sf.jkt.k.web.KotlinApplication</start-class>
+        <start-class>com.sf.jkt.j.spring.biz.Application</start-class>
     </properties>
 
 
@@ -44,7 +44,7 @@
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-maven-plugin</artifactId>
                             <configuration>
-                                <mainClass>com.sf.jkt.k.web.KotlinApplication</mainClass>
+                                <mainClass>${start-class}</mainClass>
                             </configuration>
                         </plugin>
                         <plugin>
@@ -496,14 +496,6 @@
             <artifactId>lettuce-core</artifactId>
             <version>5.1.6.RELEASE</version>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-<!--            <version>2.1.5.RELEASE</version>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>com.xuxueli</groupId>
