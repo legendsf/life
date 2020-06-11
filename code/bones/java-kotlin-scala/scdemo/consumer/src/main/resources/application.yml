@@ -1,5 +1,9 @@
 server:
-    port: 8080
+    port: 8086
 spring:
     application:
         name: consumer
+    profiles:
+        active: local
+
+

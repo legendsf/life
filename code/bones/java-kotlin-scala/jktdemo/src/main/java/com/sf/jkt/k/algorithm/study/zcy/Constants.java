@@ -77,7 +77,7 @@ public class Constants {
 
 
     public static void checkSort(Consumer<int[]> consumer) {
-        int testTime = 500000;
+        int testTime = 50000;
         int maxSize = 100;
         int maxValue = 100;
         boolean succeed = true;
