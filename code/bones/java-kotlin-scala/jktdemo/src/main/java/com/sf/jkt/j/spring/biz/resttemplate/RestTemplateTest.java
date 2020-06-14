@@ -11,6 +11,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.time.Duration;
 
 /**
  * resttemplate 配置
@@ -18,8 +19,8 @@ import java.net.URI;
  *  https://www.cnblogs.com/f-anything/p/10084215.html
  */
 public class RestTemplateTest {
-    static RestTemplate template= new RestTemplateBuilder().setConnectTimeout(3000)
-            .setReadTimeout(5000).rootUri("http://127.0.0.1:8081").build();
+    static RestTemplate template= new RestTemplateBuilder().setConnectTimeout(Duration.ofSeconds(3))
+            .setReadTimeout(Duration.ofSeconds(5)).rootUri("http://127.0.0.1:8081").build();
     //        template.getForObject();
     public static void main(String[] args) throws Exception{
         testUri();
