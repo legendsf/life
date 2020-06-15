@@ -1,8 +1,15 @@
 mysql:
 docker run -p 3306:3306 --name mysql  -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
 
+xxljob:
+https://www.cnblogs.com/xiao987334176/p/10298528.html
+docker run -e PARAMS="--spring.datasource.url=jdbc:mysql://172.16.50.83:3306/xxl-job?Unicode=true&characterEncoding=UTF-8 --spring.datasource.username=root --spring.datasource.password=123456" -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin xuxueli/xxl-job-admin:2.2.0
+
 redis:
 docker run -d -p 6379:6379 --name redis redis
+
+nacos:
+docker run -d -e PREFER_HOST_MODE=ip -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql -e MYSQL_MASTER_SERVICE_HOST=172.16.50.83 -e MYSQL_MASTER_SERVICE_PORT=3306 -e MYSQL_MASTER_SERVICE_USER=root -e MYSQL_MASTER_SERVICE_PASSWORD=123456 -e MYSQL_MASTER_SERVICE_DB_NAME=nacos -e MYSQL_SLAVE_SERVICE_HOST=172.16.50.83 -e MYSQL_SLAVE_SERVICE_PORT=3306 -v /home/dockerdata/nacos/logs:/home/nacos/logs -p 8848:8848 --name nacos --restart=always nacos/nacos-server
 
 zookeeper:
 docker run -d --name zookeeper -p 2181:2181 wurstmeister/zookeeper
