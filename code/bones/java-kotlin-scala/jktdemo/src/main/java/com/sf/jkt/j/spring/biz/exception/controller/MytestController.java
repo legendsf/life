@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class Mytest {
+public class MytestController {
     @Autowired
     PrefixConfig prefixConfig;
 
-    @Value("${prefix.msg.hello}")
-    String helloMsg;
+//    @Value("${prefix.msg.hello}")
+    String helloMsg="hello";
  
     @Autowired
     Person person;

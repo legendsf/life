@@ -12,7 +12,8 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ApplicationJ.class)
+@SpringBootTest(classes = ApplicationJ.class,
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationJBaseTestJ {
     @Resource
     Environment environment;
