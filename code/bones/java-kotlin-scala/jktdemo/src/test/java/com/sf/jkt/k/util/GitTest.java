@@ -7,7 +7,7 @@ public class GitTest {
     @Test
     public void testGitRebase(){
         System.out.println("git rebase");
-        System.out.println("git revert2");
+
     }
 
 
