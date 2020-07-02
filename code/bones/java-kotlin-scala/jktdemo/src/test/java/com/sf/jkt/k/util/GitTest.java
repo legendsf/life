@@ -10,6 +10,8 @@ public class GitTest {
         System.out.println("rebase");
         System.out.println("i am sfdev");
         System.out.println(" i am master");
+        System.out.println("i am master1");
+        System.out.println("i am master2");
 
     }
 
