@@ -16,5 +16,9 @@ public class GitTest {
 
     }
 
+    @Test
+    public void testCherrypick(){
+        
+    }
 
 }
