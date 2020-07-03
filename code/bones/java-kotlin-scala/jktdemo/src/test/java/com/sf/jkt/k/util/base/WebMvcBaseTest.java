@@ -1,7 +1,7 @@
 package com.sf.jkt.k.util.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sf.jkt.j.spring.biz.Application;
+import com.sf.jkt.j.spring.biz.ApplicationJ;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)//这里的Application是springboot的启动类名
+@SpringBootTest(classes = ApplicationJ.class)//这里的Application是springboot的启动类名
 @WebAppConfiguration
 public class WebMvcBaseTest {
 
