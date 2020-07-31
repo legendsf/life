@@ -1,7 +1,6 @@
 package com.sf.jkt.k.algorithm.thread
 
-import okhttp3.internal.notifyAll
-import okhttp3.internal.wait
+
 
 class Person{
     var name:String=""

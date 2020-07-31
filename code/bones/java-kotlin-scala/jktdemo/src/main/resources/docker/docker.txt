@@ -2,6 +2,14 @@ mysql:
 
 docker run   -e MYSQL_ROOT_PASSWORD=123456  -p 3306:3306 --name mysql  -v /opt:/opt mysql  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
+etcd:
+
+# https://www.codercto.com/a/90804.html
+
+docker run -d -p 2379:2379  -p 2380:2380  -p 4001:4001  -p 7001:7001  --name etcd-discovery  elcolio/etcd:latest
+
+docker run --name etcd-v3.0.9 -d -v /tmp/etcd/:/data  -p 2379:2379 -p 2380:2380 xieyanze/etcd3:latest
+
 xxl-job
 https://www.cnblogs.com/xiao987334176/p/10298528.html
 ./doc/db/tables_xxl_job.sql

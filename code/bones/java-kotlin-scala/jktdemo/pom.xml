@@ -13,6 +13,8 @@
 
     <properties>
         <start-class>com.sf.jkt.j.spring.biz.Application</start-class>
+        <vertx.version>3.9.0</vertx.version>
+<!--        <vertx.version>4.0.0-milestone5</vertx.version>-->
     </properties>
 
 
@@ -26,6 +28,21 @@
         </extensions>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugin</groupId>
+                <artifactId>echo-plugin</artifactId>
+                <version>0.4.0</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <echos>
+                               <echo>************osos ${os.detected.name}-${os.detected.arch}-${os.detected.classifier}</echo>
+                            </echos>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -369,6 +386,7 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-all</artifactId>
+            <version>1.28.1</version>
         </dependency>
         <!--20190731-->
         <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
@@ -409,6 +427,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+            <version>5.3.10</version>
         </dependency>
         <dependency>
             <groupId>net.bytebuddy</groupId>
@@ -427,20 +446,21 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.netty</groupId>-->
+<!--            <artifactId>netty-all</artifactId>-->
+<!--        </dependency>-->
 
 
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-transport-native-epoll</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.netty</groupId>-->
+<!--            <artifactId>netty-transport-native-epoll</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport-native-kqueue</artifactId>
+<!--            <classifier>${os.detected.name}-${os.detected.arch}</classifier>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
@@ -509,6 +529,88 @@
             <version>1.9.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.etcd/jetcd-core -->
+        <dependency>
+            <groupId>io.etcd</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>0.5.3</version>
+        </dependency>
+
+
+        <!--feign的客户端-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>11.0</version>
+        </dependency>
+        <!--因为使用的是jackson 序列化，所以引入此包-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jackson</artifactId>
+            <version>11.0</version>
+        </dependency>
+        <!--客户端使用的okhttp所以引入此包-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.6</version>
+
+            <!-- 在java中使用，要把android依赖排除掉-->
+            <exclusions>
+            <exclusion>
+                <groupId>com.google.android</groupId>
+                <artifactId>android</artifactId>
+            </exclusion>
+            </exclusions>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>3.14.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava -->
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>2.2.19</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava2 -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>adapter-rxjava2</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>2.3.0.RELEASE</version>
+        </dependency>
 
 
 
