@@ -4,9 +4,16 @@ import static com.sf.jkt.k.algorithm.study.zcy.Constants.*;
 
 public class Msort4 {
     public static void main(String[] args) {
-        checkSort(Msort4::bubbleSort);
-        checkSort(Msort4::selectSort);
-        checkSort(Msort4::insertSort);
+//        checkSort(Msort4::bubbleSort);
+//        checkSort(Msort4::selectSort);
+//        checkSort(Msort4::insertSort);
+        testArray();
+    }
+
+    public static void testArray(){
+        int[] arr = new int[3];
+        int b=arr[1]++;
+        System.out.println(arr[1]);
     }
 
     public static int[] bubbleSort(int[] arr){
