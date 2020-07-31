@@ -79,7 +79,7 @@ public class BrowserNettyServer {
                                     .addLast(new HttpServerCodec())
                                     //多个 http 请求组装成一个 http 请求
                                     .addLast(new HttpObjectAggregator(65536))
-                                    .addLast(new HttpServerHandler());
+                                    .addLast(new TestHttpServerHandler());
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
@@ -102,15 +102,19 @@ public class BrowserNettyServer {
                 System.out.println("请求方法名： " + httpRequest.method().name());
                 //对不同的路径进行处理
                 URI uri = new URI(httpRequest.uri());
+                //处理google chrome
                 if ("/favicon.ico".equals(uri.getPath())) {
                     System.out.println("请求favicon.ico");
                 }
+                // 这块就相当于代理，本代理服务器访问百度后返回
+                String proxyMsg=cn.hutool.http.HttpUtil.get("https://www.baidu.com");
                 // 返回的内容
-                ByteBuf content = Unpooled.copiedBuffer("Hello World", CharsetUtil.UTF_8);
+                ByteBuf content = Unpooled.copiedBuffer(proxyMsg, CharsetUtil.UTF_8);
                 // http的响应
                 FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, content);
                 //响应头设置
-                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+//                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html");
                 response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
                 // 把响应内容写回到客户端
                 ctx.writeAndFlush(response);
