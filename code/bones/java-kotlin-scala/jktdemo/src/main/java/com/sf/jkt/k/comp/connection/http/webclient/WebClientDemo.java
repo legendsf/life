@@ -3,6 +3,11 @@ package com.sf.jkt.k.comp.connection.http.webclient;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ *
+ * webclient
+ * https://www.cnblogs.com/grasp/p/12179906.html
+ */
 public class WebClientDemo {
     public static void main(String[] args) {
 //        testWebClient1();
