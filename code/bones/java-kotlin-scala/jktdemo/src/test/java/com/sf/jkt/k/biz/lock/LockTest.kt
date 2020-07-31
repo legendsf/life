@@ -1,7 +1,6 @@
 package com.sf.jkt.k.biz.lock
 
-import okhttp3.internal.wait
-import okhttp3.internal.waitMillis
+
 import java.util.concurrent.TimeUnit
 
 fun main() {
@@ -18,7 +17,6 @@ class LockTest{
         synchronized(lock){
             map["miller"]=Any()
             map["mike"]=Any()
-            lock.waitMillis(5000)
             map.remove("mike")
             map.remove("miller")
 

@@ -37,6 +37,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  *
  * https://ms2008.github.io/2017/04/14/tcp-timeout/
  *
+ * https://www.infoq.cn/article/WV30iLpz_fYsDY8dpuyY
  *
  *
  */
@@ -44,6 +45,7 @@ public class BrowserNettyServer {
     public static void main(String[] args) throws Exception{
         String str=HttpHeaderNames.CONTENT_TYPE.toString();
         System.out.println(str);
+        startServer(8001);
     }
 
     public static void startServer(int port) throws Exception{
@@ -59,10 +61,12 @@ public class BrowserNettyServer {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             socketChannel.pipeline().addLast(new HttpResponseEncoder())
                                     .addLast(new HttpRequestDecoder())
+                                    .addLast(new HttpObjectAggregator(65536))
                                     .addLast(new HttpServerHandler());
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
+            f.channel().closeFuture().sync();
         }finally {
             work.shutdownGracefully();
             boss.shutdownGracefully();
@@ -74,15 +78,31 @@ public class BrowserNettyServer {
 
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+            String respMsg="OK OK OK OK";
             FullHttpResponse response = new DefaultFullHttpResponse(
-                    HTTP_1_1, OK, Unpooled.wrappedBuffer("OK OK OK OK"
+                    HTTP_1_1, OK, Unpooled.wrappedBuffer(respMsg
                     .getBytes()));
-//            response.headers().set(HttpHeaders.Names,"text/plain");
-            response.headers().set("content-length",response.content().readableBytes());
-            response.headers().set("connection",HttpHeaderValues.KEEP_ALIVE);
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE.toString(),"text/plain");
+            response.headers().set(HttpHeaderNames.CONTENT_LENGTH.toString(),response.content().readableBytes());
+            response.headers().set(HttpHeaderNames.CONNECTION.toString(),HttpHeaderValues.KEEP_ALIVE);
+            System.out.println("**************"+respMsg);
+            ctx.write(response);
+            ctx.flush();
         }
 
 
+
+        @Override
+        public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+//            super.channelReadComplete(ctx);
+            ctx.flush();
+        }
+
+        @Override
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+//            super.exceptionCaught(ctx,cause);
+            ctx.close();
+        }
     }
 
 }

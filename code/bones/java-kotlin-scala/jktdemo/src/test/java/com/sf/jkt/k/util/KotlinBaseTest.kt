@@ -10,7 +10,6 @@ import com.sf.jkt.k.Util.Log3
 import com.sf.jkt.k.Util.Log4
 import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiled
 import com.sf.jkt.k.entity.*
-import okhttp3.internal.toHexString
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.CuratorFrameworkFactory
 import org.apache.curator.framework.state.ConnectionState

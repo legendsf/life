@@ -12,11 +12,7 @@ fun testOkHttp() {
     if (!resp.isSuccessful) {
         throw IOException("服务器端错误:" + resp)
     }
-    val headers = resp.headers
-    headers.forEach {
-        println("key:" + it.first + "|value:" + it.second)
-    }
-    println(resp.body?.string())
+
 }
 
 fun main() {
