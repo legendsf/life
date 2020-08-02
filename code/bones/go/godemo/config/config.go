@@ -12,8 +12,11 @@
 import (
 	"fmt"
 )
+
+var Message = "hello world";
  
 func LoadConfig(){
+	fmt.Println(Message)
 	fmt.Println("hello loadConfig")
 } 
 

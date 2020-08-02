@@ -1,4 +1,7 @@
 /*
+   vscode golang 安装失败
+   https://www.cnblogs.com/java-le/p/13030197.html
+
  * @Author: your name
  * @Date: 2020-07-31 19:26:54
  * @LastEditTime: 2020-07-31 19:47:42
@@ -19,4 +22,5 @@ import (
 func main() {
 	fmt.Println("使用外部包测试：", configor.Config{})
 	config.LoadConfig()
+
 }
