@@ -1,0 +1,11 @@
+<sqlMap>
+    <sql id="xml_selectDoctorById">
+        select * from doctor_tb where id=?
+    </sql>
+    <sql id="xml_selectDoctorByIds">
+        select * from doctor_tb where id in (?,?)
+    </sql>
+    <sql id="xml_selectDoctorByIdOne">
+        select * from doctor_tb where id =?id
+    </sql>
+</sqlMap>

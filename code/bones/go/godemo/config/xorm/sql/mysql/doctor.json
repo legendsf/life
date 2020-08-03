@@ -1,0 +1,4 @@
+{
+  "json_selectDoctorById": "select * from doctor_tb where id =? ",
+  "json_selectDoctorByIdOne": "select * from doctor_tb where id =? "
+}
