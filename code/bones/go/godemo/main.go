@@ -14,9 +14,10 @@ package main
 
 import (
 	"fmt"
-	"godemo/config"
-
 	"github.com/jinzhu/configor"
+	_ "godemo/comp/store/mysql/gorm"
+	_ "godemo/comp/store/redis"
+	"godemo/config"
 )
 
 func main() {

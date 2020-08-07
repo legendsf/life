@@ -10,10 +10,13 @@ require (
 	github.com/agrison/mxj v0.0.0-20160310142625-1269f8afb3b4 // indirect
 	github.com/beego/bee v1.12.0 // indirect
 	github.com/bndr/gotabulate v1.1.2 // indirect
+	github.com/buger/jsonparser v1.0.0
 	github.com/fatih/structs v1.1.0 // indirect
+	github.com/garyburd/redigo v1.6.2
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/jinzhu/configor v1.2.0
+	github.com/jinzhu/gorm v1.9.15
 	github.com/shopspring/decimal v1.2.0
 	github.com/tealeg/xlsx v1.0.5 // indirect
 	github.com/tidwall/gjson v1.6.0

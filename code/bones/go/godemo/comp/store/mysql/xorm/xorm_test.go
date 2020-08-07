@@ -3,7 +3,7 @@ package xorm
 import (
 	"database/sql"
 	"fmt"
-	"godemo/config/model"
+	"godemo/biz/model"
 	"testing"
 	"time"
 )
@@ -26,7 +26,7 @@ func TestMysql(test *testing.T)  {
 	}
 	defer Db.Close()
 	fmt.Println("数据库连接成功")
-	mmap,_:=Db.QueryString("select * from doctor_tb where name='钟南山'")
+	mmap,_:= Db.QueryString("select * from doctor_tb where name='钟南山'")
 	fmt.Println(mmap)
 
 	//新增
@@ -47,8 +47,8 @@ func TestMysql(test *testing.T)  {
 		fmt.Println("数据不存在")
 	}
 
-	doc4 :=model.DoctorTb{Name: "songfei"}
-	b,_=Db.Get(&doc4)
+	doc4 := model.DoctorTb{Name: "songfei"}
+	b,_= Db.Get(&doc4)
 	fmt.Println("doc4",doc4)
 	//查询列表
 	docList := make([]model.DoctorTb,0)
@@ -77,20 +77,20 @@ func TestMysql(test *testing.T)  {
 	//修改
 	doc5 := model.DoctorTb{Name: "钟医生"}
 	//新增
-	isOk,_:=Db.InsertOne(&model.Person{Name: "songfei2", })
+	isOk,_:= Db.InsertOne(&model.Person{Name: "songfei2", })
 	fmt.Println("isOk",isOk)
 	//删除
-	isOk2,_:=Db.Delete(&model.Person{Name: "songfei2"})
+	isOk2,_:= Db.Delete(&model.Person{Name: "songfei2"})
 	fmt.Println("isOk2",isOk2)
 	//删除2
-	isOk3,_:=Db.InsertOne(&model.Person{Name: "songfei3" })
+	isOk3,_:= Db.InsertOne(&model.Person{Name: "songfei3" })
 	fmt.Println("isOk3",isOk3)
-	result,_:=Db.Exec("delete from person where Name=?","songfei3")
+	result,_:= Db.Exec("delete from person where Name=?","songfei3")
 	lastId,_ := result.LastInsertId()
 	rowAffect,_ :=result.RowsAffected()
 	fmt.Println("result",result,lastId,rowAffect)
 	//修改
-	iUpdate,_ :=Db.ID(1).Update(&doc5)
+	iUpdate,_ := Db.ID(1).Update(&doc5)
 	fmt.Println("更新结果",iUpdate)
 	//事务
 	session := Db.NewSession()
@@ -131,7 +131,7 @@ func TestMysql(test *testing.T)  {
  */
 func TestSqlMap(test *testing.T)  {
 	//sqlmap 测试
-	mm2:=Db.GetSqlMap("json_selectDoctorById")
+	mm2:= Db.GetSqlMap("json_selectDoctorById")
 	fmt.Println(mm2)
 	var doc1  []model.DoctorTb
 	Db.SqlMapClient("json_selectDoctorById",2).Find(&doc1)
@@ -144,7 +144,7 @@ func TestSqlMap(test *testing.T)  {
 	var doc2 model.DoctorTb
 	Db.SqlMapClient("xml_selectDoctorById",2).Get(&doc2)
 	fmt.Println("doc2",doc2)
-	list, _ :=Db.SqlMapClient("xml_selectDoctorByIds",1,2).Query().List()
+	list, _ := Db.SqlMapClient("xml_selectDoctorByIds",1,2).Query().List()
 	fmt.Println("list",list)
 	var doc6 model.DoctorTb
 	paraMap["Id"]=2

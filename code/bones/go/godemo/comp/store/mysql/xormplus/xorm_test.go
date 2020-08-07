@@ -16,7 +16,7 @@ func db() *xorm.Engine  {
 }
 
 func TestXorm(test *testing.T)  {
-	var engine=db()
+	var engine= db()
 	//查询
 	//results,err :=engine.QueryBytes("select * from person")
 	results,err :=engine.QueryString("select * from person")

@@ -17,7 +17,7 @@ func init() {
 		fmt.Println("数据库创建失败",)
 		return
 	}
-	err=Db.Ping()
+	err= Db.Ping()
 	if err!=nil{
 		fmt.Println("数据库连接成功")
 	}
@@ -32,7 +32,7 @@ func init() {
 
 func registerSqlMap()  {
 	fmt.Println("初始化 sqlMapclient")
-	err :=Db.RegisterSqlMap(xorm.Json("./sql/mysql",".json"))
+	err := Db.RegisterSqlMap(xorm.Json("./sql/mysql",".json"))
 	if err !=nil{fmt.Println(err)}
 	err = Db.RegisterSqlMap(xorm.Xml("./sql/mysql",".xml"))
 	if err !=nil{fmt.Println(err)}
