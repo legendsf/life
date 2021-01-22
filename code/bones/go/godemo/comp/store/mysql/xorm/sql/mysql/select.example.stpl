@@ -1,0 +1,7 @@
+select * from user
+where
+{% if count>1%}
+id=?id
+{% else%}
+name=?name
+{% endif %}
