@@ -1,6 +1,6 @@
 //package com.sf.jkt.k.biz.rest.feign;
 //
-//import com.sf.jkt.j.spring.biz.exception.controller.User;
+//import com.sf.jkt.j.spring.biz.web.controller.User;
 //import com.sf.jkt.j.spring.biz.resttemplate.feign.UserServiceFacade;
 //import com.sf.jkt.k.util.base.FeignBaseTest;
 //import org.junit.Test;

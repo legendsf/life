@@ -1,0 +1,2 @@
+jmeter:
+bin/jmeter -n -t testplan/httprequest.jmx -l testplan/result/result.txt -e -o testplan/webreport
