@@ -1,0 +1,39 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: dubbo-spring-boot-starter
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariCP
+      max-lifetime: 1800000
+      connection-timeout: 5000
+      connection-test-query: SELECT 1
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    password:
+    redisson:
+      file: classpath:redisson.yml
+    lettuce:
+      pool:
+        max-active: 100 # 连接池最大连接数（使用负值表示没有限制）
+        max-idle: 10 # 连接池中的最大空闲连接
+        min-idle: 5 # 连接池中的最小空闲连接
+        max-wait: 6000 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+    timeout: 100
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    local-cache-scope: statement #每次查询都清理缓存（insert update delete 是必然要清理缓存的）,生产环境最好不缓存，或者用分布式缓存，不要用一级和二级缓存，除非数据更新小，并发少
