@@ -1,22 +1,45 @@
 package com.sf.biz.web.spring;
 
 
+import com.sf.biz.web.mapper.BirdMapper;
 import com.sf.biz.web.spring.proxy.BlueCar;
+import com.sf.biz.web.spring.proxy.mybatis.MapperFactoryBean;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.stereotype.Component;
 
-@Component
-public class BeanFactoryPostProcessor implements org.springframework.beans.factory.config.BeanFactoryPostProcessor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyBeanFactoryPostProcessor implements org.springframework.beans.factory.config.BeanFactoryPostProcessor {
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         modifyBean(beanFactory);
         doProxy(beanFactory);
+//        doMybatisMpper(beanFactory);
 
+    }
+
+    /**
+     * Mybatis mapper 动态代理
+     * @param beanFactory
+     */
+    public void doMybatisMpper(ConfigurableListableBeanFactory beanFactory){
+        List<Class> mapperList=new ArrayList<>();
+        mapperList.add(BirdMapper.class);
+        for(Class mapper:mapperList){
+            BeanDefinitionBuilder builder=BeanDefinitionBuilder.genericBeanDefinition();
+            AbstractBeanDefinition bd= builder.getBeanDefinition();
+            //spring 根据 bd 创建对象时，可以找到对应的构造参数，构造参数推断¡
+            bd.getConstructorArgumentValues().addGenericArgumentValue(mapper);
+            bd.setBeanClass(MapperFactoryBean.class);
+        }
     }
 
     private void doProxy(ConfigurableListableBeanFactory beanFactory) {

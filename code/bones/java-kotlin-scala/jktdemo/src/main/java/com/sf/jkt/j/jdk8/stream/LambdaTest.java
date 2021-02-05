@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 
+/***
+ *
+ */
 public class LambdaTest {
    static   List<String> names = Arrays.asList("peter","anna","mike","xenia");
     static {

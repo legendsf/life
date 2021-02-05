@@ -29,6 +29,11 @@ public class RedisController {
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
 
+    @RequestMapping("/redis/hello")
+    public String hello(){
+        return  "hello redis";
+    }
+
     @RequestMapping("/redisTemplate")
     public String redisTemplate(){
         User user=new User();

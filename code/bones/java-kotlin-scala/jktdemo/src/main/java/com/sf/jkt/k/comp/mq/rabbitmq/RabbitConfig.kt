@@ -13,6 +13,17 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Scope
 
+/***
+ * https://www.cnblogs.com/linjiqin/p/12683076.html
+ *
+ * https://my.oschina.net/teddyIH/blog/3101267
+ *
+ * https://cloud.tencent.com/developer/article/1483781
+ *
+ * https://www.cnblogs.com/111testing/p/11488575.html
+ *
+ */
+
 @Configuration
 @ConfigurationProperties(prefix = "spring.rabbitmq")
 class RabbitConfig {
