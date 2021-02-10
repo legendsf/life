@@ -1,5 +1,7 @@
 package com.sf.jkt.k.algorithm.study.zcy.base.b12.basic_class_01;
 
+import com.sf.jkt.k.algorithm.study.zcy.base.b12.basic_class_01.me.MySort6;
+
 import java.util.Arrays;
 
 public class Code_06_BucketSort {
@@ -90,7 +92,8 @@ public class Code_06_BucketSort {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			bucketSort(arr1);
+//			sortBucket(arr1);
+			MySort6.sortCount(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -105,6 +108,28 @@ public class Code_06_BucketSort {
 		printArray(arr);
 		bucketSort(arr);
 		printArray(arr);
+
+	}
+
+	public static void sortBucket(int[] arr){
+		if(arr==null||arr.length<2){return;}
+		//找到数组中最大值，根据最大值构造桶
+		int max=Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+			max=Math.max(max,arr[i]);
+		}
+		int[] buckets = new int[max+1];
+		//把 arr的数填充到桶里面
+		for (int i=0;i<arr.length;i++){
+			buckets[arr[i]]++;
+		}
+		int i=0;
+		for(int j=0;j<buckets.length;j++){
+			while (buckets[j]-->0){
+				arr[i++]=j;
+			}
+		}
+
 
 	}
 

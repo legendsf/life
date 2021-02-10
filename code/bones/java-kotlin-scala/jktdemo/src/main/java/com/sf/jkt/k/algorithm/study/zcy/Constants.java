@@ -25,12 +25,26 @@ public class Constants {
     }
 
     // for test
-    public static int[] generateRandomArray(int maxSize, int maxValue) {
+
+    /**
+     * true 允许负值，false 不允许负值
+     * @param maxSize
+     * @param maxValue
+     * @param allowNag
+     * @return
+     */
+    public static int[] generateRandomArray(int maxSize, int maxValue,boolean allowNag) {
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+            arr[i] = (int) ((maxValue + 1) * Math.random()) ;
+            if(allowNag){
+                arr[i] -= (int)(maxValue*Math.random());
+            }
         }
         return arr;
+    }
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        return generateRandomArray(maxSize,maxValue,true);
     }
 
     // for test
@@ -77,12 +91,20 @@ public class Constants {
 
 
     public static void checkSort(Consumer<int[]> consumer) {
+        checksort(consumer,true);
+    }
+    public static void checkSortPositive(Consumer<int[]>consumer){
+
+        checksort(consumer,false);
+    }
+
+    private static void checksort(Consumer<int[]> consumer,boolean allowNag) {
         int testTime = 50000;
         int maxSize = 100;
         int maxValue = 100;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(maxSize, maxValue);
+            int[] arr1 = generateRandomArray(maxSize, maxValue,allowNag);
             int[] arr2 = copyArray(arr1);
             consumer.accept(arr1);
             comparator(arr2);
@@ -93,8 +115,10 @@ public class Constants {
         }
         System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-        int[] arr = generateRandomArray(maxSize, maxValue);
-        printArray(arr);
+        int[] arr = generateRandomArray(maxSize, maxValue,allowNag);
+        int[] arr2=Arrays.copyOf(arr,arr.length);
+        Arrays.sort(arr2);
+        printArray(arr2);
         consumer.accept(arr);
         printArray(arr);
     }
@@ -105,7 +129,7 @@ public class Constants {
         int maxValue=100;
         boolean succeed = true;
         for(int i=0;i<testTime;i++){
-            int[] arr1 = generateRandomArray(maxSize,maxValue);
+            int[] arr1 = generateRandomArray(maxSize,maxValue,true);
             int[] arr2 = copyArray(arr1);
             if(function.apply(arr1)!= inversePairs(arr2)){
                 succeed=false;
@@ -123,7 +147,7 @@ public class Constants {
         int maxValue = 100;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(maxSize, maxValue);
+            int[] arr1 = generateRandomArray(maxSize, maxValue,true);
             int[] arr2 = copyArray(arr1);
             if (consumer.apply(arr1) != comparatorSmall(arr2)) {
                 succeed = false;
