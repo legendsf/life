@@ -1,5 +1,7 @@
 package com.sf.jkt.k.algorithm.study.zcy.base.b12.basic_class_01;
 
+import com.sf.jkt.k.algorithm.study.zcy.base.b12.basic_class_01.me.MySmall;
+
 import java.util.Arrays;
 
 public class Code_11_MaxGap {
@@ -87,7 +89,8 @@ public class Code_11_MaxGap {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			if (maxGap(arr1) != comparator(arr2)) {
+			if (MySmall.maxGap4(arr1) != comparator(arr2)) {
+//			if (maxGap(arr1) != comparator(arr2)) {
 				succeed = false;
 				break;
 			}

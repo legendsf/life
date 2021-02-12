@@ -29,8 +29,8 @@
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugin</groupId>
-                <artifactId>echo-plugin</artifactId>
+                <groupId>com.soebes.maven.plugins</groupId>
+                <artifactId>echo-maven-plugin</artifactId>
                 <version>0.4.0</version>
                 <executions>
                     <execution>
@@ -503,6 +503,13 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.49.Final</version>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <classifier>${os.detected.name}-${os.detected.arch}</classifier>
+            <version>4.1.49.Final</version>
+        </dependency>
+
 
 
 <!--        <dependency>-->

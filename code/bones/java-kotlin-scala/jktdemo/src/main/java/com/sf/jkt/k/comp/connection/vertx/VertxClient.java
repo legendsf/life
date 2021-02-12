@@ -6,6 +6,10 @@ import io.vertx.core.net.NetClient;
 import io.vertx.core.net.NetSocket;
 import io.vertx.core.parsetools.RecordParser;
 
+/***
+ *
+ * https://github.com/netty/netty/issues/7319
+ */
 public class VertxClient {
     public static void main(String[] args) {
         testVertxClient();

@@ -106,6 +106,8 @@ public class Code_12_SmallSum {
 
 	// for test
 	public static void main(String[] args) {
+		int[] arr=new int[]{1,2,3};
+		smallSum(arr);
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;
