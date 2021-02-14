@@ -1,0 +1,25 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: netflix-zuul-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8989/eureka/
+zuul:
+  routes:
+    api-a:
+      path: /user/**
+      stripPrefix: false
+      serviceId: netflix-app-provider
+
+##url 这种就不能通过 ribbon 负载均衡了
+#zuul:
+#  routes:
+#    feign:
+#      path: /user/**
+#      url: http://localhost:9090/user/
+

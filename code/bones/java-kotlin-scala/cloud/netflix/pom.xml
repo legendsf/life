@@ -13,10 +13,10 @@
         <module>netflix-eureka</module>
         <module>netflix-zuul</module>
         <module>netflix-app</module>
-        <module>provider</module>
         <module>netflix-app/netflix-app-api</module>
         <module>netflix-app/netflix-app-provider</module>
         <module>netflix-app/netflix-app-consumer</module>
+        <module>springcloud-gateway</module>
     </modules>
 
     <parent>

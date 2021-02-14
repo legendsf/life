@@ -1,0 +1,23 @@
+server:
+  port: 9192
+spring:
+
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true    #是否开启负载均衡策略
+      routes:
+        - id: netflix-app-provider-gateway   #路由的id，保证唯一就行，常用服务名称
+          uri: http://localhost:9090   #想要代理的路由接口
+          predicates:
+            - Path=/user/**    #断言：进行指定的路径路由
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8989/eureka/

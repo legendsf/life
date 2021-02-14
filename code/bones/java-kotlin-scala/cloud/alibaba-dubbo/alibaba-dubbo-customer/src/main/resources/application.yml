@@ -1,0 +1,48 @@
+server:
+  port: 8011
+
+spring:
+  application:
+    name: customer-service # 项目名称
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+    #配置sentinel客户端，注册该项目进控制台里
+    sentinel:
+      eager: true
+      transport:
+        #配置Sentin dashboard地址
+        dashboard: localhost:8858
+        # 默认8719端口，假如被占用了会自动从8719端口+1进行扫描，直到找到未被占用的 端口
+        port: 8719
+dubbo:
+  application:
+    name: consumer-service
+  registry:
+    address: nacos://127.0.0.1:8848
+  protocol:
+    name: dubbo
+    port: 20881
+  scan:
+    base-packages:
+  qos:
+    port: 22223
+  consumer:
+    check: false
+
+feign:
+  ##开启 sentinel 支持
+   sentinel:
+     enabled: false
+   client:
+     config:
+       default:
+         connectTimeout: 5000 # 连接超时时间
+         readTimeout: 5000   # 读超时时间
+         loggerLevel: full # 日志级别
+#ribbon:
+#  eager-load:
+#    clients: provider-server
+
+

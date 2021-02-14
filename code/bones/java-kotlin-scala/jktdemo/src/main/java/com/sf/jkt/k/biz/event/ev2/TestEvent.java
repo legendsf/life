@@ -2,8 +2,11 @@ package com.sf.jkt.k.biz.event.ev2;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import org.junit.Test;
 
+/***
+ * 事件驱动实战
+ * https://www.dazhuanlan.com/2020/01/16/5e1fe3104ecd3/
+ */
  class EventListener {
     public int lastMessage = 0;
 

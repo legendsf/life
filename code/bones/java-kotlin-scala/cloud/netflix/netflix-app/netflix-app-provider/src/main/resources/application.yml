@@ -1,0 +1,11 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: netflix-app-provider
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8989/eureka/

@@ -1,0 +1,15 @@
+1、seata
+参考：
+    https://blog.csdn.net/weixin_39352976/article/details/111542065
+    https://www.daqianduan.com/20839.html
+sh nacos-config.sh -h localhost -p 8848 -g SEATA_GROUP -t seata_namespace_id -u nacos -w nacos
+
+docker run -d --restart always  --name  seata-server -p 8091:8091  -v /opt/seata/seata-server:/seata-server  seataio/seata-server:1.4.1
+
+
+docker run -d --name seata --restart=always -p 8091:8091  \
+-e 192.168.199.235  \
+-e SEATA_CONFIG_NAME=file:/seata-server/resources/registry.conf \
+-v /Users/gaodi/opt/seata/registry.conf:/seata-server/resources/registry.conf \
+-v /Users/gaodi/opt/seata/logs:/root/logs \
+seataio/seata-server:1.4.1

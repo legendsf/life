@@ -22,7 +22,7 @@ public class FormulaTest {
 //        testConsumer();
 //        testOptional();
 //        testStream2();
-//        testStopWatch();
+        testStopWatch();
 //        testParallelStream();
 //        testMath();
         testMap();
@@ -41,6 +41,7 @@ public class FormulaTest {
         TimeUnit.SECONDS.sleep(1);
         long time = stopwatch.elapsed(TimeUnit.MILLISECONDS);
         System.out.println(time);
+        System.out.println(stopwatch.toString());
         //非自动计时器
         Stopwatch stopwatch1 = Stopwatch.createUnstarted();
         stopwatch1.start();
