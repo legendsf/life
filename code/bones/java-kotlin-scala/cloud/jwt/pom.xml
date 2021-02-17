@@ -5,14 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sf</groupId>
-    <artifactId>alibaba-dubbo</artifactId>
+    <artifactId>jwt</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>alibaba-dubbo-api</module>
-        <module>alibaba-dubbo-provider</module>
-        <module>alibaba-dubbo-customer</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,7 +18,7 @@
         <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.4.RELEASE</spring-cloud-alibaba.version>
         <hutool.version>5.5.8</hutool.version>
-        <mysql.version>8.0.19</mysql.version>
+        <mysql.version>5.1.47</mysql.version>
         <druid.version>1.2.4</druid.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <minio.version>8.0.3</minio.version>
@@ -80,8 +75,6 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-
-
 
 
             <dependency>

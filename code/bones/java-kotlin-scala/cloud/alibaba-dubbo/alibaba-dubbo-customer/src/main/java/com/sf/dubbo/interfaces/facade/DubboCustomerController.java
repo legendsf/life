@@ -6,7 +6,6 @@ import com.sf.dubbo.api.DemoService;
 import com.sf.dubbo.application.remote.feign.ProviderFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
