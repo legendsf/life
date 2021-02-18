@@ -22,25 +22,29 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/***
+ * 用 1.1.18版本
+ * 1.1.18 版本 一堆 bug!!!!!! config properties 都注入不进去！！！！！
+ */
 @Configuration
 public class DruidConfiguration {
     // 将所有前缀为spring.datasource下的配置项都加载到DataSource中
-    @ConfigurationProperties(prefix = "spring.datasource")
-    @Bean
-    public DataSource druidDataSource() {
-        return new DruidDataSource();
-    }
-
-    /***
-     * 这种创建方式才是对的上面的是错误的！！！！
-     * @return
-     */
-    @Primary
-    @Bean
-    @ConfigurationProperties("spring.datasource.druid")
-    public DataSource dataSource(){
-        return DruidDataSourceBuilder.create().build();
-    }
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    @Bean
+//    public DataSource druidDataSource() {
+//        return new DruidDataSource();
+//    }
+//
+//    /***
+//     * 这种创建方式才是对的上面的是错误的！！！！
+//     * @return
+//     */
+//    @Primary
+//    @Bean
+//    @ConfigurationProperties("spring.datasource.druid")
+//    public DataSource dataSource(){
+//        return DruidDataSourceBuilder.create().build();
+//    }
 
     @Bean
     public ServletRegistrationBean druidStatViewServlet() {

@@ -32,5 +32,4 @@ spring:
                 enabled: true
                 exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
                 url-pattern: /*
-            db-type:
 
