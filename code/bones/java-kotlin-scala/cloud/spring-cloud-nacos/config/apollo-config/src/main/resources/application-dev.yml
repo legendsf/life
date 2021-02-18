@@ -1,0 +1,15 @@
+server:
+  port: 8181
+app:
+  id: apollo-config
+#
+#apollo:
+#  meta: http://localhost:8080
+#  bootstrap:
+#    enabled: true
+#    namespaces: application,nacos-config,micro_service.springboot-http,micro_service.spring-druid
+
+demo:
+  user:
+    name: sf
+    age: 18

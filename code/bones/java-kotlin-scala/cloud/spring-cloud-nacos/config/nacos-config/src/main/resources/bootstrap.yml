@@ -1,0 +1,11 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: nacos-config-example
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: dev
+#        group: nacos-config-dev-group

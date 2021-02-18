@@ -10,10 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>sc-uaa</module>
+        <module>nacos-config</module>
+        <module>apollo-config</module>
     </modules>
     <artifactId>sc-security-demo</artifactId>
-
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

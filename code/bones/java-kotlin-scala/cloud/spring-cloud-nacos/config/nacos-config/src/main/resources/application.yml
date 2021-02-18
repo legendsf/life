@@ -1,0 +1,37 @@
+
+
+#dubbo: # dubbo配置
+#  application:
+#    name: provider-server # dubbo服务名称
+#  protocol:
+##    port: 20880 # dubbo服务端口
+#    name: dubbo # dubbo服务协议名称
+#  registry: # dubbo使用的注册中心
+#    address: nacos://127.0.0.1:8848 # dubbo注册中心地址
+#  monitor:
+#    protocol: registry
+#  scan:
+#    base-packages:
+
+demo:
+  user:
+    name: zhangsan
+    age: 18
+
+demo1:
+  msg: hello
+  pool:
+    test-http1: http://127.0.0.1:10000/
+    test-http2: http://127.0.0.1:10000/
+    test-http3: http://127.0.0.1:10000/
+    test-http4: http://127.0.0.1:10000/
+
+demo2:
+  msg: hello
+
+msg:
+  pool:
+    test-http1: http://127.0.0.1:10000/
+    test-http2: http://127.0.0.1:10000/
+    test-http3: http://127.0.0.1:10000/
+    test-http4: http://127.0.0.1:10000/
