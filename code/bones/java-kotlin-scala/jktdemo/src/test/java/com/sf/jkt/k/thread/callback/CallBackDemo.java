@@ -1,9 +1,11 @@
 package com.sf.jkt.k.thread.callback;
 
 import com.google.common.util.concurrent.*;
-import io.netty.util.concurrent.*;
+import io.netty.util.concurrent.DefaultEventExecutor;
+import io.netty.util.concurrent.EventExecutorGroup;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.FutureListener;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.util.StopWatch;
 
 import java.util.concurrent.Callable;
@@ -61,7 +63,7 @@ public class CallBackDemo {
         });//<1>
         Futures.addCallback(future, new FutureCallback<Integer>() {
             @Override
-            public void onSuccess(@Nullable Integer integer) {
+            public void onSuccess( Integer integer) {
                 System.out.println("结果: "+integer);
             }
 

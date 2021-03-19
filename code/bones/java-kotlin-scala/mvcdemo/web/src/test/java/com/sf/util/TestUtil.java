@@ -8,6 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class TestUtil {
+
+    @Test
+    public void testResource(){
+        System.out.println(TestUtil.class.getResource("").getPath());
+        System.out.println(TestUtil.class.getResource("/").getPath());
+    }
+
     @Test
     public void testCtx(){
         System.out.println("hello");

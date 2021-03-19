@@ -19,6 +19,7 @@ import java.util.List;
 
 public class MyBeanFactoryPostProcessor implements org.springframework.beans.factory.config.BeanFactoryPostProcessor {
 
+    @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         modifyBean(beanFactory);
         doProxy(beanFactory);

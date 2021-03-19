@@ -16,7 +16,6 @@ import org.apache.curator.framework.state.ConnectionState
 import org.apache.curator.framework.state.ConnectionStateListener
 import org.apache.curator.retry.ExponentialBackoffRetry
 import org.apache.curator.retry.RetryNTimes
-import org.apache.curator.test.TestingServer
 import org.springframework.web.util.HtmlUtils
 import java.io.ByteArrayInputStream
 import java.io.OutputStream
@@ -220,15 +219,15 @@ fun testUser() {
 }
 
 fun test_zookeeper1() {
-    val server = TestingServer()
-    println(server.connectString)
-    val client = CuratorFrameworkFactory.newClient(server.connectString, ExponentialBackoffRetry(1000, 3))
-    client.connectionStateListenable.addListener(object : ConnectionStateListener {
-        override fun stateChanged(client: CuratorFramework?, newState: ConnectionState?) {
-            println("client state:" + newState?.name)
-        }
-    })
-    client.start()
+//    val server = TestingServer()
+//    println(server.connectString)
+//    val client = CuratorFrameworkFactory.newClient(server.connectString, ExponentialBackoffRetry(1000, 3))
+//    client.connectionStateListenable.addListener(object : ConnectionStateListener {
+//        override fun stateChanged(client: CuratorFramework?, newState: ConnectionState?) {
+//            println("client state:" + newState?.name)
+//        }
+//    })
+//    client.start()
 }
 
 fun test_zookeeper() {

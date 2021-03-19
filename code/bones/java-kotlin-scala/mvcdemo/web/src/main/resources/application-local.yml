@@ -1,14 +1,31 @@
 server:
   port: 8083
 
+##actuator 健康检查配置
+info:
+  app:
+    author: sf
+    encoding: "@project.build.sourceEncoding@"
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
 spring:
   application:
     name: dubbo-spring-boot-starter
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/test
-    username: root
-    password: 123456
+    username: nacos
+    password: nacos
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5
