@@ -85,7 +85,7 @@
         <spring.rabbitmq.version>2.1.6.RELEASE</spring.rabbitmq.version>
         <spring.kafka.version>2.5.2.RELEASE</spring.kafka.version>
         <flink.version>1.9.0</flink.version>
-        <hive.versioon>2.3.2</hive.versioon>
+        <hive.versioon>3.1.2</hive.versioon>
         <hadoop.version>2.7.7</hadoop.version>
         <spark.version>2.4.3</spark.version>
         <apollo.version>0.10.2</apollo.version>
