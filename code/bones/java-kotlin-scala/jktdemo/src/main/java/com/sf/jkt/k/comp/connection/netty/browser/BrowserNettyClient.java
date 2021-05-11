@@ -11,8 +11,11 @@ import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
 import java.net.URI;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BrowserNettyClient {
+    Map<String,Channel> channelMap=new ConcurrentHashMap<>();
     public static void main(String[] args) throws Exception{
         startClient("127.0.0.1",8001);
     }
@@ -34,7 +37,31 @@ public class BrowserNettyClient {
                             pipeline.addLast(new HttpClientHandler());
                         }
                     });
+            //可以创建多个连接
             ChannelFuture f= b.connect(host,port).sync();
+            f.addListener(ls->{
+                if(ls.isDone()){
+                    System.out.println("操作完成");//
+                    if(ls.isSuccess()){
+                        System.out.println("成功");
+                    }else if(ls.isCancelled()){
+                        System.out.println("取消");
+                    }else {
+                        System.out.println("异常");
+                    }
+                }
+            });
+            /***
+             * 短线重连
+             * map.put(hostport,channel)
+             * channel 关掉后 remove
+             * 重建：再putmap 此时要加锁
+             *      高并发丢失重建会有问题
+             *      最好提前建立多个连接进行发送，失败换下一个连接，再失败再重建，异步重建
+
+             * channel.writeandflush(msg)
+             *
+             */
             f.channel().closeFuture().sync();
         }finally {
             group.shutdownGracefully();

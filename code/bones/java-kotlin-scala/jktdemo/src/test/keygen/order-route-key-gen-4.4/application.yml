@@ -1,0 +1,39 @@
+spring:
+  profiles.active: dev
+
+
+---
+
+spring:
+  profiles: dev
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+
+zookeeper:
+  zookeeperAddress: 127.0.0.1:2181
+  #zookeeperAddress: 172.16.0.25:3181,172.16.0.26:3181,172.16.0.27:3181  #zookeeper uri
+  serviceName: order-services
+  basePath: /order
+  servicePath: /order-services
+  lockPath: /order/lock
+
+
+
+
+
+logging.level.root: WARN
+logging.level.com.hualala.order.mapper: TRACE
+
+
+endpoints:
+  enabled: false
+  health:
+     enabled: true
+     time-to-live: 5000
+
+idc.no: 0
+

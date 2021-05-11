@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven 3.5.2
+Built-By: gaoruixiang
+Build-Jdk: 9.0.1
+Implementation-Title: order-route-key-gen
+Implementation-Version: 4.4
+Implementation-Vendor-Id: com.hualala.order
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/order-route-
+ key-gen/
+

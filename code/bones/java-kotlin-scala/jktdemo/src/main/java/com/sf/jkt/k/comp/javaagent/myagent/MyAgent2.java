@@ -1,6 +1,5 @@
 package com.sf.jkt.k.comp.javaagent.myagent;
 
-import com.sf.jkt.k.comp.javaagent.advice.AdviceProfiledTransformer;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.description.method.MethodDescription;
 import net.bytebuddy.description.type.TypeDescription;
@@ -27,11 +26,11 @@ public class MyAgent2 {
         };
 
 
-        AgentUtil.INSTANCE.createBuilder()
-                .type(ElementMatchers.nameStartsWith("com.sf")) // 指定需要拦截的类
-                .transform(transformer)
-                .transform(new AdviceProfiledTransformer())
-                .with(AgentUtil.INSTANCE.getDefaultListener())
-                .installOn(inst);
+//        AgentUtil.INSTANCE.createBuilder()
+//                .type(ElementMatchers.nameStartsWith("com.sf")) // 指定需要拦截的类
+//                .transform(transformer)
+//                .transform(new AdviceProfiledTransformer())
+//                .with(AgentUtil.INSTANCE.getDefaultListener())
+//                .installOn(inst);
     }
 }

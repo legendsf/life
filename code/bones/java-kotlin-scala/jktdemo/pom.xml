@@ -50,6 +50,7 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
+                <version>4.4.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -69,6 +70,14 @@
                         <version>1.4.2.Final</version>
                     </path>
                 </annotationProcessorPaths>
+                    <compilerArgs>
+                        <compilerArg>
+                            -Amapstruct.suppressGeneratorTimestamp=true
+                        </compilerArg>
+                        <compilerArg>
+                            -Amapstruct.suppressGeneratorVersionInfoComment=true
+                        </compilerArg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -646,12 +655,24 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>org.mapstruct</artifactId>
+                    <groupId>mapstruct</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mapstruct</artifactId>
+                    <groupId>org.mapstruct</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
@@ -872,7 +893,14 @@
             <artifactId>jol-core</artifactId>
             <version>0.14</version>
         </dependency>
+        <!--springfox-swagger2 有冲突-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
 
+        <!-- jdk8以下就使用mapstruct,和 spring-swagger -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
@@ -880,16 +908,9 @@
         </dependency>
         <!-- idea 2018.1.1 之前的版本需要添加下面的配置，后期的版本就不需要了，可以注释掉，
 我自己用的2019.3 -->
-
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>1.4.2.Final</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-jdk8</artifactId>
             <version>1.4.2.Final</version>
         </dependency>
 

@@ -25,10 +25,10 @@ https://www.cnblogs.com/tiankx/p/14113333.html
 docker run -d -p 6379:6379 --name redis redis
 
 zookeeper:
-docker run -d --name zookeeper -p 2181:2181 wurstmeister/zookeeper
+docker run -d --name zookeeper -p 2181:2181 zookeeper:3.5.7
 
 kafka:
-docker run -d --name kafka --publish 9092:9092 --link zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=192.168.4.126 --env KAFKA_ADVERTISED_PORT=9092  wurstmeister/kafka:latest
+docker run -d --name kafka --publish 9092:9092 --link zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=192.168.4.126 --env KAFKA_ADVERTISED_PORT=9092  wurstmeister/kafka:2.12-2.5.0
 docker run -d --name kafka-manager --link zookeeper:zookeeper --link kafka:kafka -p 9000:9000 --restart=always --env ZK_HOSTS=zookeeper:2181 sheepkiller/kafka-manager
 
 rabbitmq:
@@ -85,6 +85,8 @@ nginx:
 
 docker run --name nginx -d -p 80:80 -v /Users/gaodi/data/ds/web/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /Users/gaodi/data/ds/web/nginx/log:/var/log/nginx -v /Users/gaodi/data/ds/web/nginx/html:/usr/share/nginx/html nginx
 
+spark:
+https://www.dazhuanlan.com/2019/12/11/5df0a648c3c50/
 
 
 

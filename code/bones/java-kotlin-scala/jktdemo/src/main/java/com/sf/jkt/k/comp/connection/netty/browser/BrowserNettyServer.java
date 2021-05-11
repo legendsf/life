@@ -73,6 +73,7 @@ public class BrowserNettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
+
                             socketChannel.pipeline()
 //                                     addLast(new HttpResponseEncoder())
 //                                    .addLast(new HttpRequestDecoder())
@@ -108,6 +109,7 @@ public class BrowserNettyServer {
                 }
                 // 这块就相当于代理，本代理服务器访问百度后返回
                 String proxyMsg=cn.hutool.http.HttpUtil.get("https://www.baidu.com");
+                proxyMsg="hello server response";
                 // 返回的内容
                 ByteBuf content = Unpooled.copiedBuffer(proxyMsg, CharsetUtil.UTF_8);
                 // http的响应
