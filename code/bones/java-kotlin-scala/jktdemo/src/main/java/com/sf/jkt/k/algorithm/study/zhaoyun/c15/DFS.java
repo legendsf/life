@@ -1,5 +1,7 @@
 package com.sf.jkt.k.algorithm.study.zhaoyun.c15;
 
+import com.sf.jkt.k.algorithm.algo.m1.graph.Dfs;
+
 import java.util.Scanner;
 
 public class DFS {
@@ -44,8 +46,16 @@ public class DFS {
 			}
 		}
 	}
+	public static void test1(){
+		int[][] data=Dfs.createGraph();
+		boolean[][]mark=new boolean[5][4];
+		Dfs dfs=new Dfs(5,4,4,3,data,mark);
+		dfs.dfs(1,1,0);
+		System.out.println(dfs.minStep);
+	}
 
 	public static void main(String[] args) {
+//		test1();
 		Scanner cin = new Scanner(System.in);
 		int n = 5;
 		int m = 4;
@@ -70,12 +80,15 @@ public class DFS {
 	}
 }
 /*
-0 0 1 0
-0 0 0 0
-0 0 0 0
-0 1 0 0
-0 0 0 1
-4 3
-1 1
+0 0 0 0 0
+0 0 0 1 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 1 0 0
+0 0 0 0 1
+
+从1，1 开始找
+dx,dy: 4 3
+start: 1 1
  * 
  */

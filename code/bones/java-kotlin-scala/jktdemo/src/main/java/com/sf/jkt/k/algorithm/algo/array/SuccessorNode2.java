@@ -77,6 +77,86 @@ public class SuccessorNode2 {
         return node;
     }
 
+    public static Node getPoineerNode1(Node node){
+        if(node==null){
+            return null;
+        }
+        if(node.left!=null){
+            return getMostRight(node.left);
+        }else {
+            Node parent=node.parent;
+            while (parent!=null&&parent.right!=node){
+                node=parent;
+                parent=node.parent;
+            }
+            return parent;
+        }
+    }
+
+    public static Node getSuccessorNode1(Node node){
+        if(node==null){
+            return node;
+        }
+        if(node.right!=null){
+            return getMostLeft(node.right);
+        }else {
+            Node parent=node.parent;
+            while (parent!=null&&parent.left!=node)
+            {
+                node=parent;
+                parent=node.parent;
+            }
+            return parent;
+        }
+    }
+
+    public static Node getPoineerNode2(Node node){
+        if(node==null){
+            return node;
+        }
+        if(node.left!=null){
+            return getMostRight1(node.left);
+        }else {
+           Node parent=node.parent;
+           while (parent!=null&&parent.right!=node){
+               node=parent;
+               parent=node.parent;
+           }
+           return parent;
+        }
+    }
+
+    public static Node getSuccessorNode2(Node node){
+        if(node ==null){
+            return null;
+        }
+        if(node.right!=null){
+           return getMostLeft(node.right);
+        }else {
+            Node parent=node.parent;
+            while (parent!=null&&parent.left!=node){
+                node=parent;
+                parent=node.parent;
+            }
+            return parent;
+        }
+    }
+
+    public static Node getMostRight1(Node node){
+        while (node!=null&&node.right!=null){
+            node=node.right;
+        }
+        return node;
+    }
+
+    public static Node getMostLeft1(Node node){
+        while (node!=null&&node.left!=null){
+            node=node.left;
+        }
+        return node;
+    }
+
+
     /***
      *        1
      *      2
@@ -105,8 +185,13 @@ public class SuccessorNode2 {
         n3.parent=n2;
         n2.parent=n1;
 
-        System.out.println(getPoineerNode(n5));
+        System.out.println(getPoineerNode(n2));
+        System.out.println(getPoineerNode1(n2));
+        System.out.println(getPoineerNode2(n2));
+        System.out.println(getSuccessorNode(n2));
         System.out.println(getSuccessorNode(n5));
+        System.out.println(getSuccessorNode1(n5));
+        System.out.println(getSuccessorNode2(n5));
         return n1;
     }
 

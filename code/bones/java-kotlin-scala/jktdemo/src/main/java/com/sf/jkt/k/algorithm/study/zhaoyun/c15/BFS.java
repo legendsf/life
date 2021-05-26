@@ -19,7 +19,9 @@ public class BFS {
 	boolean mark[][]; // 标记数据 走过的位置
 
 	public void bfs(int x, int y) { // x he y表示你当前的位置,就是求（x，y）->(dx,dy)能不能到
-		if(x < 1 || x > n || y < 1 || y > m) return ;
+		if(x < 1 || x > n || y < 1 || y > m) {
+			return ;
+		}
 		if(x == dx && y == dy) {
 			System.out.println("true");
 			return ;
@@ -38,7 +40,9 @@ public class BFS {
 			for(int i = 0 ; i < 4; i++) {
 				int nextx = point.x + next[i][0];
 				int nexty = point.y + next[i][1];
-				if(nextx < 1 || nextx > n || nexty < 1 || nexty > m) continue;
+				if(nextx < 1 || nextx > n || nexty < 1 || nexty > m) {//边界从1开始
+					continue;
+				}
 				if(data[nextx][nexty] == 0 && !mark[nextx][nexty]) {		//表示可以走
 					if(nextx == dx && nexty == dy) {		//表示可以到了 就不走了
 						System.out.println("true");

@@ -4,7 +4,39 @@ import java.util.Scanner;
 
 public class Djstl {
 
-	public static void main(String[] args) {
+	static   int  M=Integer.MAX_VALUE;
+	static   int MI=Integer.MIN_VALUE;
+	static   int[]dis={M,M,M,M,M,M,M};
+	static {
+		dis=new int[]{M,0,M,10,M,30,100};//初始值,1到n的值
+	}
+	static   int[][]value={
+			{0   ,0     ,0    ,0    ,0    ,0     ,0    },
+			{0   ,0     ,-1   ,10   ,-1   ,30    ,100    },
+			{0   ,-1    ,0    ,5    ,-1   ,-1    ,-1   },
+			{0   ,-1    ,-1   ,0    ,50   ,-1    ,-1   },
+			{0   ,-1    ,-1   ,-1   ,0    ,-1    ,10   },
+			{0   ,-1    ,-1   ,-1   ,20   ,0     ,60   },
+			{0   ,-1    ,-1   ,-1   ,-1   ,-1    ,0   }
+	};
+
+	/**
+	 6
+	 8
+	 1
+	 1 3 10
+	 1 5 30
+	 1 6 100
+	 2 3 5
+	 3 4 50
+	 4 6 10
+	 5 4 20
+	 5 6 60
+
+
+	 *
+	 */
+	public static void test0(){
 		int n, m, x; // n表示点数，m表示边数，x表示我们要的七点
 		Scanner cin = new Scanner(System.in);
 
@@ -34,8 +66,14 @@ public class Djstl {
 				dis[yy] = v;
 			}
 		}
-		seach(x, dis, value, n);
-
+		seach(x,dis,value,n);
+	}
+	public static void test1(){
+		seach(1, dis, value, 6);
+	}
+	public static void main(String[] args) {
+		test1();
+//		test0();
 	}
 
 	public static void seach(int x, int dis[], int value[][], int n) {
