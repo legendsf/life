@@ -1,10 +1,10 @@
-package com.sf.jkt.k.algorithm.algo.m1.algo;
+package com.sf.jkt.k.algorithm.algo.m1.algo.cache;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MLruCache1 {
+public class MLruCache {
     public static class Cache1{
         int capacity;
         Map<Integer,Integer> map;
@@ -14,37 +14,40 @@ public class MLruCache1 {
             map=new LinkedHashMap<>(capacity);
         }
 
+        public void put(int key,int value){
+            if(map.containsKey(key)){
+                map.remove(key);//删除原有位置
+                map.put(key,value);//放到末尾
+                return;
+            }
+            map.put(key,value);
+           if(map.size()>capacity){
+               map.remove(map.entrySet().iterator().next().getKey());//删除第一个
+           }
+        }
+
         public int get(int key){
             if(!map.containsKey(key)){
                 return -1;
             }
-            Integer value=map.remove(key);
+            Integer value=map.get(key);
+            map.remove(key);
             map.put(key,value);
-            return  value;
-        }
-        public void put(int key,int value){
-            if(get(key)!=-1){
-                map.put(key,value);
-                return;
-            }
-            map.put(key,value);
-            if(map.size()>capacity){
-                map.remove(map.entrySet().iterator().next().getKey());
-            }
+            return value ;
         }
     }
 
-    public static class Cache2{ //
-        int capacity;
-        Map<Integer, DllNode>map;
-        DllNode head;
-        DllNode tail;
+    public static class Cache2{
+       int capacity;
+       Map<Integer,DNode> map;
+       DNode head;
+       DNode tail;
 
         public Cache2(int capacity) {
             this.capacity = capacity;
             map=new HashMap<>(capacity);
-            head=new DllNode(-1,-1);
-            tail=new DllNode(-1,-1);
+            head=new DNode(-1,-1);
+            tail=new DNode(-1,-1);
             head.next=tail;
             tail.prev=head;
         }
@@ -53,14 +56,14 @@ public class MLruCache1 {
             if(!map.containsKey(key)){
                 return -1;
             }
-            DllNode cur=map.get(key);
+            DNode cur=map.get(key);
             if(cur.next!=tail){
-               //delete
+                //删除
                 cur.prev.next=cur.next;
                 cur.next.prev=cur.prev;
-               //movetotail
-                tail.prev.next=cur;
+                //移动到tail之前
                 cur.prev=tail.prev;
+                cur.prev.next=cur;
                 cur.next=tail;
                 tail.prev=cur;
             }
@@ -70,16 +73,14 @@ public class MLruCache1 {
         public void put(int key,int value){
             if(get(key)!=-1){
                 map.get(key).value=value;
-                return;
             }
-            DllNode temp=new DllNode(key,value);
+            DNode temp=new DNode(key,value);
             map.put(key,temp);
-            tail.prev.next=temp;
             temp.prev=tail.prev;
+            temp.prev.next=temp;
             temp.next=tail;
             tail.prev=temp;
             if(map.size()>capacity){
-                //del
                 map.remove(head.next.key);
                 head.next=head.next.next;
                 head.next.prev=head;
@@ -89,14 +90,14 @@ public class MLruCache1 {
 
     public static class Cache3{
         int capacity;
-        Map<Integer,ListNode>map;
-        ListNode head;
-        ListNode tail;
+        Map<Integer,Node> map;
+        Node head;//dummy
+        Node tail;//
 
         public Cache3(int capacity) {
             this.capacity = capacity;
             map=new HashMap<>(capacity);
-            head=new ListNode(-1,-1);
+            head=new Node(-1,-1);
             tail=head;
         }
 
@@ -105,53 +106,73 @@ public class MLruCache1 {
                 map.get(key).next.value=value;
                 return;
             }
-            ListNode cur=new ListNode(key,value);
+            Node temp=new Node(key,value);
             map.put(key,tail);
-            tail.next=cur;
+            tail.next=temp;
             tail=tail.next;
             if(map.size()>capacity){
                 map.remove(head.next.key);
                 head.next=head.next.next;
+                map.put(head.next.key,head);
             }
-
         }
+
         public int get(int key){
             if(!map.containsKey(key)){
                 return -1;
             }
-            ListNode prev=map.get(key);
-            ListNode cur=prev.next;
+            Node pre=map.get(key);
+            Node cur=pre.next;
             if(cur!=tail){
-                map.put(key,tail);
-                map.put(cur.next.key,prev);
-                prev.next=cur.next;
+                pre.next=cur.next;
+                map.put(cur.next.key,pre);
+                map.put(cur.key,tail);
                 tail.next=cur;
                 tail=tail.next;
+                cur.next=null;
             }
             return cur.value;
         }
+
     }
 
-    public static class ListNode{
+    public static class Node{
         int key;
         int value;
-        ListNode next;
+        Node next;
 
-        public ListNode(int key, int value) {
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+    public static class DNode{
+        int key;
+        int value;
+        DNode prev;
+        DNode next;
+
+        public DNode(int key, int value) {
             this.key = key;
             this.value = value;
         }
     }
 
-    public static class DllNode{
-        int key;
-        int value;
-        DllNode prev;
-        DllNode next;
 
-        public DllNode(int key, int value) {
-            this.key = key;
-            this.value = value;
-        }
+    public static void testCache3(){
+        Cache3 cache=new Cache3(2);
+        cache.put(1,1);
+        cache.put(2,2);
+        cache.put(3,3);
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+        cache.put(3,3);
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+    }
+
+
+    public static void main(String[] args) {
+        testCache3();
     }
 }

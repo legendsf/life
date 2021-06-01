@@ -103,6 +103,21 @@ public class Greedy {
         return child;
     }
 
+    public static int findChildren1(int[] children,int[]cookies){
+        Arrays.sort(children);
+        Arrays.sort(cookies);
+        int child=0,cookie=0;
+        while (child<children.length&&cookie<cookies.length){
+            if (children[child]<=cookies[cookie]){
+                child++;
+            }
+            cookie++;
+        }
+        return child;
+    }
+
+
+
     /**
      * 区间覆盖
      * @param sz
@@ -125,13 +140,47 @@ public class Greedy {
         return number;
     }
 
+    public static int jump2(int[] nums){
+        if (nums==null||nums.length<1){
+            return 0;
+        }
+        int cur=0,pre=0,res=0,i=0;
+        while (cur<nums.length-1){
+            pre=cur;
+            while (i<=pre){
+                cur=cur<nums[i]+i?nums[i]+i:cur;
+                i++;
+            }
+            ++res;
+            if (pre==cur){
+                return -1;
+            }
+        }
+        return res;
+    }
 
+    public static int jump3(int[] arr){
+        int res=0,i=0,pre=0,cur=0;
+        while (cur<arr.length-1){
+            pre=cur;
+            while (i<=pre){
+                cur=cur<arr[i]+i?arr[i]+i:cur;
+                i++;
+            }
+            ++res;
+            if (pre==cur){
+                return -1;
+            }
+        }
+        return res;
+    }
 
     public static void test1(){
        int[] arr={2,3,1,2,4};
          arr=new int[]{2,3,1,0,4};
 //       arr=new int[]{2,2,1,2,4};
         System.out.println(jump1(arr));
+        System.out.println(jump2(arr));
     }
     public static void testCharge(){
         int[] m={25,10,5,1};
@@ -155,7 +204,7 @@ public class Greedy {
     }
 
     public static void main(String[] args) {
-        test3();
+        test1();
     }
 
 }

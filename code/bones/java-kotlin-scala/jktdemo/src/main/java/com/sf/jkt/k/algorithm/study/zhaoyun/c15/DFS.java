@@ -1,7 +1,5 @@
 package com.sf.jkt.k.algorithm.study.zhaoyun.c15;
 
-import com.sf.jkt.k.algorithm.algo.m1.graph.Dfs;
-
 import java.util.Scanner;
 
 public class DFS {
@@ -47,9 +45,9 @@ public class DFS {
 		}
 	}
 	public static void test1(){
-		int[][] data=Dfs.createGraph();
+		int[][] data= com.sf.jkt.k.algorithm.algo.m1.graph.DFS.createGraph();
 		boolean[][]mark=new boolean[5][4];
-		Dfs dfs=new Dfs(5,4,4,3,data,mark);
+		com.sf.jkt.k.algorithm.algo.m1.graph.DFS dfs=new com.sf.jkt.k.algorithm.algo.m1.graph.DFS(5,4,4,3,data,mark);
 		dfs.dfs(1,1,0);
 		System.out.println(dfs.minStep);
 	}

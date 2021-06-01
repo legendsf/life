@@ -9,6 +9,20 @@ class Point {
 	int y;
 }
 
+/*
+0 0 0 0 0
+0 0 0 1 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 1 0 0
+0 0 0 0 1
+
+从1，1 开始找
+dx,dy: 4 3
+start: 1 1
+ *
+ */
+
 public class BFS {
 
 	int n; // 地图的行
@@ -17,6 +31,15 @@ public class BFS {
 	int dy; // 安琪的位置y
 	int data[][]; // 邻接矩阵
 	boolean mark[][]; // 标记数据 走过的位置
+
+	public BFS(int n, int m, int dx, int dy, int[][] data, boolean[][] mark) {
+		this.n = n;
+		this.m = m;
+		this.dx = dx;
+		this.dy = dy;
+		this.data = data;
+		this.mark = mark;
+	}
 
 	public void bfs(int x, int y) { // x he y表示你当前的位置,就是求（x，y）->(dx,dy)能不能到
 		if(x < 1 || x > n || y < 1 || y > m) {
@@ -60,6 +83,31 @@ public class BFS {
 		System.out.println("false");
 		return ;
 
+	}
+
+	public static int[][] createGraph(){
+		int[][]data=new int[6][5];
+		data[1][3]=1;
+		data[3][3]=1;
+		data[4][2]=1;
+		data[5][4]=1;
+		return data;
+	}
+
+	public static void test1(){
+		create().bfs(1,1);
+		create().bfs(1,2);
+		create().bfs(2,2);
+	}
+	public static BFS create(){
+		int[][] data=createGraph();
+		boolean[][]mark=new boolean[5+1][4+1];
+		return new BFS(5,4,4,3,data,mark);
+	}
+
+
+	public static void main(String[] args) {
+		test1();
 	}
 
 }

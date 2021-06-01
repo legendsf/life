@@ -1,49 +1,67 @@
 package com.sf.jkt.k.algorithm.algo.m1.base;
 
-public class SparseArray {
+import java.util.ArrayList;
+import java.util.List;
 
+public class SparseArray1 {
 
-
-    public static int[][]toSparseArray(int[][] inputs){
-        if(inputs==null||inputs.length<1||inputs[0].length<1){
+    public static int[][] toSparseArray1(int[][] arr){
+        if (arr==null||arr.length<1||arr[0].length<1){
             return null;
         }
         int sum=0;
-        for(int i=0;i<inputs.length;i++){
-            for(int j=0;j<inputs[0].length;j++){
-                if(inputs[i][j]!=0){
+        List<int[]> list=new ArrayList<>();
+        for (int i=0;i<arr.length;i++){
+            for (int j=0;j<arr.length;j++){
+                if (arr[i][j]!=0){
+                    sum++;
+                    list.add(new int[]{i,j,arr[i][j]});
+                }
+            }
+        }
+        int[][]sparseArray=new int[sum+1][3];
+        sparseArray[0]=new int[]{arr.length,arr[0].length,sum};
+        for (int i=1;i<=sum;i++){
+            sparseArray[i]=list.get(i-1);
+        }
+        return sparseArray;
+    }
+
+    public static int[][] toSparseArray(int[][] arr){
+        if (arr==null||arr.length<1||arr[0].length<1){
+            return null;
+        }
+        int sum=0;
+        for (int i=0;i<arr.length;i++){
+            for (int j=0;j<arr.length;j++){
+                if(arr[i][j]!=0){
                     sum++;
                 }
             }
         }
-        int[][]result=new int[sum+1][3];
-        int k=1;
-        result[0]=new int[]{inputs.length,inputs[0].length,sum};
-        for(int i=0;i<inputs.length;i++){
-            for(int j=0;j<inputs[0].length;j++){
-                if(inputs[i][j]!=0){
-                    result[k][0]=i;
-                    result[k][1]=j;
-                    result[k][2]=inputs[i][j];
-                    k++;
+        int[][] ans=new int[sum+1][3];
+        ans[0]=new int[]{arr.length,arr[0].length,sum};
+        int index=1;
+        for (int i=0;i<arr.length;i++){
+            for (int j=0;j<arr[0].length;j++){
+                if(arr[i][j]!=0){
+                   ans[index++]=new int[]{i,j,arr[i][j]};
                 }
             }
         }
-        return result;
+        return ans;
     }
 
-    public static int[][]fromSparseArray(int[][] inputs){
-        if(inputs==null||inputs.length<1||inputs[0].length<1){
+    public static int[][] fromSparseArray(int[][] arr){
+        if (arr==null||arr.length<1||arr[0].length<3){
             return null;
         }
-        int row=inputs[0][0];
-        int col=inputs[0][1];
-        int nums=inputs[0][2];
-        int[][]result=new int[row][col];
-        for(int i=1;i<=nums;i++){
-            result[inputs[i][0]][inputs[i][1]]=inputs[i][2];
+        int ni=arr[0][0],nj=arr[0][1],sum=arr[0][2];
+        int[][] ans=new int[ni][nj];
+        for (int i=1;i<=sum;i++){
+            ans[arr[i][0]][arr[i][1]]=arr[i][2];
         }
-        return  result;
+        return ans;
     }
 
     public static void printArray(int[][] arr){
@@ -57,6 +75,8 @@ public class SparseArray {
             System.out.println();
         }
     }
+
+
 
     public static int[][]createArray(){
         /**
@@ -98,4 +118,5 @@ public class SparseArray {
         printArray(sarr1);
 
     }
+
 }

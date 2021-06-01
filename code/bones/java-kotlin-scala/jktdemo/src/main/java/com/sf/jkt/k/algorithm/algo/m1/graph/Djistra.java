@@ -6,10 +6,10 @@ import java.util.Map;
 public  class  Djistra  {
     static   int  M=Integer.MAX_VALUE;
     static   int MI=Integer.MIN_VALUE;
-    static   int[]dis={M,M,M,M,M,M,M};
-    static {
-        dis=new int[]{M,0,M,10,M,30,100};//初始值,1到n的值
-    }
+//    static   int[]dis={M,M,M,M,M,M,M};
+//    static {
+//        dis=new int[]{M,0,M,10,M,30,100};//初始值,1到n的值
+//    }
     static   int[][]value={
             {0   ,0     ,0    ,0    ,0    ,0     ,0    },
             {0   ,0     ,-1   ,10   ,-1   ,30    ,100    },
@@ -51,7 +51,15 @@ public  class  Djistra  {
                 }
         }
 
-    public static void search1(int x, int dis[], int value[][], int n) {
+    public static void search1(int x, int value[][]) {
+            int n=value.length-1;
+            int[]dis=new int[n+1];
+            for (int i=0;i<dis.length;i++){
+                dis[i]=M;
+                if(value[x][i]!=-1){
+                   dis[i]=value[x][i];
+                }
+            }
         boolean mark[] = new boolean[n + 1];
         mark[x] = true;
         dis[x] = 0;
@@ -66,8 +74,9 @@ public  class  Djistra  {
                     loc = i;
                 }
             }
-            if (loc == 0)
+            if (loc == 0){
                 break; // 表示没有可以加的点了
+            }
             mark[loc] = true;
             if(map.get(""+loc)==null){
                 map.put(""+loc,x+"->"+loc);
@@ -82,16 +91,19 @@ public  class  Djistra  {
             count++;
         }
         for (int i = 1; i <= n; i++) {
-//            if(dis[i]==0&&map.get(""+i)==null){
-//                System.out.println(x+"到i");
-//            }
-            System.out.println(x + "到 " + i + "的最短路径为 ：" + dis[i]);
+            if(dis[i]==M){
+                System.out.println(x+" 到 "+i+" 的最短路径为："+"没有路"+" ; path为："+"没有路");
+            }else if(dis[i]==0&&map.get(""+i)==null){
+                System.out.println(x+" 到 "+i+" 的最短路径为："+"自己本身"+" ; path为："+"自己本身");
+            }else {
+                System.out.println(x+" 到 "+i+" 的最短路径为："+dis[i]+" ; path为："+map.get(""+i));
+            }
         }
 
     }
 
         public static void test1(){
-            search1(1,dis,value,6);
+            search1(2,value);
         }
 
     public static void main(String[] args) {

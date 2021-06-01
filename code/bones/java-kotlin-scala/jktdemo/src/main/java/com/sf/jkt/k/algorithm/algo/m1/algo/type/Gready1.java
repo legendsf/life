@@ -56,6 +56,42 @@ public class Gready1 {
         return result;
     }
 
+    public static List<Meeting> arrangeMeeting1(List<Meeting> meetings){
+       List<Meeting> ans =new ArrayList<>();
+       if (meetings==null||meetings.size()<1){
+           return ans;
+       }
+       Collections.sort(meetings,(m1,m2)->{
+           return m1.end==m2.end?m2.start-m1.start:m1.end-m2.end;
+       });
+       int[] last={0};
+       meetings.stream().forEachOrdered(x->{
+           if (x.start>=last[0]){
+               ans.add(x);
+               last[0]=x.end;
+           }
+       });
+      return ans;
+    }
+
+    public static List<Meeting> arrangeMeeting2(List<Meeting> meetings){
+        List<Meeting> ans=new ArrayList<>();
+        if (meetings==null||meetings.size()<1){
+            return ans;
+        }
+        Collections.sort(meetings,(m1,m2)->{
+            return m1.end==m2.end?m2.start-m1.start:m1.end-m2.end;
+        });
+        int last[]={0};
+        meetings.stream().forEachOrdered(m->{
+           if (m.start>=last[0]){
+               ans.add(m);
+               last[0]=m.end;
+           }
+        });
+        return ans;
+    }
+
     /**
      * https://www.cnblogs.com/cxmhy/p/4491009.html
      * 贪心算法----正整数分解问题 和相同，乘积最大
@@ -145,6 +181,24 @@ public class Gready1 {
         return num;
     }
 
+    public static int upstairs(int n,int[] state){
+        int num;
+        if (state[n]>0){
+            return state[n];
+        }
+        if (n==1){
+            num=1;
+        }else if (n==2){
+            num=2;
+        }else if(n==3){
+            num=4;
+        }else {
+            num= upstairs(n-1)+upstairs(n-2)+upstairs(n-3);
+        }
+        state[n]=num;
+        return num;
+    }
+
     /**
      * 滚动数组
      *
@@ -161,12 +215,110 @@ public class Gready1 {
         return r;
     }
 
+    public static int upstairs4(int n){
+        int p=0,q=0,r=1;
+        for (int i=1;i<=n;i++){
+            p=q;
+            q=r;
+            r=p+q;
+        }
+        return r;
+    }
+    public static void partNumbers2(int input){
+        int k=2;
+        int[] in=new  int[100];
+        int i=0;
+        while (input>=k){
+            in[i++]=k;
+            input-=k;
+            k++;
+        }
+        if (input!=0){
+            if (input==in[i-1]){
+                in[i-1]++;
+                input--;
+            }
+            for (int j=0;j<input;j++){
+                in[i-1-j]++;
+            }
+        }
+        int result=1;
+        for (int j=0;j<=i-1;j++){
+            result*=in[j];
+        }
+        System.out.println(result);
+    }
+
+    public static void partNumbers3(int input){
+        int[]b=new int[100];
+        int i=0;
+        while (input!=2&&input!=4){
+            b[i++]=3;
+            input-=3;
+        }
+        while (input!=0){
+            b[i++]=2;
+            input-=2;
+        }
+        int result=1;
+        for (int j=0;j<i;j++){
+            result*=b[j];
+        }
+        System.out.println(result);
+    }
+
+    public static void partNumbers5(int input){
+       int[]bi=new int[100];
+       int i=0,k=2;
+       while (input>=k){
+           bi[i++]=k;
+           input-=k++;
+       }
+       if (input!=0){
+          if (input==bi[i-1]){
+              bi[i-1]++;
+              input--;
+          }
+          for (int j=0;j<input;j++){
+             bi[i-1-j]++;
+          }
+       }
+       int result=1;
+       for (int j=0;j<i;j++){
+           result*=bi[j];
+       }
+        System.out.println(result);
+    }
+    public static void partNumbers6(int input){
+        int[]bi=new int[100];
+        int i=0;
+        while (input!=2&&input!=4){
+            bi[i++]=3;
+            input-=3;
+        }
+        while (input!=0){
+            bi[i++]=2;
+            input-=2;
+        }
+        int result=1;
+        for (int j=0;j<i;j++){
+            result*=bi[j];
+        }
+        System.out.println(result);
+    }
     public static void test1(){
-        partNumbers(10);
-        partNumbers1(10);
+        partNumbers(13);
+        partNumbers1(13);
+        partNumbers2(13);
+        partNumbers3(13);
+        partNumbers5(13);
+        partNumbers6(13);
     }
     public static void test2(){
+
         arrangeMeeting(list).stream().forEachOrdered(System.out::println);
+        arrangeMeeting1(list).stream().forEachOrdered(System.out::println);
+        arrangeMeeting2(list).stream().forEachOrdered(System.out::println);
     }
 
     public static void main(String[] args) {

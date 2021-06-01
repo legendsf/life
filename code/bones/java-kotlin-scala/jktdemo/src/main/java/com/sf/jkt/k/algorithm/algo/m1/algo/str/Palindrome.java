@@ -1,4 +1,4 @@
-package com.sf.jkt.k.algorithm.algo.m1.algo;
+package com.sf.jkt.k.algorithm.algo.m1.algo.str;
 
 import java.util.ArrayList;
 import java.util.Arrays;
