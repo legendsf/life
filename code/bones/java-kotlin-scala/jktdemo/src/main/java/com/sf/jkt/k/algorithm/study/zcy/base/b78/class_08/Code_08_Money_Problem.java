@@ -33,11 +33,68 @@ public class Code_08_Money_Problem {
 		return dp[0][0];
 	}
 
+	public static boolean isSum(int[]arr,int i,int sum,int aim){
+		if (i==arr.length){
+			return sum==aim;
+		}
+		return  isSum(arr,i+1,sum,aim)||isSum(arr,i+1,sum+arr[i],aim);
+	}
+	public static boolean money3(int[]arr,int aim){
+		if (arr==null||arr.length<1){
+			return false;
+		}
+		return isSum(arr,0,0,aim);
+	}
+
+	public static boolean money4(int[]arr,int aim){
+		if (aim<0|| arr==null||arr.length<1){
+			return false;
+		}
+		boolean[][]dp=new boolean[arr.length+1][aim+1];
+		for (int i=0;i<dp.length;i++){
+			dp[i][aim]=true;
+		}
+		for (int i=arr.length-1;i>=0;i--){
+			for (int j=aim-1;j>=0;j--){
+				dp[i][j]=dp[i+1][j];
+				if (j+arr[i]<=aim){
+					dp[i][j]=dp[i][j]||dp[i+1][j+arr[i]];
+				}
+			}
+		}
+		System.out.println(dp[0][0]);
+		return dp[0][0];
+	}
+
+	public static boolean money5(int[]arr,int aim){
+		if (aim<0||arr==null||arr.length<1){
+			return false;
+		}
+		boolean[][]dp=new boolean[arr.length+1][aim+1];
+		for (int i=0;i<dp.length;i++){
+			dp[i][aim]=true;
+		}
+		for (int i=arr.length-1;i>=0;i--){
+			for (int j=aim-1;j>=0;j--){
+				dp[i][j]=dp[i+1][j];
+				if (j+arr[i]<=aim){
+					dp[i][j]=dp[i][j]||dp[i+1][j+arr[i]];
+				}
+			}
+		}
+		System.out.println(dp[0][0]);
+		return dp[0][0];
+	}
+
 	public static void main(String[] args) {
 		int[] arr = { 1, 4, 8 };
 		int aim = 12;
 		System.out.println(money1(arr, aim));
 		System.out.println(money2(arr, aim));
+		System.out.println(money3(arr, aim));
+		System.out.println(money4(arr, aim));
+		System.out.println(money5(arr, aim));
+
 	}
 
 }

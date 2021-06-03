@@ -88,7 +88,7 @@ public class Code_04_MadianQuick {
 	}
 
 	// for test, this method is ineffective but absolutely right
-	public static int getMedianOfArray(int[] arr) {
+	public static int getMedianOfArray1(int[] arr) {
 		int[] newArr = Arrays.copyOf(arr, arr.length);
 		Arrays.sort(newArr);
 		int mid = (newArr.length - 1) / 2;
@@ -96,6 +96,17 @@ public class Code_04_MadianQuick {
 			return (newArr[mid] + newArr[mid + 1]) / 2;
 		} else {
 			return newArr[mid];
+		}
+	}
+
+	public static int getMedianOfArray(int[]arr){
+		int[]newArray=Arrays.copyOf(arr,arr.length);
+		Arrays.sort(newArray);
+		int mid=(newArray.length-1)/2;
+		if ((newArray.length&1)==0){
+			return  (newArray[mid]+newArray[mid+1])/2;
+		}else {
+			return newArray[mid];
 		}
 	}
 

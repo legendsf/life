@@ -33,12 +33,34 @@ public class Code_09_Knapsack {
 		return dp[0][0];
 	}
 
+	public static int maxValue3(int weights[],int[] values,int bag){
+		int[][]dp=new int[values.length+1][bag+1];
+		for (int i=1;i<dp.length;i++){
+			for (int j=1;j<dp[0].length;j++){
+				if (weights[i-1]<=j){
+					dp[i][j]=Math.max(dp[i-1][j],values[i-1]+dp[i-1][j-weights[i-1]]);
+				}else {
+					dp[i][j]=dp[i-1][j];
+				}
+			}
+		}
+		int tw=bag;
+		for (int i=dp.length-1;i>0;i--){
+			if (dp[i][tw]!=dp[i-1][tw]){
+				System.out.println(i+" "+tw+" "+dp[i-1][tw]);
+				tw -= weights[i-1];
+			}
+		}
+		return dp[values.length][bag];
+	}
+
 	public static void main(String[] args) {
-		int[] c = { 3, 2, 4, 7 };
-		int[] p = { 5, 6, 3, 19 };
+		int[] c = { 3, 2, 4, 7 };//weights
+		int[] p = { 5, 6, 3, 19 };//values
 		int bag = 11;
 		System.out.println(maxValue1(c, p, bag));
 		System.out.println(maxValue2(c, p, bag));
+		System.out.println(maxValue3(c, p, bag));
 	}
 
 }

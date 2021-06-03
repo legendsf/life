@@ -38,11 +38,28 @@ public class Code_02_Less_Money {
 
 	}
 
+	public static int lessMoney1(int[] arr){
+		PriorityQueue<Integer> pq=new PriorityQueue<Integer>();
+		for (int num:arr){
+			pq.offer(num);
+		}
+		int cur=0,sum=0;
+		while (pq.size()>1){
+			cur=pq.poll()+ pq.poll();
+			sum +=cur;
+			pq.add(cur);
+		}
+		System.out.println(sum);
+		return sum;
+	}
+
+
+
 	public static void main(String[] args) {
 		// solution
 		int[] arr = { 6, 7, 8, 9 };
 		System.out.println(lessMoney(arr));
-
+		lessMoney1(arr);
 		int[] arrForHeap = { 3, 5, 2, 7, 0, 1, 6, 4 };
 
 		// min heap

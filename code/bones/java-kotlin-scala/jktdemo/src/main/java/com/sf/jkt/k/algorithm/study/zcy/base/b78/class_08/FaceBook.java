@@ -27,4 +27,8 @@ public class FaceBook {
 		return number(chs, i+1);
 	}
 
+	public static void main(String[] args) {
+		System.out.println(number("123456".toCharArray(), 0));
+	}
+
 }

@@ -36,8 +36,29 @@ public class Code_06_BestArrange {
 		return result;
 	}
 
-	public static void main(String[] args) {
+	public static int bestArrange1(Program[] meeting,int start){
+		int result=0;
+		Arrays.sort(meeting,(m1,m2)->{
+			return m1.end==m2.end?m2.start-m1.start:m1.end-m2.end;
+		});
+		for (int i=0;i<meeting.length;i++){
+			if (start<=meeting[i].start){
+				result++;
+				start=meeting[i].end;
+			}
+		}
+		System.out.println(result);
+		return result;
+	}
 
+	public static void test1(){
+	    Program[] programs=new Program[]{new Program(1,3),new Program(2,4),new Program(3,4),new Program(5,6)};
+		System.out.println(bestArrange(programs, 1));
+		bestArrange1(programs,1);
+	}
+
+	public static void main(String[] args) {
+		test1();
 	}
 
 }

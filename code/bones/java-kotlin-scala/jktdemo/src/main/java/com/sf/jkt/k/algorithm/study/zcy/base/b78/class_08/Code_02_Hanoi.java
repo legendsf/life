@@ -57,9 +57,36 @@ public class Code_02_Hanoi {
 		moveLeftToRight(N - 1);
 	}
 
+	public static void hanoi(int n,String from,String to,String help){
+		if(n<1){
+			return;
+		}
+		if (n==1){
+			System.out.println("move 1 from "+from+" to "+to );
+		}else {
+			hanoi(n-1,from,help,to);
+			System.out.println("move "+n+" from "+from+" to "+to);
+			hanoi(n-1,help,to,from);
+		}
+	}
+
+	public static void hanoi1(int n,String from,String to,String help){
+		if (n==1){
+			System.out.println("move 1 from "+from+" to "+to);
+		}else {
+			hanoi1(n-1,from,help,to);
+			System.out.println("move "+n+" from "+from+" to "+to);
+			hanoi1(n-1,help,to,from);
+		}
+	}
+
 	public static void main(String[] args) {
 		int n = 3;
 		hanoi(n);
+		System.out.println("----");
+		hanoi(3,"left","right","mid");
+		System.out.println("----");
+		hanoi1(3,"left","right","mid");
 	}
 
 }

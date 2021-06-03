@@ -16,7 +16,7 @@ public class Code_04_Print_All_Permutations {
 		for (int j = i; j < chs.length; j++) {
 			swap(chs, i, j);
 			process1(chs, i + 1);
-			//swap(chs, i, j);
+			swap(chs, i, j);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class Code_04_Print_All_Permutations {
 				set.add(chs[j]);
 				swap(chs, i, j);
 				process2(chs, i + 1);
-				//swap(chs, i, j);
+				swap(chs, i, j);
 			}
 		}
 	}
@@ -46,7 +46,55 @@ public class Code_04_Print_All_Permutations {
 		chs[j] = tmp;
 	}
 
-	public static void main(String[] args) {
+	public static void permute(char[] str,int index){
+		if (index==str.length){
+			System.out.println(new String(str));
+			return;
+		}
+		for (int j=index;j<str.length;j++){
+			swap(str,index,j);
+			permute(str,index+1);
+			swap(str,index,j);//huisuo
+		}
+	}
+
+	public static void permute1(char[] str,int index){
+		if (index==str.length){
+			System.out.println(new String(str));
+			return;
+		}
+		HashSet<Character>set=new HashSet<>();
+		for (int j=index;j<str.length;j++){
+			if (!set.contains(str[j])){
+				set.add(str[j]);
+				swap(str,index,j);//第index的位置选择哪个元素
+				permute1(str,index+1);
+				swap(str,index,j);//huisuo
+			}
+		}
+	}
+	public static void printAllSub(char[] str,int index){
+		if (index==str.length){
+			System.out.println(new String(str));
+			return;
+		}
+		printAllSub(str,index+1);//xuanze
+		char temp=str[index];
+		str[index]=' ';//huisuo,xuanzekong
+		printAllSub(str,index+1);
+		str[index]=temp;//huisuo,xuanzefeikong
+	}
+	public static void printAllSub(char[]str,int index,String res){
+		if (index==str.length){
+			System.out.println(res);
+			return;
+		}
+		printAllSub(str,index+1,res);
+		printAllSub(str,index+1,res+str[index]);
+	}
+
+
+	public static void test1(){
 		String test1 = "abc";
 		printAllPermutations1(test1);
 		System.out.println("======");
@@ -58,6 +106,25 @@ public class Code_04_Print_All_Permutations {
 		System.out.println("======");
 		printAllPermutations2(test2);
 		System.out.println("======");
+		permute(test1.toCharArray(),0);
+		System.out.println("=====");
+		permute(test2.toCharArray(),0);
+		System.out.println("=====");
+		permute1(test2.toCharArray(),0);
+		System.out.println("=====");
+		printAllPermutations2(test2);
+
+	}
+
+	public static void test2(){
+		String test1="abc",test2="acc";
+		printAllSub(test1.toCharArray(),0);
+		printAllSub(test1.toCharArray(),0,"");
+	}
+
+	public static void main(String[] args) {
+		test2();
+
 	}
 
 }
