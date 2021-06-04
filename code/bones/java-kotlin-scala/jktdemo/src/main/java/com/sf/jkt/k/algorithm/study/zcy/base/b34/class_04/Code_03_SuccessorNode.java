@@ -39,6 +39,25 @@ public class Code_03_SuccessorNode {
 		return node;
 	}
 
+	public static Node getSuccessorNode1(Node node){
+		if (node==null){
+			return null;
+		}
+		if (node.right!=null){
+		    Node cur=node.right;
+		    while (cur.left!=null){
+		    	cur=cur.left;
+			}
+		    return cur;
+		}
+		Node parent=node.parent;
+		while (parent!=null&&parent.left!=node){
+			node=parent;
+			parent=parent.parent;
+		}
+		return parent;
+	}
+
 	public static void main(String[] args) {
 		Node head = new Node(6);
 		head.parent = null;
@@ -79,8 +98,10 @@ public class Code_03_SuccessorNode {
 		System.out.println(test.value + " next: " + getSuccessorNode(test).value);
 		test = head.right;
 		System.out.println(test.value + " next: " + getSuccessorNode(test).value);
+		System.out.println(test.value + " next: " + getSuccessorNode1(test).value);
 		test = head.right.right; // 10's next is null
 		System.out.println(test.value + " next: " + getSuccessorNode(test));
+		System.out.println(test.value + " next: " + getSuccessorNode1(test));
 	}
 
 }

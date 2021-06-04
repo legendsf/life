@@ -17,6 +17,20 @@ public class Code_09_FindNumInSortedMatrix {
 		return false;
 	}
 
+	public static boolean isContains1(int[][]matrix,int K){
+		int row=0,col=matrix[0].length-1;
+		while (row<matrix.length&&col>-1){
+			if (matrix[row][col]==K){
+				return true;
+			}else if (matrix[row][col]>K){
+				col--;
+			}else {
+				row++;
+			}
+		}
+		return false;
+	}
+
 	public static void main(String[] args) {
 		int[][] matrix = new int[][] { { 0, 1, 2, 3, 4, 5, 6 },// 0
 				{ 10, 12, 13, 15, 16, 17, 18 },// 1

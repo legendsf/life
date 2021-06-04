@@ -8,6 +8,12 @@ public class Code_07_ExpressionCompute {
 		return value(str.toCharArray(), 0)[0];
 	}
 
+	/**
+	 *  长度一定为2，0为计算结果，1为计算到的位置
+	 * @param str
+	 * @param i
+	 * @return
+	 */
 	public static int[] value(char[] str, int i) {
 		LinkedList<String> que = new LinkedList<String>();
 		int pre = 0;
@@ -15,17 +21,17 @@ public class Code_07_ExpressionCompute {
 		while (i < str.length && str[i] != ')') {
 			if (str[i] >= '0' && str[i] <= '9') {
 				pre = pre * 10 + str[i++] - '0';
-			} else if (str[i] != '(') {
+			} else if (str[i] != '(') {//遇到了+ - * /
 				addNum(que, pre);
 				que.addLast(String.valueOf(str[i++]));
-				pre = 0;
-			} else {
+				pre = 0;//收集过程结束，下一个收集过程开始
+			} else {//遇到了左括号，那么递归
 				bra = value(str, i + 1);
 				pre = bra[0];
-				i = bra[1] + 1;
+				i = bra[1] + 1;//接下来从下一个位置开始收集
 			}
 		}
-		addNum(que, pre);
+		addNum(que, pre);//对列里面是没有包含括号的
 		return new int[] { getNum(que), i };
 	}
 

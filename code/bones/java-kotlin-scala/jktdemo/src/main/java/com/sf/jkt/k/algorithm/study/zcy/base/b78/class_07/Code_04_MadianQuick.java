@@ -117,6 +117,106 @@ public class Code_04_MadianQuick {
 		System.out.println();
 	}
 
+	private static class MedianHolder1{
+		private PriorityQueue<Integer> maxHeap=new PriorityQueue<>((i1,i2)->{
+			return i2-i1;
+		});//放较小的一半数
+		private PriorityQueue<Integer> minHeap=new PriorityQueue<>();//放较大的一半数
+		private void  modifyTwoHeapSize(){
+			if (this.maxHeap.size()==this.minHeap.size()+2){
+				this.minHeap.add(this.maxHeap.poll());
+			}
+			if (this.minHeap.size()==this.maxHeap.size()+2){
+				this.maxHeap.add(this.minHeap.poll());
+			}
+		}
+		public void addNumber(int num){
+			if (this.maxHeap.isEmpty()){
+				this.maxHeap.add(num);
+				return;
+			}
+			if (this.maxHeap.peek()>=num){
+				this.maxHeap.add(num);
+			}else {
+				if (this.minHeap.isEmpty()){
+					this.minHeap.add(num);
+					return;
+				}
+				if (this.minHeap.peek()>num){
+					this.minHeap.add(num);
+				}else {
+					this.minHeap.add(num);
+				}
+			}
+			modifyTwoHeapSize();
+		}
+
+		public Integer getMedian(){
+			int maxHeapSize=this.maxHeap.size();
+			int minHeapSize=this.minHeap.size();
+			if (maxHeapSize+minHeapSize==0){
+				return null;
+			}
+			Integer maxHeapHead=this.maxHeap.poll();
+			Integer minHeadpHead=this.minHeap.poll();
+			if (((maxHeapSize+minHeapSize)&1)==0){
+				return (maxHeapHead+minHeadpHead)/2;
+			}
+			return  maxHeapSize>minHeapSize?maxHeapHead:minHeadpHead;
+		}
+
+	}
+
+	private static class MedianHolder2{
+		PriorityQueue<Integer> maxHeap=new PriorityQueue<>((i1,i2)->{
+			return i2-i1;
+		});//放小的一半数
+		PriorityQueue<Integer> minHeap=new PriorityQueue<>();//放大的一半数
+        private void modifyHeapSize(){
+        	if (maxHeap.size()==minHeap.size()+2){
+        		this.minHeap.add(maxHeap.poll());
+			}
+        	if (minHeap.size()==maxHeap.size()+2){
+        		this.maxHeap.add(minHeap.poll());
+			}
+		}
+		public void  addNumber(int num){
+        	if (this.maxHeap.isEmpty()){
+        		maxHeap.add(num);
+        		return;
+			}
+        	if (this.maxHeap.peek()>=num){
+        		maxHeap.add(num);
+			}else {
+        		if (minHeap.isEmpty()){
+        			minHeap.add(num);
+        			return;
+				}
+        		if (minHeap.peek()>num){
+        			maxHeap.add(num);
+				}else {
+        			this.minHeap.add(num);
+				}
+			}
+			modifyHeapSize();
+		}
+		public Integer getMedian(){
+			int maxHeapSize=this.maxHeap.size();
+			int minHeapSize=this.minHeap.size();
+			if ((maxHeapSize+minHeapSize)==0){
+				return null;
+			}
+			Integer maxHeapHead=maxHeap.peek();
+			Integer minHeapHead=minHeap.peek();
+
+			if (((maxHeapSize+minHeapSize)&1)==0){
+				return (maxHeapHead+minHeapHead)/2;
+			}else {
+				return maxHeapSize>minHeapSize? maxHeapHead:minHeapHead;
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		boolean err = false;
 		int testTimes = 200000;
@@ -124,7 +224,7 @@ public class Code_04_MadianQuick {
 			int len = 30;
 			int maxValue = 1000;
 			int[] arr = getRandomArray(len, maxValue);
-			MedianHolder medianHold = new MedianHolder();
+			MedianHolder2 medianHold = new MedianHolder2();
 			for (int j = 0; j != arr.length; j++) {
 				medianHold.addNumber(arr[j]);
 			}

@@ -15,6 +15,15 @@ public class Code_05_PaperFolding {
 		printProcess(i + 1, N, false);
 	}
 
+	public static void printProcess1(int i,int N,boolean down){
+		if(i>N){
+			return;
+		}
+		printProcess1(i+1,N,true);
+		System.out.println(down?"down":"up");
+		printProcess1(i+1,N,false);
+	}
+
 	public static void main(String[] args) {
 		int N = 4;
 		printAllFolds(N);

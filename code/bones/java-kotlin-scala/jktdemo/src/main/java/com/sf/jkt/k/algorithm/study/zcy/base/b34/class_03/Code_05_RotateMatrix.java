@@ -33,11 +33,28 @@ public class Code_05_RotateMatrix {
 		}
 	}
 
+	public static void rotate1(int[][]matrix){
+		int tR=0,tC=0,dR=matrix.length-1,dC=matrix[0].length-1;
+		while (tR<dR){
+			rotateEdge1(matrix,tR++,tC++,dR--,dC--);
+		}
+	}
+	public static void rotateEdge1(int[][]m,int tr,int tc,int dr,int dc){
+		int times=dc-tc;
+		for (int i=0;i!=times;i++){
+		    int temp=m[tr][tc+i];
+		    m[tr][tc+i]=m[dr-i][tc];
+		    m[dr-i][tc]=m[dr][dc-i];
+		    m[dr][dc-i]=m[tr+i][dc];
+		    m[tr+i][dc]=temp;
+		}
+	}
+
 	public static void main(String[] args) {
 		int[][] matrix = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 },
 				{ 13, 14, 15, 16 } };
 		printMatrix(matrix);
-		rotate(matrix);
+		rotate1(matrix);
 		System.out.println("=========");
 		printMatrix(matrix);
 

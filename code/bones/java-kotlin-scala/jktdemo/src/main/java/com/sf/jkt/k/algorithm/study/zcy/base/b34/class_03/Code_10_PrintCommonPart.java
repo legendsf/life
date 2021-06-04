@@ -26,6 +26,20 @@ public class Code_10_PrintCommonPart {
 		System.out.println();
 	}
 
+	public static void printCommonPart1(Node head1,Node head2){
+		while (head1!=null&&head2!=null){
+			if (head1.value<head2.value){
+				head1=head1.next;
+			}else if (head1.value>head2.value){
+				head2=head2.next;
+			}else {
+				System.out.print(head1.value+" ");
+				head1=head1.next;
+				head2=head2.next;
+			}
+		}
+	}
+
 	public static void printLinkedList(Node node) {
 		System.out.print("Linked List: ");
 		while (node != null) {
@@ -50,6 +64,7 @@ public class Code_10_PrintCommonPart {
 		printLinkedList(node1);
 		printLinkedList(node2);
 		printCommonPart(node1, node2);
+		printCommonPart1(node1, node2);
 
 	}
 

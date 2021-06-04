@@ -34,9 +34,35 @@ public class Code_08_ZigZagPrintMatrix {
 		}
 	}
 
+	public static void printMatrixZigZag1(int[][]matrix){
+		int tR=0,tC=0,dR=0,dC=0,endR=matrix.length-1,endC=matrix[0].length-1;
+		boolean fromUp=false;
+		while (tR!=endR+1){
+			printLevel1(matrix,tR,tC,dR,dC,fromUp);
+			tR=tC==endC?tR+1:tR;
+			tC=tC==endC?tC:tC+1;
+			dC=dR==endR?dC+1:dC;
+			dR=dR==endR?dR:dR+1;
+			fromUp=!fromUp;
+		}
+		System.out.println();
+	}
+	public static void printLevel1(int[][]m,int tR,int tC,int dR,int dC,boolean fromUp){
+		if (fromUp){
+			while (tR!=dR+1){
+				System.out.print(m[tR++][tC--]+" ");
+			}
+		}else {
+			while (dR!=tR-1){
+				System.out.print(m[dR--][dC++]+" ");
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		int[][] matrix = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 } };
 		printMatrixZigZag(matrix);
+		printMatrixZigZag1(matrix);
 
 	}
 

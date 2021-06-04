@@ -99,8 +99,9 @@ public class Code_04_DogCatQueue {
 		public Cat pollCat() {
 			if (!this.isCatQueueEmpty()) {
 				return (Cat) this.catQ.poll().getPet();
-			} else
+			} else{
 				throw new RuntimeException("Cat queue is empty!");
+			}
 		}
 
 		public boolean isEmpty() {
@@ -117,8 +118,75 @@ public class Code_04_DogCatQueue {
 
 	}
 
+	private static class DogCatQueue1{
+		private Queue<PetEnterQueue> dogQ;
+		private Queue<PetEnterQueue> catQ;
+		private long count;
+
+		public DogCatQueue1() {
+			dogQ=new LinkedList<>();
+			catQ=new LinkedList<>();
+			count=0;
+		}
+
+		public void add(Pet pet){
+			if (pet.getPetType().equals("dog")){
+				this.dogQ.add(new PetEnterQueue(new Dog(),this.count++));
+			}else if (pet.getPetType().equals("cat")){
+				this.catQ.add(new PetEnterQueue(new Cat(),this.count++));
+			}else {
+				throw  new RuntimeException("error not cat or dog");
+			}
+		}
+		public Pet pollAll(){
+			if (!this.dogQ.isEmpty()&&!this.catQ.isEmpty()){
+				if (this.dogQ.peek().getCount()<this.catQ.peek().getCount()){
+					return this.dogQ.poll().getPet();
+				}else {
+					return this.catQ.poll().getPet();
+				}
+			}else if (!this.dogQ.isEmpty()){
+				return this.dogQ.poll().getPet();
+			}else if (!this.catQ.isEmpty()){
+				return this.catQ.poll().getPet();
+			}else {
+			    throw new RuntimeException("error,queue is empty");
+			}
+		}
+		public Dog pollDog() {
+			if (!this.isDogQueueEmpty()) {
+				return (Dog) this.dogQ.poll().getPet();
+			} else {
+				throw new RuntimeException("Dog queue is empty!");
+			}
+		}
+
+		public Cat pollCat() {
+			if (!this.isCatQueueEmpty()) {
+				return (Cat) this.catQ.poll().getPet();
+			} else{
+				throw new RuntimeException("Cat queue is empty!");
+			}
+		}
+
+		public boolean isEmpty() {
+			return this.dogQ.isEmpty() && this.catQ.isEmpty();
+		}
+
+		public boolean isDogQueueEmpty() {
+			return this.dogQ.isEmpty();
+		}
+
+		public boolean isCatQueueEmpty() {
+			return this.catQ.isEmpty();
+		}
+
+	}
+
+
+
 	public static void main(String[] args) {
-		DogCatQueue test = new DogCatQueue();
+		DogCatQueue1 test = new DogCatQueue1();
 
 		Pet dog1 = new Dog();
 		Pet cat1 = new Cat();
@@ -147,9 +215,9 @@ public class Code_04_DogCatQueue {
 		test.add(cat2);
 		test.add(dog3);
 		test.add(cat3);
-		while (!test.isDogQueueEmpty()) {
-			System.out.println(test.pollDog().getPetType());
-		}
+//		while (!test.isDogQueueEmpty()) {
+//			System.out.println(test.pollDog().getPetType());
+//		}
 		while (!test.isEmpty()) {
 			System.out.println(test.pollAll().getPetType());
 		}
