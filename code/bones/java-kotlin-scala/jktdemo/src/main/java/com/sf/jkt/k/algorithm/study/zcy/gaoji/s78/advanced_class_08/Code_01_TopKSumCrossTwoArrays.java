@@ -3,7 +3,13 @@ package com.sf.jkt.k.algorithm.study.zcy.gaoji.s78.advanced_class_08;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ {1,2,3,4,5} {3,5,7,9,11} k=4
+ {16,15,14,14}
+ */
 public class Code_01_TopKSumCrossTwoArrays {
+	static int[]arr1= {1,2,3,4,5};
+	static int[]arr2={3,5,7,9,11};
 
 	public static class HeapNode {
 		public int row;
@@ -26,10 +32,10 @@ public class Code_01_TopKSumCrossTwoArrays {
 		int heapSize = 0;
 		int headR = a1.length - 1;
 		int headC = a2.length - 1;
-		int uR = -1;
-		int uC = -1;
-		int lR = -1;
-		int lC = -1;
+		int uR = -1; //往上面
+		int uC = -1; //往上面
+		int lR = -1;//往左边
+		int lC = -1;//往左边
 		heapInsert(heap, heapSize++, headR, headC, a1[headR] + a2[headC]);
 		HashSet<String> positionSet = new HashSet<String>();
 		int[] res = new int[topK];
@@ -62,8 +68,15 @@ public class Code_01_TopKSumCrossTwoArrays {
 		heapify(heap, 0, heapSize);
 		return res;
 	}
+	public static HeapNode popHead1(HeapNode[] heap,int heapSize){
+		HeapNode res=heap[0];
+		swap(heap,0,heapSize-1);
+		heap[--heapSize]=null;
+		heapify(heap,0,heapSize);
+		return res;
+	}
 
-	public static void heapify(HeapNode[] heap, int index, int heapSize) {
+	public static void heapify1(HeapNode[] heap, int index, int heapSize) {
 		int left = index * 2 + 1;
 		int right = index * 2 + 2;
 		int largest = index;
@@ -85,6 +98,20 @@ public class Code_01_TopKSumCrossTwoArrays {
 		}
 	}
 
+	public static void heapify(HeapNode[]heap,int index,int heapSize){
+		int left=index*2+1;
+		while (left<heapSize){
+		   int largest=left+1<heapSize&&heap[left+1].value>heap[left].value?left+1:left;
+		   largest=heap[largest].value>heap[index].value?largest:index;
+		   if (largest==index){
+		   	break;
+		   }
+		   swap(heap,largest,index);
+		   index=largest;
+		   left=2*index+1;
+		}
+	}
+
 	public static void heapInsert(HeapNode[] heap, int index, int row, int col,
 			int value) {
 		heap[index] = new HeapNode(row, col, value);
@@ -95,6 +122,19 @@ public class Code_01_TopKSumCrossTwoArrays {
 				index = parent;
 				parent = (index - 1) / 2;
 			} else {
+				break;
+			}
+		}
+	}
+	public static void heapInsert1(HeapNode[] heap,int index,int row,int col,int value){
+		heap[index]=new HeapNode(row,col,value);
+		int parent=(index-1)/2;
+		while (index!=0){
+			if(heap[index].value>heap[parent].value){
+				swap(heap,parent,index);
+				index=parent;
+				parent=(index-1)/2;
+			}else {
 				break;
 			}
 		}
@@ -112,6 +152,38 @@ public class Code_01_TopKSumCrossTwoArrays {
 
 	public static void addPositionToSet(int row, int col, HashSet<String> set) {
 		set.add(String.valueOf(row + "_" + col));
+	}
+
+	public static int[] topKSum1(int[] a1,int[] a2,int topK){
+		if (a1==null||a2==null||topK<1){
+			return null;
+		}
+		topK=Math.min(topK,a1.length*a2.length);
+		HeapNode[]heap=new HeapNode[topK+1];
+		int heapSize=0,headR=a1.length-1,headC=a2.length-1,uR=-1,uC=-1,lR=-1,lC=-1;
+		heapInsert(heap,heapSize++,headR,headC,a1[headR]+a2[headC]);
+		HashSet<String> positionSet=new HashSet<>();
+		int[]res=new int[topK];
+		int resIndex=0;
+		while (resIndex!=topK){
+			HeapNode head=popHead(heap,heapSize--);
+			res[resIndex++]=head.value;
+			headR=head.row;
+			headC=head.col;
+			uR=headR-1;
+			uC=headC;
+			if (headR!=0&&!isContains(uR,uC,positionSet)){
+				heapInsert(heap,heapSize++,uR,uC,a1[uR]+a2[uC]);
+				addPositionToSet(uR,uC,positionSet);
+			}
+			lR=headR;
+			lC=headC-1;
+			if (headC!=1&&!isContains(lR,lC,positionSet)){
+				heapInsert(heap,heapSize++,lR,lC,a1[lR]+a2[lC]);
+				addPositionToSet(lR,lC,positionSet);
+			}
+		}
+		return res;
 	}
 
 	// For test, this method is inefficient but absolutely right
@@ -160,14 +232,14 @@ public class Code_01_TopKSumCrossTwoArrays {
 		return true;
 	}
 
-	public static void main(String[] args) {
+	public static void test1(){
 		int a1Len = 5000;
 		int a2Len = 4000;
 		int k = 2000;
 		int[] arr1 = generateRandomSortArray(a1Len);
 		int[] arr2 = generateRandomSortArray(a2Len);
 		long start = System.currentTimeMillis();
-		int[] res = topKSum(arr1, arr2, k);
+		int[] res = topKSum1(arr1, arr2, k);
 		long end = System.currentTimeMillis();
 		System.out.println(end - start + " ms");
 
@@ -177,7 +249,16 @@ public class Code_01_TopKSumCrossTwoArrays {
 		System.out.println(end - start + " ms");
 
 		System.out.println(isEqual(res, absolutelyRight));
+	}
 
+	public static void test2(){
+		arr1=new int[]{1,4,5};
+		arr2=new int[]{9,11};
+		System.out.println(Arrays.toString(topKSum(arr1, arr2, 10)));
+	}
+
+	public static void main(String[] args) {
+		test1();
 	}
 
 }

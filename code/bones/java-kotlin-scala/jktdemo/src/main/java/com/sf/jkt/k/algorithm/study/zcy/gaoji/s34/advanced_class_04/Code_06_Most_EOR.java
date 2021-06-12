@@ -11,7 +11,8 @@ public class Code_06_Most_EOR {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		map.put(0, -1);
 		for (int i = 0; i < arr.length; i++) {
-			xor ^= arr[i];
+			xor ^= arr[i];//0..i xor, curxor=xor^dp[start-1] 0..start-1 ..i
+
 			if (map.containsKey(xor)) {
 				int pre = map.get(xor);
 				mosts[i] = pre == -1 ? 1 : (mosts[pre] + 1);
@@ -72,7 +73,7 @@ public class Code_06_Most_EOR {
 
 	// for test
 	public static void main(String[] args) {
-		int testTime = 500000;
+		int testTime = 50000;
 		int maxSize = 300;
 		int maxValue = 100;
 		boolean succeed = true;

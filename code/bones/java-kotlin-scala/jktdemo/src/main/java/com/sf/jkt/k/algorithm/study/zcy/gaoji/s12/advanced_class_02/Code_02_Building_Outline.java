@@ -10,7 +10,7 @@ import java.util.TreeMap;
 // http://lintcode.com/zh-cn/problem/building-outline/
 public class Code_02_Building_Outline {
 	public static class Node {
-		public boolean be;
+		public boolean be;//true 上，false 下
 		public int p;
 		public int h;
 
@@ -41,8 +41,8 @@ public class Code_02_Building_Outline {
 			nodes[i * 2 + 1] = new Node(false, buildings[i][1], buildings[i][2]);
 		}
 		Arrays.sort(nodes, new NodeComparator());
-		TreeMap<Integer, Integer> htMap = new TreeMap<>();
-		TreeMap<Integer, Integer> pmMap = new TreeMap<>();
+		TreeMap<Integer, Integer> htMap = new TreeMap<>();//高度map，次数
+		TreeMap<Integer, Integer> pmMap = new TreeMap<>();//当前位置是最大高度记下来
 		for (int i = 0; i < nodes.length; i++) {
 			if (nodes[i].be) {
 				if (!htMap.containsKey(nodes[i].h)) {
@@ -71,8 +71,8 @@ public class Code_02_Building_Outline {
 		for (Entry<Integer, Integer> entry : pmMap.entrySet()) {
 			int curPosition = entry.getKey();
 			int curMaxHeight = entry.getValue();
-			if (height != curMaxHeight) {
-				if (height != 0) {
+			if (height != curMaxHeight) {//现在和之前不一样
+				if (height != 0) {//当前height 不等于0，那么要收尾了。
 					List<Integer> newRecord = new ArrayList<Integer>();
 					newRecord.add(start);
 					newRecord.add(curPosition);

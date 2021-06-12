@@ -1,5 +1,5 @@
-package advanced_class_05;
-
+package com.sf.jkt.k.algorithm.study.zcy.gaoji.s56.advanced_class_05;
+//study001
 public class Code_03_MaxDistanceInTree {
 
 	public static class Node {
@@ -19,7 +19,7 @@ public class Code_03_MaxDistanceInTree {
 	
 	public static class ReturnType{
 		public int maxDistance;
-		public int h;
+		public int h;//高度
 		
 		public ReturnType(int m, int h) {
 			this.maxDistance = m;;
@@ -28,16 +28,18 @@ public class Code_03_MaxDistanceInTree {
 	}
 	
 	public static ReturnType process(Node head) {
-		if(head == null) {
+		if(head == null) {//base case
 			return new ReturnType(0,0);
 		}
+		//黑盒
 		ReturnType leftReturnType = process(head.left);
 		ReturnType rightReturnType = process(head.right);
+		//求解我当前的
 		int includeHeadDistance = leftReturnType.h + 1 + rightReturnType.h;
 		int p1 = leftReturnType.maxDistance;
 		int p2 = rightReturnType.maxDistance;
 		int resultDistance = Math.max(Math.max(p1, p2), includeHeadDistance);
-		int hitself  = Math.max(leftReturnType.h, leftReturnType.h) + 1;
+		int hitself  = Math.max(leftReturnType.h, rightReturnType.h) + 1;
 		return new ReturnType(resultDistance, hitself);
 	}
 

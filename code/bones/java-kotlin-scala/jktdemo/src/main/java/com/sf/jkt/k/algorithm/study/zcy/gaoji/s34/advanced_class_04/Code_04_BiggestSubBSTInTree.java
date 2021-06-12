@@ -30,22 +30,28 @@ public class Code_04_BiggestSubBSTInTree {
 			this.max = d;
 		}
 	}
-	
+
+	/***
+	 * 列可能性，改递归，填base case
+ 	 * @param head
+	 * @return
+	 */
 	public static ReturnType process(Node head) {
-		if(head == null) {
+		if(head == null) {//base case
 			return new ReturnType(0,null,Integer.MAX_VALUE, Integer.MIN_VALUE);
 		}
 		Node left = head.left;
-		ReturnType leftSubTressInfo = process(left);
+		ReturnType leftSubTressInfo = process(left);//黑盒
 		Node right = head.right;
 		ReturnType rightSubTressInfo = process(right);
-		
+		//求解
 		int includeItSelf = 0;
 		if(leftSubTressInfo.head == left 
 				&&rightSubTressInfo.head == right
 				&& head.value > leftSubTressInfo.max
 				&& head.value < rightSubTressInfo.min
 				) {
+			//连成一片
 			includeItSelf = leftSubTressInfo.size + 1 + rightSubTressInfo.size;
 		}
 		int p1 = leftSubTressInfo.size;

@@ -2,7 +2,7 @@ package com.sf.jkt.k.algorithm.study.msb.train.trainingcamp004.class07;
 
 import java.util.HashSet;
 import java.util.Stack;
-
+//study001
 public class Code03_VisibleMountains {
 
 	// 栈中放的记录，
@@ -38,7 +38,7 @@ public class Code03_VisibleMountains {
 		while (index != maxIndex) {
 			// 当前数要进入栈，判断会不会破坏第一维的数字从顶到底依次变大
 			// 如果破坏了，就依次弹出栈顶记录，并计算山峰对数量
-			while (stack.peek().value < arr[index]) {
+			while (stack.peek().value < arr[index]) {//结算
 				int k = stack.pop().times;
 				// 弹出记录为(X,K)，如果K==1，产生2对; 如果K>1，产生2*K + C(2,K)对。
 				res += getInternalSum(k) + 2 * k;

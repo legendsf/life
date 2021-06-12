@@ -13,6 +13,7 @@ package com.sf.jkt.k.algorithm.study.msb.train.trainingcamp002.class06;
  * @created Jun 29, 2011
  * 
  */
+//study001
 public class AbstractBinarySearchTree {
 
 	/** Root node where whole tree starts. */

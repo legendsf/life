@@ -1,7 +1,7 @@
 package com.sf.jkt.k.algorithm.study.msb.train.trainingcamp002.class02;
 
 import java.util.HashMap;
-
+//study001
 public class Code02_LongestSumSubArrayLength {
 
 	public static int maxLength(int[] arr, int k) {

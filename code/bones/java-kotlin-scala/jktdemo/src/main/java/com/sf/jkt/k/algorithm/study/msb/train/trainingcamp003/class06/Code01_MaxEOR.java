@@ -1,5 +1,5 @@
 package com.sf.jkt.k.algorithm.study.msb.train.trainingcamp003.class06;
-
+//study001
 public class Code01_MaxEOR {
 
 	// O(N^2)
@@ -60,11 +60,12 @@ public class Code01_MaxEOR {
 			for (int move = 31; move >= 0; move--) {
 				int path = (sum >> move) & 1;
 				// 期待的路
+				//如果是符号为那么要和原来的一样，那么结果就尽可能出现0正数，如果不是符号位,那么要和之前的不同
 				int best = move == 31 ? path : (path ^ 1);
 				// 实际走的路
-				best = cur.nexts[best] != null ? best : (best ^ 1);
+				best = cur.nexts[best] != null ? best : (best ^ 1);//没有你要的路，那么就要走实际的路
 				// (path ^ best) 当前位位异或完的结果
-				res |= (path ^ best) << move;
+				res |= (path ^ best) << move;//设置答案的每一个位置
 				cur = cur.nexts[best];
 			}
 			return res;

@@ -7,7 +7,7 @@ public class Code_02_SkipList {
 
 	public static class SkipListNode {
 		public Integer value;
-		public ArrayList<SkipListNode> nextNodes;
+		public ArrayList<SkipListNode> nextNodes;//10层,存放的都是下一个结点是啥
 
 		public SkipListNode(Integer value) {
 			this.value = value;
@@ -35,16 +35,16 @@ public class Code_02_SkipList {
 	}
 
 	public static class SkipList {
-		private SkipListNode head;
-		private int maxLevel;
-		private int size;
-		private static final double PROBABILITY = 0.5;
+		private SkipListNode head;//巨小，所有层数最大值的层数
+		private int maxLevel;//所有数据roll出来的最大层
+		private int size;//加进来了多少key
+		private static final double PROBABILITY = 0.5;//我以多少概率出来0
 
 		public SkipList() {
 			size = 0;
 			maxLevel = 0;
-			head = new SkipListNode(null);
-			head.nextNodes.add(null);
+			head = new SkipListNode(null);//默认最小值
+			head.nextNodes.add(null);//第0层丢弃不用，设置为null
 		}
 
 		public SkipListNode getHead() {
@@ -58,17 +58,17 @@ public class Code_02_SkipList {
 				while (Math.random() < PROBABILITY) {
 					level++;
 				}
-				while (level > maxLevel) {
+				while (level > maxLevel) {//头一定要增加层数
 					head.nextNodes.add(null);
 					maxLevel++;
 				}
-				SkipListNode newNode = new SkipListNode(newValue);
-				SkipListNode current = head;
+				SkipListNode newNode = new SkipListNode(newValue);//新的值
+				SkipListNode current = head;//当前head 总是从头开始找
 				do {
-					current = findNext(newValue, current, level);
-					newNode.nextNodes.add(0, current.nextNodes.get(level));
-					current.nextNodes.set(level, newNode);
-				} while (level-- > 0);
+					current = findNext(newValue, current, level);//当前结点新的值，在第level层找
+					newNode.nextNodes.add(0, current.nextNodes.get(level));//前插，先把 17设置到0位置，再把15设置到0位置
+					current.nextNodes.set(level, newNode);//current第level层的引用让他指向newNode
+				} while (level-- > 0);//一定会找到第一层
 			}
 		}
 
@@ -79,7 +79,7 @@ public class Code_02_SkipList {
 				int level = maxLevel;
 				SkipListNode current = head;
 				do {
-					current = findNext(deleteNode.value, current, level);
+					current = findNext(deleteNode.value, current, level);//todo 错误，应该从最高层开始找
 					if (deleteNode.nextNodes.size() > level) {
 						current.nextNodes.set(level, deleteNode.nextNodes.get(level));
 					}
@@ -103,14 +103,14 @@ public class Code_02_SkipList {
 
 		// Returns the node at a given level with highest value less than e
 		private SkipListNode findNext(Integer e, SkipListNode current, int level) {
-			SkipListNode next = current.nextNodes.get(level);
+			SkipListNode next = current.nextNodes.get(level);//第七层的下一个结点怎么得到
 			while (next != null) {
 				Integer value = next.value;
-				if (lessThan(e, value)) { // e < value
+				if (lessThan(e, value)) { // e < value //找到对应结点，
 					break;
 				}
-				current = next;
-				next = current.nextNodes.get(level);
+				current = next;//current 在这一层里面最后一个小于当前数的
+				next = current.nextNodes.get(level);//同一层下一个值比当前小就往右边移动
 			}
 			return current;
 		}
@@ -142,8 +142,16 @@ public class Code_02_SkipList {
 
 	}
 
-	public static void main(String[] args) {
+	public static void test1(){
+	    SkipList skipList=new SkipList();
+	    skipList.add(1);
+	    skipList.add(19);
+	    skipList.add(11);
+	    skipList.add(7);
+	}
 
+	public static void main(String[] args) {
+		test1();
 	}
 
 }
